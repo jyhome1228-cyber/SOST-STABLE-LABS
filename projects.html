@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SOST STABLE LABS가 구축한 웹사이트, 커머스, 업무 시스템과 플랫폼 프로젝트를 소개합니다." />
+  <meta name="description" content="SOST STABLE LABS의 웹, 커머스, 기업 시스템 구축 프로젝트를 소개합니다." />
   <meta name="theme-color" content="#08090b" />
-  <title>PROJECTS — SOST STABLE LABS</title>
+  <title>Projects — SOST STABLE LABS</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/projects.css" />
   <script src="./js/main.js" defer></script>
+  <script src="./data/projects.js" defer></script>
+  <script src="./js/projects.js" defer></script>
 </head>
 <body data-page="projects">
   <a class="skip-link" href="#main">본문 바로가기</a>
+
   <header class="site-header" data-header>
     <div class="shell header-inner">
-      <a class="brand" href="./index.html">SOST STABLE <span>LABS</span></a>
+      <a class="brand" href="./index.html" aria-label="SOST STABLE LABS 홈">SOST STABLE <span>LABS</span></a>
       <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
       <nav class="global-nav" id="global-nav" aria-label="주요 메뉴">
         <a href="./about.html" data-nav="about">ABOUT</a>
@@ -28,77 +32,71 @@
   </header>
 
   <main id="main">
-    <section class="page-hero">
+    <section class="page-hero projects-hero">
       <div class="shell page-hero-grid">
         <div class="page-title reveal">
           <p class="eyebrow">SELECTED PROJECTS</p>
           <h1>문제를 이해하고<br />작동하는 결과로 만듭니다.</h1>
         </div>
         <div class="page-intro reveal" data-delay="100">
-          <p>기업 홈페이지와 카페24 커머스, CRM, 관리자와 업무 운영 시스템을 구축한 과정을 정리합니다. 실제 프로젝트 정보와 이미지로 순차 교체할 예정입니다.</p>
+          <p>기업 홈페이지와 카페24 커머스, CRM, 관리자와 업무 운영 시스템을 구축한 과정을 프로젝트 단위로 정리합니다.</p>
+          <p class="project-count"><strong data-project-count>0</strong> PROJECTS</p>
         </div>
       </div>
     </section>
 
-    <section class="section-block section-contrast">
+    <section class="portfolio-section">
       <div class="shell">
-        <div class="filter-row reveal" aria-label="프로젝트 분류">
-          <button class="filter-button is-active" type="button" data-filter="all">ALL</button>
-          <button class="filter-button" type="button" data-filter="web">WEB</button>
-          <button class="filter-button" type="button" data-filter="commerce">COMMERCE</button>
-          <button class="filter-button" type="button" data-filter="system">BUSINESS SYSTEM</button>
-          <button class="filter-button" type="button" data-filter="platform">PLATFORM</button>
+        <div class="portfolio-toolbar reveal">
+          <div class="filter-row" aria-label="프로젝트 분류">
+            <button class="filter-button is-active" type="button" data-project-filter="all">ALL</button>
+            <button class="filter-button" type="button" data-project-filter="web">WEB</button>
+            <button class="filter-button" type="button" data-project-filter="commerce">COMMERCE</button>
+            <button class="filter-button" type="button" data-project-filter="system">SYSTEM</button>
+            <button class="filter-button" type="button" data-project-filter="platform">PLATFORM</button>
+          </div>
+          <p>이미지와 프로젝트 정보를 전달하면 동일한 구조로 포트폴리오가 추가됩니다.</p>
         </div>
 
-        <div class="projects-grid" data-project-grid>
-          <article class="project-entry project-entry-wide reveal" data-category="system">
-            <div class="project-cover cover-dashboard" aria-hidden="true">
-              <div class="dashboard-frame"><span></span><span></span><span></span><div></div><i></i><i></i></div>
-            </div>
-            <div class="project-entry-meta"><div><p>BUSINESS SYSTEM · 2026</p><h2>Work Management System</h2></div><span>CRM / CALENDAR / DASHBOARD</span></div>
-          </article>
+        <div class="portfolio-grid" id="project-grid" aria-live="polite"></div>
+        <div class="portfolio-empty" id="project-empty" hidden>해당 분류의 프로젝트가 없습니다.</div>
+      </div>
+    </section>
 
-          <article class="project-entry reveal" data-category="commerce">
-            <div class="project-cover cover-shop" aria-hidden="true"><div class="shop-frame"><span></span><span></span><span></span></div></div>
-            <div class="project-entry-meta"><div><p>CAFE24 COMMERCE · 2026</p><h2>Brand Commerce Renewal</h2></div><span>UX / PUBLISHING / OPERATION</span></div>
-          </article>
-
-          <article class="project-entry reveal" data-category="web">
-            <div class="project-cover cover-corporate" aria-hidden="true"><div class="corporate-lines"><i></i><i></i><i></i><i></i><i></i></div></div>
-            <div class="project-entry-meta"><div><p>CORPORATE WEB · 2026</p><h2>Multilingual Corporate Website</h2></div><span>STRATEGY / UI / FRONT-END</span></div>
-          </article>
-
-          <article class="project-entry project-entry-wide reveal" data-category="platform">
-            <div class="project-cover cover-platform" aria-hidden="true"><div class="platform-map"><span></span><span></span><span></span><span></span><span></span></div></div>
-            <div class="project-entry-meta"><div><p>CONTENT PLATFORM · 2026</p><h2>Knowledge &amp; Insight Platform</h2></div><span>CONTENT / SEARCH / MEMBERSHIP</span></div>
-          </article>
-
-          <article class="project-entry reveal" data-category="web">
-            <div class="project-cover cover-booking" aria-hidden="true"><div class="booking-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
-            <div class="project-entry-meta"><div><p>BOOKING WEB · 2026</p><h2>Space Booking Website</h2></div><span>GUIDE / BOOKING / MOBILE</span></div>
-          </article>
-
-          <article class="project-entry reveal" data-category="system">
-            <div class="project-cover cover-crm" aria-hidden="true"><div class="crm-list"><span></span><span></span><span></span><span></span></div></div>
-            <div class="project-entry-meta"><div><p>CRM SYSTEM · 2026</p><h2>Client Relationship Dashboard</h2></div><span>LEADS / HISTORY / PIPELINE</span></div>
-          </article>
+    <section class="portfolio-system-section">
+      <div class="shell portfolio-system-grid">
+        <div class="portfolio-system-title reveal">
+          <p class="eyebrow">PORTFOLIO SYSTEM</p>
+          <h2>작업 자료를 받으면<br />프로젝트의 논리부터 정리합니다.</h2>
+        </div>
+        <div class="portfolio-system-copy reveal" data-delay="100">
+          <p>단순히 이미지를 나열하지 않고 프로젝트의 배경, 문제, 해결 방식과 구축 범위를 체계적으로 정리해 하나의 케이스 스터디로 구성합니다.</p>
+          <ol class="portfolio-process">
+            <li><span>01</span><div><strong>자료 확인</strong><p>작업 이미지, 기존 사이트, 기획서와 수행 범위를 확인합니다.</p></div></li>
+            <li><span>02</span><div><strong>내용 구조화</strong><p>프로젝트 목표, 문제, 접근 방식과 결과를 포트폴리오 문장으로 정리합니다.</p></div></li>
+            <li><span>03</span><div><strong>상세페이지 구성</strong><p>이미지를 목적에 맞게 배치하고 서비스 범위와 기술 정보를 함께 보여줍니다.</p></div></li>
+          </ol>
         </div>
       </div>
     </section>
 
-    <section class="section-block">
-      <div class="shell split-heading">
-        <div class="section-index reveal"><span>CASE</span><p>PROJECT DETAIL</p></div>
-        <div class="split-content reveal" data-delay="80">
-          <h2>프로젝트 상세는 결과 이미지보다<br />문제와 해결 구조를 중심으로 구성합니다.</h2>
-          <div class="two-copy"><p>Overview, Challenge, Approach, System, Design, Development와 Result의 순서로 프로젝트를 설명합니다.</p><p>나인웍스와 공동 진행한 작업은 브랜드·디자인과 개발·시스템의 역할을 명확하게 구분해 표기합니다.</p></div>
+    <section class="project-cta">
+      <div class="shell project-cta-inner reveal">
+        <div>
+          <p class="eyebrow">BUILD THE NEXT CASE</p>
+          <h2>다음 프로젝트를 함께 구축합니다.</h2>
         </div>
+        <a class="button button-point" href="./contact.html">프로젝트 문의</a>
       </div>
     </section>
-
-    <section class="contact-banner"><div class="shell contact-banner-inner reveal"><div><p class="eyebrow">BUILD WITH SOST</p><h2>다음 프로젝트의 구조를 함께 설계합니다.</h2></div><a class="button button-point" href="./contact.html">프로젝트 문의하기</a></div></section>
   </main>
 
-  <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand footer-brand" href="./index.html">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div><nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./labs.html">LABS</a><a href="./contact.html">CONTACT</a></nav><p class="copyright">© <span data-year></span> SOST STABLE LABS</p></div></footer>
+  <footer class="site-footer">
+    <div class="shell footer-top">
+      <a class="footer-brand" href="./index.html">SOST STABLE <span>LABS</span></a>
+      <p>Stable Systems for Better Business.</p>
+    </div>
+    <div class="shell footer-bottom"><span>© <span data-year></span> SOST STABLE LABS</span><span>SEOUL · SOUTH KOREA</span></div>
+  </footer>
 </body>
 </html>
