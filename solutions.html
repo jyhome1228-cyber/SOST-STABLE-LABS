@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="기업 홈페이지, CRM, 업무관리, 카페24 커머스, 관리자와 자동화 시스템 구축 솔루션을 소개합니다." />
+  <meta name="description" content="기업 홈페이지, 관리시스템, CRM, 예약, 관리자, 카페24 쇼핑몰과 업무 자동화 구축 솔루션을 소개합니다." />
   <meta name="theme-color" content="#08090b" />
   <title>SOLUTIONS — SOST STABLE LABS</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/offerings.css" />
   <script src="./js/main.js" defer></script>
 </head>
 <body data-page="solutions">
@@ -15,12 +16,13 @@
 
   <header class="site-header" data-header>
     <div class="shell header-inner">
-      <a class="brand" href="./index.html">SOST STABLE <span>LABS</span></a>
+      <a class="brand" href="./index.html" aria-label="SOST STABLE LABS 홈">SOST STABLE <span>LABS</span></a>
       <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
       <nav class="global-nav" id="global-nav" aria-label="주요 메뉴">
         <a href="./about.html" data-nav="about">ABOUT</a>
         <a href="./solutions.html" data-nav="solutions">SOLUTIONS</a>
         <a href="./projects.html" data-nav="projects">PROJECTS</a>
+        <a href="./capabilities.html" data-nav="capabilities">CAPABILITIES</a>
         <a href="./labs.html" data-nav="labs">LABS</a>
         <a href="./contact.html" data-nav="contact">CONTACT</a>
       </nav>
@@ -32,151 +34,125 @@
     <section class="page-hero">
       <div class="shell page-hero-grid">
         <div class="page-title reveal">
-          <p class="eyebrow">SOLUTIONS / 14 SERVICES</p>
-          <h1>기업에 필요한 디지털 환경을<br />하나의 구조로 구축합니다.</h1>
+          <p class="eyebrow">SOLUTIONS / 09</p>
+          <h1>기업에 필요한 디지털 환경을<br />목적에 맞게 구축합니다.</h1>
         </div>
         <div class="page-intro reveal" data-delay="100">
-          <p>
-            홈페이지 한 페이지부터 CRM과 사내 운영체계까지, 기업의 현재 상황과 우선순위에 맞춰 필요한 범위를 조합합니다.
-            모든 솔루션은 기획, 디자인, 퍼블리싱과 개발을 연결해 제공합니다.
-          </p>
+          <p>어떤 기술이 필요한지 미리 알고 문의하지 않아도 괜찮습니다. 현재 운영 방식과 해결하고 싶은 문제를 확인한 뒤 적합한 웹사이트와 시스템을 제안합니다.</p>
         </div>
       </div>
     </section>
 
-    <section class="section-block section-contrast">
+    <section class="offering-section">
       <div class="shell">
-        <div class="solution-toolbar reveal">
-          <p>WEB · SYSTEM · COMMERCE · DATA · OPERATION</p>
-          <span>14 SOLUTIONS</span>
+        <div class="offering-toolbar reveal">
+          <div>
+            <h2>만들고 싶은 결과를 기준으로<br />필요한 솔루션을 찾을 수 있습니다.</h2>
+            <p>웹사이트 한 페이지부터 고객관리와 사내 운영체계까지, 기업의 현재 상황과 우선순위에 맞춰 필요한 범위를 조합합니다.</p>
+          </div>
+          <span>09 SOLUTIONS</span>
         </div>
 
-        <div class="solution-grid">
-          <article class="solution-card reveal">
-            <div class="solution-card-top"><span>01</span><p>WEB</p></div>
+        <div class="offering-grid">
+          <article class="offering-card reveal">
+            <div class="offering-card-top"><span>01</span><span>WEB</span></div>
             <h2>기업 홈페이지 구축</h2>
-            <p>기업과 브랜드의 정보 구조를 정리하고 반응형 웹사이트로 구축합니다.</p>
-            <ul><li>기업·브랜드 사이트</li><li>다국어·채용·랜딩페이지</li><li>콘텐츠 관리 기능</li></ul>
+            <p class="offering-subtitle">Corporate Website Development</p>
+            <p class="offering-description">기업과 브랜드의 정보가 명확하게 전달되고 운영자가 지속적으로 관리할 수 있는 반응형 홈페이지를 구축합니다. 사업 구조와 콘텐츠부터 정리해 기업에 적합한 웹사이트 형태를 제안합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>기업·브랜드 홈페이지</li><li>서비스 소개 사이트</li><li>채용·다국어 사이트</li><li>포트폴리오·랜딩페이지</li><li>관리자 콘텐츠 기능</li><li>기존 홈페이지 리뉴얼</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>기업 웹사이트</span><span>반응형 웹</span><span>다국어</span><span>콘텐츠 관리</span><span>리뉴얼</span></div></div>
           </article>
 
-          <article class="solution-card reveal" data-delay="50">
-            <div class="solution-card-top"><span>02</span><p>PLATFORM</p></div>
-            <h2>웹서비스·플랫폼 개발</h2>
-            <p>회원, 콘텐츠, 신청과 검색 기능을 포함한 웹 기반 서비스를 개발합니다.</p>
-            <ul><li>회원가입·로그인</li><li>마이페이지·권한 관리</li><li>콘텐츠·커뮤니티 플랫폼</li></ul>
+          <article class="offering-card reveal" data-delay="50">
+            <div class="offering-card-top"><span>02</span><span>PLATFORM</span></div>
+            <h2>웹서비스·플랫폼 구축</h2>
+            <p class="offering-subtitle">Web Service &amp; Platform Development</p>
+            <p class="offering-description">회원, 콘텐츠, 신청과 검색 등 다양한 기능이 필요한 웹 기반 서비스를 기획하고 개발합니다. 서비스 목적에 맞춰 사용자 화면과 관리자 환경을 함께 구축합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>회원가입·로그인</li><li>회원 등급·권한</li><li>마이페이지</li><li>교육·콘텐츠 플랫폼</li><li>검색·필터</li><li>게시판·파일 관리</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>웹플랫폼</span><span>회원 시스템</span><span>마이페이지</span><span>콘텐츠</span><span>커뮤니티</span></div></div>
           </article>
 
-          <article class="solution-card reveal" data-delay="100">
-            <div class="solution-card-top"><span>03</span><p>CRM</p></div>
-            <h2>CRM 고객관리 시스템</h2>
-            <p>문의부터 상담, 계약과 후속 일정까지 고객 정보를 체계적으로 관리합니다.</p>
-            <ul><li>고객·상담 이력</li><li>담당자·영업 단계</li><li>계약·후속 일정 관리</li></ul>
+          <article class="offering-card reveal" data-delay="100">
+            <div class="offering-card-top"><span>03</span><span>OPERATION</span></div>
+            <h2>기업 관리시스템 구축</h2>
+            <p class="offering-subtitle">Business Management System</p>
+            <p class="offering-description">고객사, 프로젝트, 일정, 업무와 요청사항을 한곳에서 관리하는 기업 맞춤형 운영 시스템을 구축합니다. 엑셀과 메신저에 흩어진 업무를 하나의 흐름으로 연결합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>고객사·프로젝트 관리</li><li>업무 등록·배정</li><li>일정·캘린더</li><li>담당자별 업무 현황</li><li>요청사항·파일 관리</li><li>직원·외주 인력 관리</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>업무관리</span><span>프로젝트 관리</span><span>캘린더</span><span>협업</span><span>기업 운영</span></div></div>
           </article>
 
-          <article class="solution-card reveal">
-            <div class="solution-card-top"><span>04</span><p>WORK</p></div>
-            <h2>프로젝트·업무관리</h2>
-            <p>고객사별 프로젝트, 일정과 담당 업무를 하나의 화면에서 관리합니다.</p>
-            <ul><li>프로젝트·업무 배정</li><li>캘린더·우선순위</li><li>파일·요청사항 관리</li></ul>
+          <article class="offering-card reveal">
+            <div class="offering-card-top"><span>04</span><span>CRM</span></div>
+            <h2>CRM 고객관리 시스템 구축</h2>
+            <p class="offering-subtitle">Customer Relationship Management</p>
+            <p class="offering-description">문의가 들어온 시점부터 상담, 견적, 계약과 후속 연락까지 고객 정보를 체계적으로 관리합니다. 기업의 실제 영업 방식에 맞춰 관리 단계와 화면을 설계합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>고객 정보 관리</li><li>문의·상담 이력</li><li>고객 상태·등급</li><li>담당자·영업 단계</li><li>견적·계약 현황</li><li>후속 일정·통계</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>CRM</span><span>고객관리</span><span>상담 이력</span><span>영업관리</span><span>계약관리</span></div></div>
           </article>
 
-          <article class="solution-card reveal" data-delay="50">
-            <div class="solution-card-top"><span>05</span><p>OPERATION</p></div>
-            <h2>기업 내부 운영 시스템</h2>
-            <p>조직에 필요한 공지, 일정, 자료와 협업 흐름을 맞춤형으로 구축합니다.</p>
-            <ul><li>직원·부서·권한</li><li>공지·자료·회의</li><li>외주·협력업체 관리</li></ul>
+          <article class="offering-card reveal" data-delay="50">
+            <div class="offering-card-top"><span>05</span><span>BOOKING</span></div>
+            <h2>예약·접수 시스템 구축</h2>
+            <p class="offering-subtitle">Booking &amp; Application System</p>
+            <p class="offering-description">예약, 상담, 교육과 프로그램 신청을 온라인으로 접수하고 운영자가 편리하게 관리할 수 있는 시스템을 구축합니다. 신청부터 승인과 안내까지 전체 과정을 연결합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>날짜·시간 선택</li><li>인원·프로그램·옵션</li><li>예약 승인·변경·취소</li><li>관리자 캘린더</li><li>신청자 명단</li><li>자동 안내·예약 통계</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>예약 시스템</span><span>신청 접수</span><span>상담 예약</span><span>캘린더</span><span>자동 안내</span></div></div>
           </article>
 
-          <article class="solution-card reveal" data-delay="100">
-            <div class="solution-card-top"><span>06</span><p>ADMIN</p></div>
-            <h2>관리자 페이지 개발</h2>
-            <p>운영자가 직접 콘텐츠와 회원, 문의 데이터를 관리할 수 있도록 설계합니다.</p>
-            <ul><li>콘텐츠·배너·팝업</li><li>회원·문의·예약</li><li>권한·활동 기록</li></ul>
+          <article class="offering-card reveal" data-delay="100">
+            <div class="offering-card-top"><span>06</span><span>ADMIN</span></div>
+            <h2>관리자 페이지·대시보드 구축</h2>
+            <p class="offering-subtitle">Admin &amp; Data Dashboard</p>
+            <p class="offering-description">운영자가 개발자에게 매번 요청하지 않아도 콘텐츠와 데이터를 직접 관리할 수 있는 관리자 환경을 구축합니다. 주요 현황을 직관적인 표와 그래프로 확인할 수 있습니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>관리자 로그인·권한</li><li>콘텐츠·배너 관리</li><li>회원·문의·예약 관리</li><li>검색·필터</li><li>통계 차트</li><li>엑셀·CSV 다운로드</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>관리자 페이지</span><span>대시보드</span><span>데이터 관리</span><span>권한 관리</span><span>통계</span></div></div>
           </article>
 
-          <article class="solution-card reveal">
-            <div class="solution-card-top"><span>07</span><p>BOOKING</p></div>
-            <h2>예약·접수 시스템</h2>
-            <p>서비스와 공간, 상담에 필요한 날짜와 인원 기반 예약 흐름을 구축합니다.</p>
-            <ul><li>시간·인원·옵션</li><li>승인·취소·변경</li><li>안내 메시지·통계</li></ul>
-          </article>
-
-          <article class="solution-card reveal" data-delay="50">
-            <div class="solution-card-top"><span>08</span><p>CAFE24</p></div>
+          <article class="offering-card reveal">
+            <div class="offering-card-top"><span>07</span><span>CAFE24</span></div>
             <h2>카페24 쇼핑몰 구축</h2>
-            <p>카페24의 주문과 결제 기능을 기반으로 브랜드 맞춤 쇼핑몰을 구축합니다.</p>
-            <ul><li>신규 구축·리뉴얼</li><li>메인·목록·상세 디자인</li><li>상품·옵션·배송 설정</li></ul>
+            <p class="offering-subtitle">Cafe24 Commerce Development</p>
+            <p class="offering-description">카페24의 안정적인 주문, 회원, 결제와 배송 기능을 활용해 브랜드에 맞는 쇼핑몰을 구축합니다. 신규 구축부터 기존 쇼핑몰의 디자인과 구매 경험 개선까지 제공합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>신규 구축·리뉴얼</li><li>스킨 커스텀</li><li>메인·상품 목록</li><li>상품 상세·구매 UI</li><li>모바일 최적화</li><li>상품·옵션·배송 설정</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>카페24</span><span>쇼핑몰 구축</span><span>커머스 UX</span><span>스킨 커스텀</span><span>모바일 쇼핑몰</span></div></div>
           </article>
 
-          <article class="solution-card reveal" data-delay="100">
-            <div class="solution-card-top"><span>09</span><p>COMMERCE UI</p></div>
-            <h2>카페24 기능 커스텀</h2>
-            <p>상품 진열과 옵션 선택, 모바일 구매 동선을 코드 기반으로 개선합니다.</p>
-            <ul><li>맞춤 상품 진열</li><li>옵션·구매 UI</li><li>브랜드관·기획전</li></ul>
+          <article class="offering-card reveal" data-delay="50">
+            <div class="offering-card-top"><span>08</span><span>AUTOMATION</span></div>
+            <h2>시스템 연동·업무 자동화</h2>
+            <p class="offering-subtitle">Integration &amp; Automation</p>
+            <p class="offering-description">분리되어 있는 웹사이트, 일정, 고객 데이터와 외부 서비스를 연결해 반복되는 업무를 줄입니다. 현재 사용하는 서비스는 유지하면서 필요한 데이터 흐름을 자동화합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>문의 데이터 자동 저장</li><li>Calendar·Sheets 연동</li><li>이메일·문자·알림톡</li><li>지도·공공데이터 API</li><li>결제·외부 SaaS 연동</li><li>담당자 알림·통계 집계</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>API 연동</span><span>업무 자동화</span><span>데이터 연결</span><span>알림</span><span>외부 서비스</span></div></div>
           </article>
 
-          <article class="solution-card reveal">
-            <div class="solution-card-top"><span>10</span><p>DATA</p></div>
-            <h2>데이터 대시보드</h2>
-            <p>고객, 문의, 예약과 프로젝트 현황을 한눈에 확인할 수 있도록 시각화합니다.</p>
-            <ul><li>기간별 통계·차트</li><li>검색·조건 필터</li><li>엑셀·CSV 다운로드</li></ul>
-          </article>
-
-          <article class="solution-card reveal" data-delay="50">
-            <div class="solution-card-top"><span>11</span><p>INTEGRATION</p></div>
-            <h2>외부 서비스·API 연동</h2>
-            <p>분리된 서비스와 데이터를 연결해 업무가 하나의 흐름으로 이어지게 합니다.</p>
-            <ul><li>Firebase·Google</li><li>지도·결제·공공데이터</li><li>알림톡·채널톡·분석</li></ul>
-          </article>
-
-          <article class="solution-card reveal" data-delay="100">
-            <div class="solution-card-top"><span>12</span><p>AUTOMATION</p></div>
-            <h2>업무 자동화</h2>
-            <p>문의 등록, 담당자 알림과 반복적인 데이터 정리를 자동화합니다.</p>
-            <ul><li>문의·예약 자동 등록</li><li>상태·마감 알림</li><li>데이터·통계 자동 집계</li></ul>
-          </article>
-
-          <article class="solution-card reveal">
-            <div class="solution-card-top"><span>13</span><p>MIGRATION</p></div>
-            <h2>사이트 이전·복구·개선</h2>
-            <p>기존 플랫폼과 노후 코드를 분석해 관리하기 쉬운 구조로 재구축합니다.</p>
-            <ul><li>아임웹·HTML 이전</li><li>반응형·브라우저 개선</li><li>코드·속도 최적화</li></ul>
-          </article>
-
-          <article class="solution-card reveal" data-delay="50">
-            <div class="solution-card-top"><span>14</span><p>STABLE CARE</p></div>
-            <h2>유지보수·운영관리</h2>
-            <p>구축 이후에도 오류와 콘텐츠, 기능과 서버 환경을 지속적으로 관리합니다.</p>
-            <ul><li>서버·도메인·백업</li><li>오류 수정·기능 개선</li><li>월간 운영 점검</li></ul>
-          </article>
-
-          <article class="solution-card solution-card-cta reveal" data-delay="100">
-            <div class="solution-card-top"><span>+</span><p>CUSTOM</p></div>
-            <h2>필요한 기능이 목록에 없나요?</h2>
-            <p>현재 운영 방식과 문제를 바탕으로 필요한 구조부터 함께 정리합니다.</p>
-            <a class="inline-link" href="./contact.html">맞춤 솔루션 문의 <span>↗</span></a>
+          <article class="offering-card reveal" data-delay="100">
+            <div class="offering-card-top"><span>09</span><span>STABLE CARE</span></div>
+            <h2>사이트 이전·유지관리</h2>
+            <p class="offering-subtitle">Migration &amp; Stable Maintenance</p>
+            <p class="offering-description">기존 웹사이트와 시스템을 새로운 환경으로 이전하고 안정적으로 운영될 수 있도록 관리합니다. 기존 개발사와의 계약이 종료된 프로젝트도 현황을 확인해 유지보수를 인수합니다.</p>
+            <div class="offering-content"><h3>제공 내용</h3><ul><li>아임웹·노후 사이트 이전</li><li>GitHub·Firebase 이전</li><li>도메인·DNS·SSL</li><li>오류·반응형 개선</li><li>코드·CSS 정리</li><li>백업·월간 운영관리</li></ul></div>
+            <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list"><span>사이트 이전</span><span>유지보수</span><span>오류 개선</span><span>GitHub Pages</span><span>운영관리</span></div></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section-block">
-      <div class="shell split-heading">
-        <div class="section-index reveal"><span>PROCESS</span><p>PROJECT SCOPE</p></div>
-        <div class="split-content reveal" data-delay="80">
-          <h2>모든 기능을 새로 만들기보다<br />가장 적합한 구축 방식을 선택합니다.</h2>
-          <div class="two-copy">
-            <p>카페24, Firebase, GitHub와 검증된 외부 서비스를 활용할 수 있는 부분은 안정적인 기반 위에서 커스텀합니다.</p>
-            <p>기업 고유의 업무 방식과 차별화가 필요한 영역은 맞춤형 화면과 데이터 구조로 개발합니다.</p>
-          </div>
+    <section class="offering-help">
+      <div class="shell offering-help-inner">
+        <div class="reveal"><p class="eyebrow">NOT SURE WHERE TO START?</p><h2>무엇을 만들어야 할지<br />아직 명확하지 않아도 괜찮습니다.</h2></div>
+        <div class="offering-help-copy reveal" data-delay="80">
+          <p>현재 사용 중인 도구와 불편한 업무를 알려주시면 필요한 기능과 우선순위부터 함께 정리합니다.</p>
+          <div class="offering-help-options"><span>무엇을 만들지 아직 잘 모르겠습니다.</span><span>현재 운영 문제부터 상담하고 싶습니다.</span><span>여러 솔루션을 함께 구축하고 싶습니다.</span></div>
+          <a class="button button-point" href="./contact.html">필요한 기능 함께 정리하기</a>
         </div>
       </div>
     </section>
 
     <section class="contact-banner">
       <div class="shell contact-banner-inner reveal">
-        <div><p class="eyebrow">PROJECT INQUIRY</p><h2>어떤 솔루션이 필요한지부터 함께 찾습니다.</h2></div>
-        <a class="button button-point" href="./contact.html">프로젝트 문의하기</a>
+        <div><p class="eyebrow">CAPABILITIES</p><h2>솔루션을 구현하는 기획과 기술 역량을 확인해보세요.</h2></div>
+        <a class="button button-point" href="./capabilities.html">카파빌리티 보기</a>
       </div>
     </section>
   </main>
@@ -184,7 +160,7 @@
   <footer class="site-footer">
     <div class="shell footer-inner">
       <div><a class="brand footer-brand" href="./index.html">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div>
-      <nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./labs.html">LABS</a><a href="./contact.html">CONTACT</a></nav>
+      <nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./capabilities.html">CAPABILITIES</a><a href="./labs.html">LABS</a><a href="./contact.html">CONTACT</a></nav>
       <p class="copyright">© <span data-year></span> SOST STABLE LABS</p>
     </div>
   </footer>
