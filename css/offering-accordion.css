@@ -1,0 +1,164 @@
+/* Click-to-expand behavior for Solutions and Capabilities */
+.offering-card.is-interactive {
+  min-height: 340px;
+  cursor: pointer;
+  outline: none;
+  transition:
+    min-height 0.45s var(--ease),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.35s var(--ease);
+}
+
+.offering-card.is-interactive:hover,
+.offering-card.is-interactive:focus-visible {
+  background: rgba(167, 183, 255, 0.055);
+}
+
+.offering-card.is-interactive:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--point);
+}
+
+.offering-card.is-interactive.is-open {
+  min-height: 600px;
+  background: rgba(167, 183, 255, 0.075);
+}
+
+.offering-card.is-interactive .offering-card-top {
+  margin-bottom: 42px;
+}
+
+.offering-card.is-interactive > h2 {
+  padding-right: 48px;
+}
+
+.offering-card.is-interactive .offering-subtitle {
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.offering-card-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-height 0.55s var(--ease),
+    opacity 0.3s ease,
+    visibility 0s linear 0.55s;
+}
+
+.offering-card.is-open .offering-card-details {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    max-height 0.55s var(--ease),
+    opacity 0.35s ease 0.08s,
+    visibility 0s linear 0s;
+}
+
+.offering-card-details-inner {
+  padding-top: 24px;
+}
+
+.offering-card.is-interactive .offering-description {
+  min-height: 0;
+}
+
+.offering-card.is-interactive .offering-content {
+  margin-top: 28px;
+}
+
+.offering-card-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 620;
+  letter-spacing: 0.02em;
+}
+
+.offering-card-toggle-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.4s var(--ease);
+}
+
+.offering-card-toggle-icon::before,
+.offering-card-toggle-icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 1px;
+  content: '';
+  background: var(--point);
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s var(--ease);
+}
+
+.offering-card-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.offering-card.is-open .offering-card-toggle {
+  color: var(--point);
+}
+
+.offering-card.is-open .offering-card-toggle-icon {
+  border-color: var(--point);
+  background: rgba(167, 183, 255, 0.08);
+  transform: rotate(180deg);
+}
+
+.offering-card.is-open .offering-card-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+@media (max-width: 1180px) {
+  .offering-card.is-interactive {
+    min-height: 320px;
+  }
+
+  .offering-card.is-interactive.is-open {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 760px) {
+  .offering-card.is-interactive,
+  .offering-card.is-interactive.is-open {
+    min-height: 0;
+  }
+
+  .offering-card.is-interactive .offering-card-top {
+    margin-bottom: 34px;
+  }
+
+  .offering-card-toggle {
+    margin-top: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offering-card.is-interactive,
+  .offering-card-details,
+  .offering-card-toggle-icon,
+  .offering-card-toggle-icon::before,
+  .offering-card-toggle-icon::after {
+    transition: none !important;
+  }
+}
