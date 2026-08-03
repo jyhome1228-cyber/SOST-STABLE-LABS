@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SOST STABLE LABS 프로젝트 상세 사례입니다." />
+  <meta name="theme-color" content="#08090b" />
+  <title>Project — SOST STABLE LABS</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/projects.css" />
+  <script src="./js/main.js" defer></script>
+  <script src="./data/projects.js" defer></script>
+  <script src="./js/project-detail.js" defer></script>
+</head>
+<body data-page="projects">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="SOST STABLE LABS 홈">SOST STABLE <span>LABS</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
+      <nav class="global-nav" id="global-nav" aria-label="주요 메뉴">
+        <a href="./about.html" data-nav="about">ABOUT</a>
+        <a href="./solutions.html" data-nav="solutions">SOLUTIONS</a>
+        <a href="./projects.html" data-nav="projects">PROJECTS</a>
+        <a href="./labs.html" data-nav="labs">LABS</a>
+        <a href="./contact.html" data-nav="contact">CONTACT</a>
+      </nav>
+      <a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="project-detail" class="project-detail" aria-live="polite">
+      <section class="project-detail-loading">
+        <div class="shell"><p>PROJECT DATA LOADING...</p></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-top">
+      <a class="footer-brand" href="./index.html">SOST STABLE <span>LABS</span></a>
+      <p>Stable Systems for Better Business.</p>
+    </div>
+    <div class="shell footer-bottom"><span>© <span data-year></span> SOST STABLE LABS</span><span>SEOUL · SOUTH KOREA</span></div>
+  </footer>
+</body>
+</html>
