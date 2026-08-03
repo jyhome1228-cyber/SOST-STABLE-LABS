@@ -97,6 +97,102 @@
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
+  const offeringCards = [...document.querySelectorAll('.offering-card')];
+
+  if (offeringCards.length) {
+    const accordionStyles = document.createElement('link');
+    accordionStyles.rel = 'stylesheet';
+    accordionStyles.href = './css/offering-accordion.css';
+    document.head.appendChild(accordionStyles);
+
+    const closeOffering = (card) => {
+      const details = card.querySelector('.offering-card-details');
+      const toggleLabel = card.querySelector('.offering-card-toggle-label');
+      if (!details) return;
+
+      card.classList.remove('is-open');
+      card.setAttribute('aria-expanded', 'false');
+      details.style.maxHeight = '0px';
+      if (toggleLabel) toggleLabel.textContent = '자세히 보기';
+    };
+
+    const openOffering = (card) => {
+      const details = card.querySelector('.offering-card-details');
+      const toggleLabel = card.querySelector('.offering-card-toggle-label');
+      if (!details) return;
+
+      offeringCards.forEach((item) => {
+        if (item !== card) closeOffering(item);
+      });
+
+      card.classList.add('is-open');
+      card.setAttribute('aria-expanded', 'true');
+      details.style.maxHeight = `${details.scrollHeight}px`;
+      if (toggleLabel) toggleLabel.textContent = '내용 접기';
+    };
+
+    const toggleOffering = (card) => {
+      const isOpen = card.classList.contains('is-open');
+      if (isOpen) {
+        closeOffering(card);
+      } else {
+        openOffering(card);
+      }
+    };
+
+    offeringCards.forEach((card, index) => {
+      const title = card.querySelector(':scope > h2');
+      const description = card.querySelector(':scope > .offering-description');
+      const content = card.querySelector(':scope > .offering-content');
+      const keywords = card.querySelector(':scope > .offering-keywords');
+
+      if (!title || !description || !content || !keywords) return;
+
+      const detailId = `offering-detail-${currentPage || 'page'}-${index + 1}`;
+      const titleId = `offering-title-${currentPage || 'page'}-${index + 1}`;
+      title.id = titleId;
+
+      const details = document.createElement('div');
+      details.className = 'offering-card-details';
+      details.id = detailId;
+      details.setAttribute('role', 'region');
+      details.setAttribute('aria-labelledby', titleId);
+
+      const detailsInner = document.createElement('div');
+      detailsInner.className = 'offering-card-details-inner';
+      detailsInner.append(description, content, keywords);
+      details.appendChild(detailsInner);
+
+      const toggle = document.createElement('div');
+      toggle.className = 'offering-card-toggle';
+      toggle.setAttribute('aria-hidden', 'true');
+      toggle.innerHTML = `
+        <span class="offering-card-toggle-label">자세히 보기</span>
+        <span class="offering-card-toggle-icon"></span>
+      `;
+
+      card.append(details, toggle);
+      card.classList.add('is-interactive');
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-expanded', 'false');
+      card.setAttribute('aria-controls', detailId);
+
+      card.addEventListener('click', () => toggleOffering(card));
+      card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        toggleOffering(card);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      const openCard = document.querySelector('.offering-card.is-open');
+      const openDetails = openCard?.querySelector('.offering-card-details');
+      if (openDetails) openDetails.style.maxHeight = `${openDetails.scrollHeight}px`;
+    });
+  }
+
   const projectButtons = document.querySelectorAll('[data-filter]');
   const projectEntries = document.querySelectorAll('[data-category]');
 
