@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SOST STABLE LABS에 웹사이트, 카페24, CRM과 기업 시스템 구축 프로젝트를 문의하세요." />
+  <meta name="theme-color" content="#08090b" />
+  <title>CONTACT — SOST STABLE LABS</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="./js/main.js" defer></script>
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html">SOST STABLE <span>LABS</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
+      <nav class="global-nav" id="global-nav" aria-label="주요 메뉴">
+        <a href="./about.html" data-nav="about">ABOUT</a>
+        <a href="./solutions.html" data-nav="solutions">SOLUTIONS</a>
+        <a href="./projects.html" data-nav="projects">PROJECTS</a>
+        <a href="./labs.html" data-nav="labs">LABS</a>
+        <a href="./contact.html" data-nav="contact">CONTACT</a>
+      </nav>
+      <a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero contact-hero">
+      <div class="shell page-hero-grid">
+        <div class="page-title reveal">
+          <p class="eyebrow">START A PROJECT</p>
+          <h1>필요한 기능이 명확하지 않아도<br />괜찮습니다.</h1>
+        </div>
+        <div class="page-intro reveal" data-delay="100">
+          <p>현재 사용 중인 도구와 업무 방식, 해결하고 싶은 문제를 알려주세요. 필요한 시스템의 범위와 우선순위부터 함께 정리합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block section-contrast">
+      <div class="shell contact-layout">
+        <aside class="contact-aside reveal">
+          <p class="eyebrow">PROJECT INFORMATION</p>
+          <h2>문의 내용을 확인한 뒤<br />구축 방향을 제안합니다.</h2>
+          <div class="contact-process">
+            <div><span>01</span><p>문의 내용과 현재 운영 환경 확인</p></div>
+            <div><span>02</span><p>필요 기능과 우선순위 정리</p></div>
+            <div><span>03</span><p>일정·범위·예산을 반영한 제안</p></div>
+          </div>
+          <div class="contact-note">
+            <span>RESPONSE</span>
+            <p>영업일 기준 1–2일 내 회신을 기본으로 합니다.</p>
+          </div>
+        </aside>
+
+        <form class="contact-form reveal" data-delay="100" data-contact-form novalidate>
+          <div class="form-grid">
+            <label class="field"><span>회사명 *</span><input type="text" name="company" required placeholder="회사명을 입력해주세요" /></label>
+            <label class="field"><span>담당자명 *</span><input type="text" name="name" required placeholder="성함을 입력해주세요" /></label>
+            <label class="field"><span>이메일 *</span><input type="email" name="email" required placeholder="example@company.com" /></label>
+            <label class="field"><span>연락처</span><input type="tel" name="phone" placeholder="010-0000-0000" /></label>
+            <label class="field field-full"><span>프로젝트 유형 *</span>
+              <select name="type" required>
+                <option value="">선택해주세요</option>
+                <option>기업 홈페이지</option>
+                <option>웹서비스·플랫폼</option>
+                <option>CRM·업무관리</option>
+                <option>관리자·대시보드</option>
+                <option>카페24 쇼핑몰</option>
+                <option>예약·접수 시스템</option>
+                <option>사이트 이전·개선</option>
+                <option>유지보수</option>
+                <option>기타</option>
+              </select>
+            </label>
+            <label class="field"><span>예상 일정</span><input type="text" name="schedule" placeholder="예: 2026년 10월 오픈" /></label>
+            <label class="field"><span>예상 예산</span>
+              <select name="budget"><option value="">선택해주세요</option><option>500만원 미만</option><option>500–1,000만원</option><option>1,000–3,000만원</option><option>3,000만원 이상</option><option>협의 필요</option></select>
+            </label>
+            <label class="field field-full"><span>현재 사이트 주소</span><input type="url" name="website" placeholder="https://" /></label>
+            <label class="field field-full"><span>문의 내용 *</span><textarea name="message" required rows="8" placeholder="현재 운영 방식, 필요한 기능과 해결하고 싶은 문제를 적어주세요"></textarea></label>
+          </div>
+          <div class="form-bottom">
+            <p>현재 문의 폼은 화면 구조만 구성되어 있으며, 다음 단계에서 Firebase 또는 메일 전송 기능과 연결합니다.</p>
+            <button class="button button-point" type="submit">문의 내용 확인</button>
+          </div>
+          <p class="form-message" data-form-message role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="shell contact-types">
+        <article class="reveal"><span>01</span><h2>NEW PROJECT</h2><p>신규 홈페이지와 시스템 구축, 리뉴얼과 플랫폼 개발 문의</p></article>
+        <article class="reveal" data-delay="60"><span>02</span><h2>MAINTENANCE</h2><p>기존 사이트 유지보수 인수, 오류 수정과 운영관리 문의</p></article>
+        <article class="reveal" data-delay="120"><span>03</span><h2>PARTNERSHIP</h2><p>디자인·개발 협업, 외주 개발과 장기 기술 파트너십 문의</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand footer-brand" href="./index.html">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div><nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./labs.html">LABS</a><a href="./contact.html">CONTACT</a></nav><p class="copyright">© <span data-year></span> SOST STABLE LABS</p></div></footer>
+</body>
+</html>
