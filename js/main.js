@@ -5,13 +5,33 @@
   const header = document.querySelector('[data-header]');
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.global-nav');
-  const navLinks = nav ? [...nav.querySelectorAll('a')] : [];
   const currentPage = body.dataset.page;
-  const yearTarget = document.querySelector('[data-year]');
+  const yearTargets = document.querySelectorAll('[data-year]');
 
-  if (yearTarget) {
-    yearTarget.textContent = new Date().getFullYear();
-  }
+  const insertCapabilitiesLink = (targetNav, isFooter = false) => {
+    if (!targetNav || targetNav.querySelector('[data-nav="capabilities"], a[href="./capabilities.html"]')) return;
+
+    const link = document.createElement('a');
+    link.href = './capabilities.html';
+    link.textContent = 'CAPABILITIES';
+    if (!isFooter) link.dataset.nav = 'capabilities';
+
+    const labsLink = targetNav.querySelector('a[href="./labs.html"]');
+    if (labsLink) {
+      targetNav.insertBefore(link, labsLink);
+    } else {
+      targetNav.appendChild(link);
+    }
+  };
+
+  insertCapabilitiesLink(nav);
+  document.querySelectorAll('.footer-nav').forEach((footerNav) => insertCapabilitiesLink(footerNav, true));
+
+  const navLinks = nav ? [...nav.querySelectorAll('a')] : [];
+
+  yearTargets.forEach((target) => {
+    target.textContent = new Date().getFullYear();
+  });
 
   if (currentPage && currentPage !== 'home') {
     const activeLink = document.querySelector(`[data-nav="${currentPage}"]`);
