@@ -21,18 +21,11 @@
       return `<img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 대표 이미지" loading="lazy" />`;
     }
 
-    const initials = project.title
-      .split(' ')
-      .map((word) => word.charAt(0))
-      .join('')
-      .slice(0, 3);
-
     return `
-      <div class="project-placeholder accent-${escapeHTML(project.accent || 'blue')}" aria-hidden="true">
-        <span class="placeholder-grid"></span>
-        <span class="placeholder-orbit"></span>
-        <strong>${escapeHTML(initials)}</strong>
-        <small>${escapeHTML(project.categoryLabel)}</small>
+      <div class="project-placeholder accent-${escapeHTML(project.accent || 'blue')}" aria-label="${escapeHTML(project.title)} 이미지 영역">
+        <span>PROJECT IMAGE</span>
+        <strong>${escapeHTML(project.visualLabel || project.title)}</strong>
+        <small>THUMBNAIL PLACEHOLDER</small>
       </div>
     `;
   };
