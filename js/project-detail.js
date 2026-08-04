@@ -35,11 +35,10 @@
   if (metaDescription) metaDescription.setAttribute('content', project.excerpt);
 
   const createPlaceholder = (label, accent = 'blue', compact = false) => `
-    <div class="detail-placeholder accent-${escapeHTML(accent)} ${compact ? 'is-compact' : ''}" aria-hidden="true">
-      <span class="placeholder-grid"></span>
-      <span class="placeholder-orbit"></span>
+    <div class="detail-placeholder accent-${escapeHTML(accent)} ${compact ? 'is-compact' : ''}" aria-label="${escapeHTML(label)} 이미지 영역">
+      <span>PROJECT IMAGE</span>
       <strong>${escapeHTML(label)}</strong>
-      <small>SOST STABLE LABS</small>
+      <small>${compact ? 'CONTENT IMAGE PLACEHOLDER' : 'HERO IMAGE PLACEHOLDER'}</small>
     </div>
   `;
 
@@ -81,18 +80,18 @@
         </dl>
       </div>
       <div class="shell project-hero-visual accent-${escapeHTML(project.accent || 'blue')}">
-        ${createImage(project.hero || project.thumbnail, `${project.title} 대표 화면`, project.title, project.accent)}
+        ${createImage(project.hero || project.thumbnail, `${project.title} 대표 화면`, project.visualLabel || project.title, project.accent)}
       </div>
     </section>
 
-    <section class="case-section">
+    <section class="case-section case-overview-section">
       <div class="shell case-two-column">
         <div class="case-label"><span>01</span><p>OVERVIEW</p></div>
         <div class="case-copy-large"><p>${escapeHTML(project.overview)}</p></div>
       </div>
     </section>
 
-    <section class="case-section case-section-muted">
+    <section class="case-section case-section-muted case-challenge-section">
       <div class="shell case-content-grid">
         <article>
           <div class="case-label"><span>02</span><p>CHALLENGE</p></div>
@@ -107,11 +106,11 @@
       </div>
     </section>
 
-    <section class="case-section">
+    <section class="case-section case-system-section">
       <div class="shell">
         <div class="case-section-heading">
           <div class="case-label"><span>04</span><p>SYSTEM</p></div>
-          <h2>프로젝트를 구성하는 핵심 시스템</h2>
+          <h2>프로젝트를 구성한 핵심 기능</h2>
         </div>
         <div class="system-feature-grid">
           ${(project.system || []).map((item, index) => `
@@ -125,17 +124,17 @@
       <div class="shell">
         <div class="case-section-heading">
           <div class="case-label"><span>05</span><p>PROJECT VIEW</p></div>
-          <h2>구축 화면과 세부 경험</h2>
+          <h2>프로젝트 이미지 적용 영역</h2>
         </div>
         <div class="project-gallery-grid">${gallery}</div>
       </div>
     </section>
 
-    <section class="case-section case-section-muted">
+    <section class="case-section case-section-muted case-result-section">
       <div class="shell result-layout">
         <div>
           <div class="case-label"><span>06</span><p>RESULT</p></div>
-          <h2>프로젝트를 통해 만든 변화</h2>
+          <h2>프로젝트를 통해 정리한 결과</h2>
           <ul class="result-list">${list(project.results)}</ul>
         </div>
         <aside class="project-information">
