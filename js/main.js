@@ -7,6 +7,23 @@
   const nav = document.querySelector('.global-nav');
   const currentPage = body.dataset.page;
   const yearTargets = document.querySelectorAll('[data-year]');
+  const assetSprite = './assets/3d/sost-3d-assets.svg';
+
+  const ensureStylesheet = (href) => {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  ensureStylesheet('./css/visual-refresh.css');
+
+  const createAssetSvg = (symbolId, label = '') => `
+    <svg viewBox="0 0 ${symbolId === 'hero-system' ? '720 560' : '128 128'}" role="img"${label ? ` aria-label="${label}"` : ' aria-hidden="true"'}>
+      <use href="${assetSprite}#${symbolId}"></use>
+    </svg>
+  `;
 
   const insertCapabilitiesLink = (targetNav, isFooter = false) => {
     if (!targetNav || targetNav.querySelector('[data-nav="capabilities"], a[href="./capabilities.html"]')) return;
@@ -77,6 +94,39 @@
     });
   }
 
+  const homeSystemVisual = document.querySelector('.system-visual');
+  if (currentPage === 'home' && homeSystemVisual) {
+    homeSystemVisual.classList.add('system-visual-3d');
+    homeSystemVisual.innerHTML = `
+      <div class="visual-head">
+        <span>SOST / SYSTEM OBJECT</span>
+        <span class="live-state"><i></i> STABLE</span>
+      </div>
+      <div class="hero-3d-stage">
+        ${createAssetSvg('hero-system', 'SOST 시스템을 상징하는 3D 오브젝트')}
+      </div>
+      <div class="visual-foot visual-foot-compact">
+        <span>SYSTEMS</span>
+        <span>OPERATIONS</span>
+        <span>SOLUTIONS</span>
+        <span>TECHNOLOGY</span>
+      </div>
+    `;
+  }
+
+  if (currentPage === 'home') {
+    const previewIcons = ['icon-web', 'icon-operation', 'icon-commerce'];
+    document.querySelectorAll('.preview-card').forEach((card, index) => {
+      const symbolId = previewIcons[index];
+      if (!symbolId || card.querySelector('.preview-card-3d')) return;
+      const visual = document.createElement('div');
+      visual.className = 'preview-card-3d';
+      visual.innerHTML = createAssetSvg(symbolId);
+      card.classList.add('has-3d-asset');
+      card.appendChild(visual);
+    });
+  }
+
   const revealItems = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window) {
@@ -104,6 +154,32 @@
     accordionStyles.rel = 'stylesheet';
     accordionStyles.href = './css/offering-accordion.css';
     document.head.appendChild(accordionStyles);
+
+    if (currentPage === 'solutions') {
+      const solutionIcons = [
+        'icon-web',
+        'icon-platform',
+        'icon-operation',
+        'icon-crm',
+        'icon-booking',
+        'icon-admin',
+        'icon-commerce',
+        'icon-automation',
+        'icon-maintenance'
+      ];
+
+      offeringCards.forEach((card, index) => {
+        const symbolId = solutionIcons[index];
+        const cardTop = card.querySelector('.offering-card-top');
+        if (!symbolId || !cardTop || card.querySelector('.solution-3d-asset')) return;
+
+        const visual = document.createElement('div');
+        visual.className = 'solution-3d-asset';
+        visual.innerHTML = createAssetSvg(symbolId);
+        card.classList.add('solution-has-asset');
+        cardTop.insertAdjacentElement('afterend', visual);
+      });
+    }
 
     const closeOffering = (card) => {
       const details = card.querySelector('.offering-card-details');
