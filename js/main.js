@@ -8,6 +8,7 @@
   const currentPage = body.dataset.page;
   const yearTargets = document.querySelectorAll('[data-year]');
   const assetSprite = './assets/3d/sost-3d-assets.svg';
+  const officialLogo = './assets/logo-sost-stable-labs.svg';
 
   const ensureStylesheet = (href) => {
     if (document.querySelector(`link[href="${href}"]`)) return;
@@ -18,6 +19,24 @@
   };
 
   ensureStylesheet('./css/visual-refresh.css');
+
+  document.querySelectorAll('a.brand, a.footer-brand').forEach((brandLink) => {
+    const isFooter = brandLink.classList.contains('footer-brand');
+    brandLink.innerHTML = `<img src="${officialLogo}" alt="SOST STABLE LABS" />`;
+    brandLink.style.display = 'block';
+    brandLink.style.width = isFooter ? '205px' : 'clamp(150px, 13vw, 174px)';
+    brandLink.style.maxWidth = '100%';
+    brandLink.style.height = 'auto';
+    brandLink.style.fontSize = '0';
+    brandLink.style.lineHeight = '0';
+
+    const image = brandLink.querySelector('img');
+    if (image) {
+      image.style.display = 'block';
+      image.style.width = '100%';
+      image.style.height = 'auto';
+    }
+  });
 
   const createAssetSvg = (symbolId, label = '') => `
     <svg viewBox="0 0 ${symbolId === 'hero-system' ? '720 560' : '128 128'}" role="img"${label ? ` aria-label="${label}"` : ' aria-hidden="true"'}>
