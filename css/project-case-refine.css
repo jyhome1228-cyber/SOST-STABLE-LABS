@@ -162,11 +162,11 @@ body[data-page='projects'] main .shell,
 }
 
 .case-copy-large p {
-  max-width: 980px;
-  font-size: clamp(25px, 2.25vw, 34px);
+  max-width: 920px;
+  font-size: clamp(21px, 1.75vw, 28px);
   font-weight: 430;
-  line-height: 1.52;
-  letter-spacing: -0.035em;
+  line-height: 1.62;
+  letter-spacing: -0.026em;
 }
 
 /* Challenge and approach */
@@ -374,7 +374,8 @@ body[data-page='projects'] main .shell,
   }
 
   .case-copy-large p {
-    font-size: clamp(23px, 7vw, 29px);
+    font-size: clamp(20px, 5.7vw, 24px);
+    line-height: 1.65;
   }
 
   .case-content-grid {
