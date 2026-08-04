@@ -9,6 +9,8 @@
   const yearTargets = document.querySelectorAll('[data-year]');
   const assetSprite = './assets/3d/sost-3d-assets.svg';
   const officialLogo = './assets/logo-sost-stable-labs.svg';
+  const symbolAsset = './assets/sost-symbol.svg';
+  const faviconAsset = './assets/favicon-sost-v2.svg?v=20260804-3';
 
   const ensureStylesheet = (href) => {
     if (document.querySelector(`link[href="${href}"]`)) return;
@@ -19,12 +21,20 @@
   };
 
   ensureStylesheet('./css/visual-refresh.css');
+  ensureStylesheet('./css/refinement-v2.css');
+
+  document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/svg+xml';
+  favicon.href = faviconAsset;
+  document.head.appendChild(favicon);
 
   document.querySelectorAll('a.brand, a.footer-brand').forEach((brandLink) => {
     const isFooter = brandLink.classList.contains('footer-brand');
     brandLink.innerHTML = `<img src="${officialLogo}" alt="SOST STABLE LABS" />`;
     brandLink.style.display = 'block';
-    brandLink.style.width = isFooter ? '205px' : 'clamp(150px, 13vw, 174px)';
+    brandLink.style.width = isFooter ? '205px' : 'clamp(172px, 14vw, 194px)';
     brandLink.style.maxWidth = '100%';
     brandLink.style.height = 'auto';
     brandLink.style.fontSize = '0';
@@ -39,7 +49,7 @@
   });
 
   const createAssetSvg = (symbolId, label = '') => `
-    <svg viewBox="0 0 ${symbolId === 'hero-system' ? '720 560' : '128 128'}" role="img"${label ? ` aria-label="${label}"` : ' aria-hidden="true"'}>
+    <svg viewBox="0 0 128 128" role="img"${label ? ` aria-label="${label}"` : ' aria-hidden="true"'}>
       <use href="${assetSprite}#${symbolId}"></use>
     </svg>
   `;
@@ -53,11 +63,8 @@
     if (!isFooter) link.dataset.nav = 'capabilities';
 
     const labsLink = targetNav.querySelector('a[href="./labs.html"]');
-    if (labsLink) {
-      targetNav.insertBefore(link, labsLink);
-    } else {
-      targetNav.appendChild(link);
-    }
+    if (labsLink) targetNav.insertBefore(link, labsLink);
+    else targetNav.appendChild(link);
   };
 
   insertCapabilitiesLink(nav);
@@ -113,29 +120,37 @@
     });
   }
 
+  if (currentPage === 'about') {
+    const partnershipSection = document.querySelector('.partnership-grid')?.closest('section');
+    if (partnershipSection) partnershipSection.remove();
+  }
+
   const homeSystemVisual = document.querySelector('.system-visual');
   if (currentPage === 'home' && homeSystemVisual) {
     homeSystemVisual.classList.add('system-visual-3d');
     homeSystemVisual.innerHTML = `
-      <div class="visual-head">
-        <span>SOST / SYSTEM OBJECT</span>
-        <span class="live-state"><i></i> STABLE</span>
-      </div>
-      <div class="hero-3d-stage">
-        ${createAssetSvg('hero-system', 'SOST 시스템을 상징하는 3D 오브젝트')}
-      </div>
-      <div class="visual-foot visual-foot-compact">
-        <span>SYSTEMS</span>
-        <span>OPERATIONS</span>
-        <span>SOLUTIONS</span>
-        <span>TECHNOLOGY</span>
+      <div class="sost-symbol-scene" aria-label="SOST 심볼 기반 시스템 그래픽">
+        <span class="scene-orbit scene-orbit-a"></span>
+        <span class="scene-orbit scene-orbit-b"></span>
+        <span class="scene-particle p1"></span>
+        <span class="scene-particle p2"></span>
+        <span class="scene-particle p3"></span>
+        <span class="scene-particle p4"></span>
+        <div class="symbol-stack" aria-hidden="true">
+          <img class="symbol-layer symbol-layer-back" src="${symbolAsset}" alt="" />
+          <img class="symbol-layer symbol-layer-mid" src="${symbolAsset}" alt="" />
+          <img class="symbol-layer symbol-layer-front" src="${symbolAsset}" alt="" />
+        </div>
+        <p class="scene-caption">STRUCTURE · SYSTEM · FLOW</p>
       </div>
     `;
   }
 
   if (currentPage === 'home') {
     const previewIcons = ['icon-web', 'icon-operation', 'icon-commerce'];
-    document.querySelectorAll('.preview-card').forEach((card, index) => {
+    const previewCards = [...document.querySelectorAll('.preview-card')];
+
+    previewCards.forEach((card, index) => {
       const symbolId = previewIcons[index];
       if (!symbolId || card.querySelector('.preview-card-3d')) return;
       const visual = document.createElement('div');
@@ -144,6 +159,79 @@
       card.classList.add('has-3d-asset');
       card.appendChild(visual);
     });
+
+    const businessCard = previewCards[1];
+    if (businessCard) {
+      const label = businessCard.querySelector('.card-label');
+      const title = businessCard.querySelector('h3');
+      const description = businessCard.querySelector(':scope > p:last-of-type');
+      if (label) label.textContent = 'BUSINESS OPERATIONS';
+      if (title) title.textContent = '기업 운영·관리 시스템';
+      if (description) description.textContent = 'CRM, HR, 주문·발주, 전자결재와 프로젝트 업무를 한곳에서 관리하는 시스템을 구축합니다.';
+    }
+  }
+
+  if (currentPage === 'solutions') {
+    const pageCount = document.querySelector('.page-title .eyebrow');
+    const toolbarCount = document.querySelector('.offering-toolbar > span');
+    if (pageCount) pageCount.textContent = 'SOLUTIONS / 12';
+    if (toolbarCount) toolbarCount.textContent = '12 SOLUTIONS';
+
+    const capabilityButton = [...document.querySelectorAll('a[href="./capabilities.html"]')]
+      .find((link) => link.classList.contains('button'));
+    if (capabilityButton) capabilityButton.textContent = '확인하기';
+
+    const offeringGrid = document.querySelector('.offering-grid');
+    if (offeringGrid && !offeringGrid.querySelector('[data-added-solution="hr"]')) {
+      const newSolutions = [
+        {
+          key: 'hr',
+          number: '10',
+          category: 'HR',
+          title: 'HR 인사관리 시스템 구축',
+          subtitle: 'Human Resources Management System',
+          description: '직원 정보, 조직, 근태, 휴가와 평가 기록을 한곳에서 관리할 수 있는 기업 맞춤형 HR 시스템을 구축합니다.',
+          items: ['직원·조직 정보', '근태·휴가 신청', '직급·권한 관리', '평가·교육 기록', '계약·증명서 관리', '인사 현황 통계'],
+          keywords: ['HR', '인사관리', '근태', '휴가', '조직관리']
+        },
+        {
+          key: 'procurement',
+          number: '11',
+          category: 'PROCUREMENT',
+          title: '주문·발주 관리 시스템 구축',
+          subtitle: 'Order & Procurement Management',
+          description: '견적과 주문 접수부터 거래처 발주, 납기와 정산 상태까지 이어지는 주문·발주 업무 체계를 구축합니다.',
+          items: ['견적·주문 접수', '발주서 생성', '거래처·품목 관리', '납기 일정 관리', '진행 상태 추적', '매입·매출 정산'],
+          keywords: ['주문관리', '발주관리', '거래처', '납기', '구매관리']
+        },
+        {
+          key: 'approval',
+          number: '12',
+          category: 'APPROVAL',
+          title: '전자결재·승인 시스템 구축',
+          subtitle: 'Digital Approval Workflow',
+          description: '기업 내부의 신청, 검토와 승인 과정을 정형화해 담당자와 결재 상태를 명확하게 관리하는 워크플로를 구축합니다.',
+          items: ['결재 양식 관리', '단계별 승인', '권한·대결 설정', '첨부파일·의견', '상태 알림', '승인 이력·감사 기록'],
+          keywords: ['전자결재', '승인', '문서관리', '워크플로', '권한관리']
+        }
+      ];
+
+      newSolutions.forEach((solution, index) => {
+        const article = document.createElement('article');
+        article.className = 'offering-card reveal';
+        article.dataset.addedSolution = solution.key;
+        article.dataset.delay = String(index * 50);
+        article.innerHTML = `
+          <div class="offering-card-top"><span>${solution.number}</span><span>${solution.category}</span></div>
+          <h2>${solution.title}</h2>
+          <p class="offering-subtitle">${solution.subtitle}</p>
+          <p class="offering-description">${solution.description}</p>
+          <div class="offering-content"><h3>제공 내용</h3><ul>${solution.items.map((item) => `<li>${item}</li>`).join('')}</ul></div>
+          <div class="offering-keywords"><h3>키워드</h3><div class="keyword-list">${solution.keywords.map((keyword) => `<span>${keyword}</span>`).join('')}</div></div>
+        `;
+        offeringGrid.appendChild(article);
+      });
+    }
   }
 
   const revealItems = document.querySelectorAll('.reveal');
@@ -169,22 +257,13 @@
   const offeringCards = [...document.querySelectorAll('.offering-card')];
 
   if (offeringCards.length) {
-    const accordionStyles = document.createElement('link');
-    accordionStyles.rel = 'stylesheet';
-    accordionStyles.href = './css/offering-accordion.css';
-    document.head.appendChild(accordionStyles);
+    ensureStylesheet('./css/offering-accordion.css');
 
     if (currentPage === 'solutions') {
       const solutionIcons = [
-        'icon-web',
-        'icon-platform',
-        'icon-operation',
-        'icon-crm',
-        'icon-booking',
-        'icon-admin',
-        'icon-commerce',
-        'icon-automation',
-        'icon-maintenance'
+        'icon-web', 'icon-platform', 'icon-operation', 'icon-crm',
+        'icon-booking', 'icon-admin', 'icon-commerce', 'icon-automation',
+        'icon-maintenance', 'icon-crm', 'icon-commerce', 'icon-admin'
       ];
 
       offeringCards.forEach((card, index) => {
@@ -204,7 +283,6 @@
       const details = card.querySelector('.offering-card-details');
       const toggleLabel = card.querySelector('.offering-card-toggle-label');
       if (!details) return;
-
       card.classList.remove('is-open');
       card.setAttribute('aria-expanded', 'false');
       details.style.maxHeight = '0px';
@@ -215,11 +293,9 @@
       const details = card.querySelector('.offering-card-details');
       const toggleLabel = card.querySelector('.offering-card-toggle-label');
       if (!details) return;
-
       offeringCards.forEach((item) => {
         if (item !== card) closeOffering(item);
       });
-
       card.classList.add('is-open');
       card.setAttribute('aria-expanded', 'true');
       details.style.maxHeight = `${details.scrollHeight}px`;
@@ -227,12 +303,8 @@
     };
 
     const toggleOffering = (card) => {
-      const isOpen = card.classList.contains('is-open');
-      if (isOpen) {
-        closeOffering(card);
-      } else {
-        openOffering(card);
-      }
+      if (card.classList.contains('is-open')) closeOffering(card);
+      else openOffering(card);
     };
 
     offeringCards.forEach((card, index) => {
@@ -240,7 +312,6 @@
       const description = card.querySelector(':scope > .offering-description');
       const content = card.querySelector(':scope > .offering-content');
       const keywords = card.querySelector(':scope > .offering-keywords');
-
       if (!title || !description || !content || !keywords) return;
 
       const detailId = `offering-detail-${currentPage || 'page'}-${index + 1}`;
@@ -290,50 +361,39 @@
 
   const projectButtons = document.querySelectorAll('[data-filter]');
   const projectEntries = document.querySelectorAll('[data-category]');
-
   projectButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const category = button.dataset.filter;
       projectButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-
       projectEntries.forEach((entry) => {
-        const shouldShow = category === 'all' || entry.dataset.category === category;
-        entry.classList.toggle('is-hidden', !shouldShow);
+        entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.category !== category);
       });
     });
   });
 
   const articleButtons = document.querySelectorAll('[data-article-filter]');
   const articleEntries = document.querySelectorAll('[data-article-category]');
-
   articleButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const category = button.dataset.articleFilter;
       articleButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-
       articleEntries.forEach((entry) => {
-        const shouldShow = category === 'all' || entry.dataset.articleCategory === category;
-        entry.classList.toggle('is-hidden', !shouldShow);
+        entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.articleCategory !== category);
       });
     });
   });
 
   const contactForm = document.querySelector('[data-contact-form]');
   const formMessage = document.querySelector('[data-form-message]');
-
   if (contactForm) {
     contactForm.addEventListener('submit', (event) => {
       event.preventDefault();
-
       if (!contactForm.checkValidity()) {
         contactForm.reportValidity();
         if (formMessage) formMessage.textContent = '필수 항목을 확인해주세요.';
         return;
       }
-
-      if (formMessage) {
-        formMessage.textContent = '문의 폼 화면 구성이 완료되었습니다. 다음 단계에서 Firebase 또는 이메일 전송 기능을 연결합니다.';
-      }
+      if (formMessage) formMessage.textContent = '문의 폼 화면 구성이 완료되었습니다. 다음 단계에서 Firebase 또는 이메일 전송 기능을 연결합니다.';
     });
   }
 })();
