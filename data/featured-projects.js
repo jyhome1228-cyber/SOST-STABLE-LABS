@@ -86,5 +86,49 @@ window.SOST_PROJECTS = [
       { image: '', label: 'Certification & Partners' },
       { image: '', label: 'Project Performance Archive' }
     ]
+  },
+  {
+    id: 'thomastone-digital-healthcare-website',
+    title: 'THOMASTONE Digital Healthcare Website',
+    client: 'THOMASTONE',
+    year: '2026',
+    category: 'web',
+    categoryLabel: 'DIGITAL HEALTHCARE WEBSITE',
+    url: 'https://www.thomastone.co.kr/',
+    visualLabel: 'THOMASTONE HEALTHCARE WEB',
+    excerpt: 'AI 구강관리 기술과 서비스, 제품, 연구 성과를 신뢰도 높은 기업 정보로 연결한 디지털 헬스케어 홈페이지입니다.',
+    services: ['Corporate Website Planning', 'Service Architecture', 'Multilingual UX', 'Imweb Publishing'],
+    technologies: ['Imweb', 'HTML5', 'CSS3', 'JavaScript', 'Responsive Web', 'Multilingual Structure'],
+    accent: 'cyan',
+    thumbnail: '',
+    hero: '',
+    overview: '토마스톤의 AI 기반 구강관리 기술과 기업 비전, 제품·서비스, 연구 협력과 언론보도를 하나의 정보 구조로 연결한 디지털 헬스케어 기업 홈페이지입니다. 전문 기술을 일반 사용자와 기관·파트너가 함께 이해할 수 있도록 기업 신뢰 정보와 서비스 설명을 균형 있게 구성했습니다.',
+    challenge: 'AI 치아 모니터링, 플라그 가시화 제품, 교육·평가 시스템과 전문가 커뮤니티처럼 성격이 다른 사업을 하나의 브랜드 아래 명확하게 설명해야 했습니다. 또한 수상·인증·연구소·대학 및 병원 협력 이력과 언론보도를 통해 스타트업의 기술 신뢰도를 빠르게 전달할 필요가 있었습니다.',
+    approach: '기업 소개와 Mission & Vision을 중심으로 기술적 방향을 정의하고, 서비스와 제품을 사용 목적에 따라 분류했습니다. 수상·인증·연구 협력·파트너십·뉴스를 신뢰 콘텐츠로 묶고, 한국어와 영문 환경에서 동일한 정보 위계가 유지되도록 다국어 탐색 구조와 반응형 레이아웃을 정리했습니다.',
+    system: [
+      '기업 소개·Mission & Vision 정보 구조',
+      'AI 구강관리 서비스와 제품 분류 체계',
+      '수상·인증·기업부설연구소 신뢰 콘텐츠',
+      '국내외 대학·병원·기관 협력 정보',
+      '언론보도·기술 발표 뉴스 아카이브',
+      '한국어·영문 반응형 기업 웹 구조'
+    ],
+    results: [
+      '복수의 기술·서비스·제품을 하나의 기업 메시지로 통합했습니다.',
+      '연구 성과와 협력 이력을 통해 기술 기업의 신뢰 근거를 강화했습니다.',
+      '국내외 이해관계자가 탐색할 수 있는 다국어 정보 기반을 구축했습니다.',
+      '운영자가 서비스와 뉴스 콘텐츠를 지속적으로 관리할 수 있도록 구성했습니다.'
+    ],
+    scope: ['Corporate Message Structure', 'Information Architecture', 'Service Content Planning', 'Responsive UX/UI', 'Imweb Publishing', 'Multilingual Optimization'],
+    credits: [
+      { label: 'Planning · Publishing', value: 'SOST STABLE LABS' },
+      { label: 'Client', value: 'THOMASTONE' }
+    ],
+    gallery: [
+      { image: '', label: 'Corporate Main & Vision' },
+      { image: '', label: 'Service & Product Structure' },
+      { image: '', label: 'Awards & Research Partnership' },
+      { image: '', label: 'News & Contact Experience' }
+    ]
   }
 ];
