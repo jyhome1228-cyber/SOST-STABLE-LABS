@@ -11,10 +11,11 @@
   if (!titleBlock || titleBlock.querySelector('.project-live-link')) return;
 
   const link = document.createElement('a');
-  link.className = 'project-live-link';
+  link.className = 'inline-link project-live-link';
   link.href = project.url;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   link.textContent = 'LIVE SITE ↗';
+  link.style.marginTop = '28px';
   titleBlock.appendChild(link);
 })();
