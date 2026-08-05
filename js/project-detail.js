@@ -47,20 +47,33 @@
     return `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="${compact ? 'lazy' : 'eager'}" />`;
   };
 
+  const normalizeLayout = (item, index) => {
+    const allowed = new Set(['desktop', 'section', 'visual', 'mobile', 'scroll', 'editorial']);
+    if (allowed.has(item.layout)) return item.layout;
+    if (/mobile/i.test(item.label || '')) return 'mobile';
+    if (index === 0) return 'desktop';
+    return 'editorial';
+  };
+
   const list = (items = []) => items.map((item) => `<li>${escapeHTML(item)}</li>`).join('');
   const tags = (items = []) => items.map((item) => `<span>${escapeHTML(item)}</span>`).join('');
   const credits = (items = []) => items.map((item) => `
     <div><dt>${escapeHTML(item.label)}</dt><dd>${escapeHTML(item.value)}</dd></div>
   `).join('');
 
-  const gallery = (project.gallery || []).map((item, index) => `
-    <figure class="project-gallery-item ${index === 0 ? 'is-wide' : ''}">
-      <div class="project-gallery-visual">
-        ${createImage(item.image, `${project.title} ${item.label}`, item.label, project.accent, true)}
-      </div>
-      <figcaption><span>${String(index + 1).padStart(2, '0')}</span>${escapeHTML(item.label)}</figcaption>
-    </figure>
-  `).join('');
+  const gallery = (project.gallery || []).map((item, index) => {
+    const layout = normalizeLayout(item, index);
+    const wideClass = ['desktop', 'section', 'scroll'].includes(layout) ? ' is-wide' : '';
+
+    return `
+      <figure class="project-gallery-item layout-${escapeHTML(layout)}${wideClass}" data-layout="${escapeHTML(layout)}">
+        <div class="project-gallery-visual">
+          ${createImage(item.image, `${project.title} ${item.label}`, item.label, project.accent, true)}
+        </div>
+        <figcaption><span>${String(index + 1).padStart(2, '0')}</span>${escapeHTML(item.label)}</figcaption>
+      </figure>
+    `;
+  }).join('');
 
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
@@ -124,7 +137,7 @@
       <div class="shell">
         <div class="case-section-heading">
           <div class="case-label"><span>05</span><p>PROJECT VIEW</p></div>
-          <h2>프로젝트 이미지 적용 영역</h2>
+          <h2>실제 화면 구성과 반응형 경험</h2>
         </div>
         <div class="project-gallery-grid">${gallery}</div>
       </div>
