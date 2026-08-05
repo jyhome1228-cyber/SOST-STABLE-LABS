@@ -8,9 +8,9 @@
   <title>CONTACT — SOST STABLE LABS</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/contact-inquiry.css?v=20260805-1" />
+  <link rel="stylesheet" href="./css/contact-inquiry.css?v=20260805-3" />
   <script src="./js/main.js" defer></script>
-  <script type="module" src="./js/contact-inquiry.js?v=20260805-2"></script>
+  <script type="module" src="./js/contact-inquiry.js?v=20260805-3"></script>
 </head>
 <body data-page="contact">
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -65,30 +65,52 @@
             <label class="field"><span>담당자명 *</span><input type="text" name="name" required maxlength="80" autocomplete="name" placeholder="성함을 입력해주세요" /></label>
             <label class="field"><span>이메일 *</span><input type="email" name="email" required maxlength="160" autocomplete="email" placeholder="example@company.com" /></label>
             <label class="field"><span>연락처</span><input type="tel" name="phone" maxlength="60" autocomplete="tel" placeholder="010-0000-0000" /></label>
-            <label class="field field-full"><span>프로젝트 유형 *</span>
-              <select name="type" required>
+
+            <fieldset class="field field-full project-type-field" data-project-type-group>
+              <legend>프로젝트 유형 * <small>여러 항목을 선택할 수 있습니다.</small></legend>
+              <div class="project-type-options">
+                <label class="option-chip"><input type="checkbox" name="type" value="기업 홈페이지" /><span>기업 홈페이지</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="웹서비스·플랫폼" /><span>웹서비스·플랫폼</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="기업 관리시스템" /><span>기업 관리시스템</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="CRM 고객관리" /><span>CRM 고객관리</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="HR 인사관리" /><span>HR 인사관리</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="주문·발주 관리" /><span>주문·발주 관리</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="전자결재·승인" /><span>전자결재·승인</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="관리자·대시보드" /><span>관리자·대시보드</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="카페24 쇼핑몰" /><span>카페24 쇼핑몰</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="예약·접수 시스템" /><span>예약·접수 시스템</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="사이트 이전·개선" /><span>사이트 이전·개선</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="유지보수" /><span>유지보수</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="필요 범위 상담" /><span>필요 범위 상담</span></label>
+                <label class="option-chip"><input type="checkbox" name="type" value="기타" /><span>기타</span></label>
+              </div>
+              <p class="project-type-error" data-project-type-error></p>
+            </fieldset>
+
+            <label class="field"><span>예상 일정</span>
+              <select name="schedule">
                 <option value="">선택해주세요</option>
-                <option>기업 홈페이지</option>
-                <option>웹서비스·플랫폼</option>
-                <option>기업 관리시스템</option>
-                <option>CRM 고객관리</option>
-                <option>HR 인사관리</option>
-                <option>주문·발주 관리</option>
-                <option>전자결재·승인</option>
-                <option>관리자·대시보드</option>
-                <option>카페24 쇼핑몰</option>
-                <option>예약·접수 시스템</option>
-                <option>사이트 이전·개선</option>
-                <option>유지보수</option>
-                <option>무엇이 필요한지 상담하고 싶습니다</option>
-                <option>기타</option>
+                <option>가능한 빠르게</option>
+                <option>1개월 이내</option>
+                <option>2–3개월 이내</option>
+                <option>3–6개월 이내</option>
+                <option>6개월 이후</option>
+                <option>특정 일정이 있습니다</option>
+                <option>논의 후 결정 예정</option>
               </select>
             </label>
-            <label class="field"><span>예상 일정</span><input type="text" name="schedule" maxlength="120" placeholder="예: 2026년 10월 오픈" /></label>
             <label class="field"><span>예상 예산</span>
-              <select name="budget"><option value="">선택해주세요</option><option>500만원 미만</option><option>500–1,000만원</option><option>1,000–3,000만원</option><option>3,000만원 이상</option><option>협의 필요</option></select>
+              <select name="budget">
+                <option value="">선택해주세요</option>
+                <option>500만원 미만</option>
+                <option>500–1,000만원</option>
+                <option>1,000–3,000만원</option>
+                <option>3,000만원 이상</option>
+                <option>협의 필요</option>
+                <option>논의 후 결정 예정</option>
+              </select>
             </label>
-            <label class="field field-full"><span>현재 사이트 주소</span><input type="url" name="website" maxlength="300" placeholder="https://" /></label>
+            <label class="field field-full"><span>현재 사이트 주소</span><input type="text" inputmode="url" name="website" maxlength="300" placeholder="예: company.com 또는 https://company.com" /></label>
             <label class="field field-full"><span>문의 내용 *</span><textarea name="message" required maxlength="5000" rows="8" placeholder="현재 운영 방식, 필요한 기능과 해결하고 싶은 문제를 적어주세요"></textarea></label>
             <label class="field field-full privacy-field"><input type="checkbox" name="privacy" required /><span>프로젝트 상담을 위한 개인정보 수집 및 이용에 동의합니다. 수집 정보는 문의 확인과 회신 목적으로만 사용합니다.</span></label>
           </div>
