@@ -18,9 +18,24 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
+  const displayHost = (url = '') => {
+    try {
+      return new URL(url).hostname.replace(/^www\./, '');
+    } catch {
+      return 'project preview';
+    }
+  };
+
   const createVisual = (project) => {
     if (project.thumbnail) {
-      return `<img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 대표 이미지" loading="lazy" />`;
+      return `
+        <div class="portfolio-browser-frame">
+          <div class="portfolio-browser-toolbar" aria-hidden="true">
+            <i></i><i></i><i></i><span>${escapeHTML(displayHost(project.url))}</span>
+          </div>
+          <img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 메인 화면 미리보기" loading="lazy" />
+        </div>
+      `;
     }
 
     return `
@@ -37,8 +52,10 @@
       .map((service) => `<span>${escapeHTML(service)}</span>`)
       .join('');
 
+    const captureClass = project.hasAutomatedCapture ? ' has-automated-capture' : '';
+
     return `
-      <article class="portfolio-card" data-category="${escapeHTML(project.category)}" style="--card-order:${index}">
+      <article class="portfolio-card${captureClass}" data-category="${escapeHTML(project.category)}" style="--card-order:${index}">
         <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 자세히 보기">
           <div class="portfolio-card-visual">
             ${createVisual(project)}
