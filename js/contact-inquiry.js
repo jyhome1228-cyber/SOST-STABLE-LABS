@@ -10,6 +10,7 @@ const message = document.querySelector('[data-inquiry-message]');
 const submitButton = form?.querySelector('button[type="submit"]');
 const projectTypeGroup = form?.querySelector('[data-project-type-group]');
 const projectTypeError = form?.querySelector('[data-project-type-error]');
+const projectTypeOptions = projectTypeGroup?.querySelector('.project-type-options');
 
 function setMessage(text, state = '') {
   if (!message) return;
@@ -34,6 +35,34 @@ function normalizeWebsite(value) {
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(website)) return website;
   return `https://${website}`;
 }
+
+function ensureProjectTypeOption(value) {
+  if (!projectTypeOptions || !value) return null;
+
+  const existing = [...projectTypeOptions.querySelectorAll('input[name="type"]')]
+    .find((input) => input.value === value);
+  if (existing) return existing;
+
+  const label = document.createElement('label');
+  label.className = 'option-chip';
+  label.innerHTML = `<input type="checkbox" name="type" value="${value}" /><span>${value}</span>`;
+  projectTypeOptions.appendChild(label);
+  return label.querySelector('input');
+}
+
+if (projectTypeGroup) projectTypeGroup.id = 'project-type';
+ensureProjectTypeOption('시스템 연동·업무 자동화');
+
+const requestedTypes = new URLSearchParams(window.location.search)
+  .getAll('type')
+  .flatMap((value) => value.split(','))
+  .map((value) => clean(value, 100))
+  .filter(Boolean);
+
+requestedTypes.forEach((type) => {
+  const input = ensureProjectTypeOption(type);
+  if (input) input.checked = true;
+});
 
 function selectedProjectTypes() {
   return [...form.querySelectorAll('input[name="type"]:checked')]
@@ -61,6 +90,11 @@ function submitErrorMessage(error) {
 form?.querySelectorAll('input[name="type"]').forEach((input) => {
   input.addEventListener('change', validateProjectTypes);
 });
+
+if (requestedTypes.length) {
+  projectTypeGroup?.classList.add('has-prefilled-type');
+  validateProjectTypes();
+}
 
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
