@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /kakao-preview.html
+
+Sitemap: https://sostlabs.com/sitemap.xml
