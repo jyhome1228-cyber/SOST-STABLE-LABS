@@ -26,6 +26,15 @@ function clean(value, maxLength = 5000) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+function submitErrorMessage(error) {
+  const messages = {
+    'permission-denied': '문의 저장 권한을 확인할 수 없습니다. Firestore 규칙을 확인해주세요.',
+    'unavailable': '일시적으로 서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.',
+    'resource-exhausted': '요청이 많아 접수하지 못했습니다. 잠시 후 다시 시도해주세요.'
+  };
+  return messages[error.code] || '문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+}
+
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -39,7 +48,7 @@ form?.addEventListener('submit', async (event) => {
   if (clean(data.get('fax'), 100)) return;
 
   if (!firebaseReady || !db) {
-    setMessage('Firebase 연결 설정이 아직 완료되지 않았습니다. 관리자에게 문의해주세요.', 'error');
+    setMessage('문의 시스템 연결을 확인하고 있습니다. 잠시 후 다시 시도해주세요.', 'error');
     return;
   }
 
@@ -65,12 +74,13 @@ form?.addEventListener('submit', async (event) => {
   setMessage('문의 내용을 안전하게 저장하고 있습니다.', 'loading');
 
   try {
-    await addDoc(collection(db, 'inquiries'), payload);
+    const document = await addDoc(collection(db, 'inquiries'), payload);
+    const receipt = document.id.slice(-8).toUpperCase();
     form.reset();
-    setMessage('문의가 정상적으로 접수되었습니다. 영업일 기준 1–2일 내 확인 후 연락드리겠습니다.', 'success');
+    setMessage(`문의가 정상적으로 접수되었습니다. 접수번호 ${receipt} · 영업일 기준 1–2일 내 확인 후 연락드리겠습니다.`, 'success');
   } catch (error) {
     console.error('Inquiry submit failed:', error);
-    setMessage('문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
+    setMessage(submitErrorMessage(error), 'error');
   } finally {
     setLoading(false);
   }
