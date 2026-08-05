@@ -1,6 +1,8 @@
 import { firebaseReady, auth, db } from './firebase-config.js?v=20260805-2';
 import {
+  browserLocalPersistence,
   onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut
 } from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js';
@@ -8,6 +10,8 @@ import {
   collection,
   doc,
   onSnapshot,
+  orderBy,
+  query,
   serverTimestamp,
   updateDoc
 } from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
@@ -92,7 +96,7 @@ function filteredInquiries() {
 function renderList() {
   const items = filteredInquiries();
   if (!items.length) {
-    listRoot.innerHTML = '<p class="admin-empty">조건에 맞는 문의가 없습니다.</p>';
+    listRoot.innerHTML = '<p class="admin-empty">아직 접수된 문의가 없거나 조건에 맞는 문의가 없습니다.</p>';
     return;
   }
 
@@ -136,7 +140,7 @@ function renderDetail() {
   const mailSubject = encodeURIComponent(`[SOST 프로젝트 문의] ${item.company || item.name || ''}`);
   detailRoot.innerHTML = `
     <div class="admin-detail-head">
-      <div><span>PROJECT INQUIRY</span><h2>${escapeHTML(item.company || '회사명 미입력')}</h2><p>${escapeHTML(formatDate(item.createdAt))}</p></div>
+      <div><span>PROJECT INQUIRY · ${escapeHTML(item.id.slice(-8).toUpperCase())}</span><h2>${escapeHTML(item.company || '회사명 미입력')}</h2><p>${escapeHTML(formatDate(item.createdAt))}</p></div>
       <a class="admin-reply" href="mailto:${escapeHTML(item.email || '')}?subject=${mailSubject}">이메일 회신 ↗</a>
     </div>
     <div class="admin-detail-grid">
@@ -175,7 +179,9 @@ function renderDetail() {
       feedback.textContent = '저장되었습니다.';
     } catch (error) {
       console.error(error);
-      feedback.textContent = '저장하지 못했습니다. 권한과 Firebase 설정을 확인해주세요.';
+      feedback.textContent = error.code === 'permission-denied'
+        ? '관리자 권한이 없습니다. Firestore 규칙을 확인해주세요.'
+        : '저장하지 못했습니다. 잠시 후 다시 시도해주세요.';
     } finally {
       button.disabled = false;
       button.textContent = '변경사항 저장';
@@ -185,22 +191,45 @@ function renderDetail() {
 
 function subscribeInquiries() {
   unsubscribe?.();
-  unsubscribe = onSnapshot(collection(db, 'inquiries'), (snapshot) => {
-    inquiries = snapshot.docs.map((document) => ({ id: document.id, ...document.data() }))
-      .sort((a, b) => (toDate(b.createdAt)?.getTime() || 0) - (toDate(a.createdAt)?.getTime() || 0));
+  listRoot.innerHTML = '<p class="admin-empty">문의 데이터를 불러오고 있습니다.</p>';
+
+  const inquiriesQuery = query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'));
+  unsubscribe = onSnapshot(inquiriesQuery, (snapshot) => {
+    inquiries = snapshot.docs.map((document) => ({ id: document.id, ...document.data() }));
+
+    if (!selectedId || !inquiries.some((item) => item.id === selectedId)) {
+      selectedId = inquiries[0]?.id || null;
+    }
+
     updateStats();
     renderList();
     renderDetail();
   }, (error) => {
     console.error(error);
-    listRoot.innerHTML = '<p class="admin-empty">문의 데이터를 불러오지 못했습니다. Firestore Rules와 프로젝트 설정을 확인해주세요.</p>';
+    const guide = error.code === 'permission-denied'
+      ? 'Firestore 규칙이 게시되지 않았거나 관리자 이메일 권한이 일치하지 않습니다.'
+      : 'Firestore 데이터베이스와 네트워크 상태를 확인해주세요.';
+    listRoot.innerHTML = `<p class="admin-empty">문의 데이터를 불러오지 못했습니다.<br>${guide}</p>`;
   });
+}
+
+function authErrorMessage(error) {
+  const messages = {
+    'auth/invalid-credential': '이메일 또는 비밀번호가 올바르지 않습니다.',
+    'auth/user-not-found': '등록되지 않은 관리자 계정입니다.',
+    'auth/wrong-password': '비밀번호가 올바르지 않습니다.',
+    'auth/too-many-requests': '로그인 시도가 많습니다. 잠시 후 다시 시도해주세요.',
+    'auth/network-request-failed': '네트워크 연결을 확인해주세요.',
+    'auth/operation-not-allowed': 'Firebase에서 이메일/비밀번호 로그인을 활성화해주세요.',
+    'auth/unauthorized-domain': 'Firebase 승인 도메인에 sostlabs.com을 추가해주세요.'
+  };
+  return messages[error.code] || '로그인하지 못했습니다. Firebase 설정을 확인해주세요.';
 }
 
 loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!firebaseReady || !auth) {
-    setLoginMessage('Firebase 웹 앱 설정값을 먼저 입력해주세요.', 'error');
+    setLoginMessage('Firebase 웹 앱 연결값을 확인해주세요.', 'error');
     return;
   }
 
@@ -213,21 +242,27 @@ loginForm?.addEventListener('submit', async (event) => {
   setLoginMessage('관리자 계정을 확인하고 있습니다.');
 
   try {
+    await setPersistence(auth, browserLocalPersistence);
     const credential = await signInWithEmailAndPassword(auth, email, password);
     if (credential.user.email?.toLowerCase() !== ADMIN_EMAIL) {
       await signOut(auth);
-      throw new Error('허용되지 않은 관리자 계정입니다.');
+      throw Object.assign(new Error('허용되지 않은 관리자 계정입니다.'), { code: 'admin/not-allowed' });
     }
+    setLoginMessage('로그인되었습니다.', 'success');
   } catch (error) {
     console.error(error);
-    setLoginMessage(error.message === '허용되지 않은 관리자 계정입니다.' ? error.message : '이메일 또는 비밀번호를 확인해주세요.', 'error');
+    setLoginMessage(error.code === 'admin/not-allowed' ? error.message : authErrorMessage(error), 'error');
   } finally {
     button.disabled = false;
     button.textContent = '관리자 로그인';
   }
 });
 
-document.querySelector('[data-admin-logout]')?.addEventListener('click', () => signOut(auth));
+document.querySelector('[data-admin-logout]')?.addEventListener('click', async () => {
+  unsubscribe?.();
+  await signOut(auth);
+});
+
 searchInput?.addEventListener('input', renderList);
 filterButtons.forEach((button) => button.addEventListener('click', () => {
   activeStatus = button.dataset.statusFilter;
@@ -236,8 +271,9 @@ filterButtons.forEach((button) => button.addEventListener('click', () => {
 }));
 
 if (!firebaseReady || !auth || !db) {
-  setLoginMessage('Firebase 연결 전입니다. js/firebase-config.js에 웹 앱 설정값을 입력해주세요.', 'error');
+  setLoginMessage('Firebase 연결값을 확인해주세요.', 'error');
 } else {
+  setPersistence(auth, browserLocalPersistence).catch(() => {});
   onAuthStateChanged(auth, async (user) => {
     const allowed = user?.email?.toLowerCase() === ADMIN_EMAIL;
     if (user && !allowed) {
@@ -247,6 +283,7 @@ if (!firebaseReady || !auth || !db) {
 
     loginSection.hidden = Boolean(allowed);
     dashboard.hidden = !allowed;
+
     if (allowed) {
       account.textContent = user.email;
       setLoginMessage('');
@@ -255,6 +292,8 @@ if (!firebaseReady || !auth || !db) {
       unsubscribe?.();
       inquiries = [];
       selectedId = null;
+      listRoot.innerHTML = '<p class="admin-empty">문의 데이터를 불러오고 있습니다.</p>';
+      renderDetail();
     }
   });
 }
