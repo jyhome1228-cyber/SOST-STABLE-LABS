@@ -1,0 +1,47 @@
+.form-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.privacy-field {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px !important;
+  padding-top: 12px;
+}
+
+.privacy-field input {
+  flex: 0 0 auto;
+  width: 17px !important;
+  height: 17px !important;
+  margin-top: 2px;
+  accent-color: #aab7fa;
+}
+
+.privacy-field > span {
+  color: rgba(220, 223, 229, .68) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+
+.form-message {
+  min-height: 24px;
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.form-message[data-state="loading"] { color: #aab7fa; }
+.form-message[data-state="success"] { color: #91d8bb; }
+.form-message[data-state="error"] { color: #ff9f9f; }
+
+.contact-form button:disabled {
+  opacity: .58;
+  cursor: wait;
+}
