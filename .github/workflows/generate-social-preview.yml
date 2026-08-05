@@ -1,0 +1,111 @@
+name: Generate social preview
+
+on:
+  push:
+    paths:
+      - '.github/workflows/generate-social-preview.yml'
+      - 'assets/og-sost.svg'
+      - 'css/global-cta.css'
+      - 'js/home-cta-enhance.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install SVG renderer and Korean fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin fonts-noto-cjk
+
+      - name: Generate Open Graph PNG
+        run: |
+          rsvg-convert -w 1200 -h 630 assets/og-sost.svg -o assets/og-sost.png
+          file assets/og-sost.png
+
+      - name: Apply favicon, Open Graph and home CTA assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          favicon = './assets/sost-symbol.svg?v=20260805-4'
+
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              text = re.sub(
+                  r'<link\s+rel="icon"\s+href="[^"]+"\s+type="image/svg\+xml"\s*/?>',
+                  f'<link rel="icon" href="{favicon}" type="image/svg+xml" />',
+                  text,
+                  count=1,
+              )
+              path.write_text(text, encoding='utf-8')
+
+          index_path = Path('index.html')
+          index = index_path.read_text(encoding='utf-8')
+
+          og_block = '''  <meta property="og:url" content="https://sostlabs.com/" />
+          <meta property="og:site_name" content="SOST STABLE LABS" />
+          <meta property="og:locale" content="ko_KR" />
+          <meta property="og:image" content="https://sostlabs.com/assets/og-sost.png?v=20260805-1" />
+          <meta property="og:image:secure_url" content="https://sostlabs.com/assets/og-sost.png?v=20260805-1" />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content="SOST STABLE LABS — 기업과 브랜드의 구조를 설계하고 체계화합니다." />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="SOST STABLE LABS" />
+          <meta name="twitter:description" content="기업과 브랜드의 구조를 설계하고 체계화합니다." />
+          <meta name="twitter:image" content="https://sostlabs.com/assets/og-sost.png?v=20260805-1" />'''
+
+          if 'property="og:image"' not in index:
+              index = index.replace(
+                  '  <meta property="og:type" content="website" />',
+                  '  <meta property="og:type" content="website" />\n' + og_block,
+                  1,
+              )
+
+          if 'css/global-cta.css' not in index:
+              index = index.replace(
+                  '  <link rel="stylesheet" href="./css/style.css" />',
+                  '  <link rel="stylesheet" href="./css/style.css" />\n  <link rel="stylesheet" href="./css/global-cta.css?v=20260805-1" />',
+                  1,
+              )
+
+          if 'js/home-cta-enhance.js' not in index:
+              index = index.replace(
+                  '  <script src="./js/main.js" defer></script>',
+                  '  <script src="./js/main.js" defer></script>\n  <script src="./js/home-cta-enhance.js?v=20260805-1" defer></script>',
+                  1,
+              )
+
+          index_path.write_text(index, encoding='utf-8')
+
+          main_path = Path('js/main.js')
+          main = main_path.read_text(encoding='utf-8')
+          main = re.sub(
+              r"const faviconAsset = '[^']+';",
+              "const faviconAsset = './assets/sost-symbol.svg?v=20260805-4';",
+              main,
+              count=1,
+          )
+          main_path.write_text(main, encoding='utf-8')
+          PY
+
+      - name: Commit generated assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/og-sost.png index.html js/main.js '*.html'
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Generate social preview and apply global CTA metadata"
+            git push
+          fi
