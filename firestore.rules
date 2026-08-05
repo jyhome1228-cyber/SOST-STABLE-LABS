@@ -26,7 +26,7 @@ service cloud.firestore {
         && request.resource.data.phone.size() <= 60
         && request.resource.data.projectType is string
         && request.resource.data.projectType.size() > 0
-        && request.resource.data.projectType.size() <= 100
+        && request.resource.data.projectType.size() <= 500
         && request.resource.data.schedule is string
         && request.resource.data.schedule.size() <= 120
         && request.resource.data.budget is string
