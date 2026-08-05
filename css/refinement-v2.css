@@ -1,5 +1,16 @@
 /* SOST refinement v2 */
 
+/* Lighter global navigation */
+.global-nav a {
+  font-weight: 500 !important;
+  letter-spacing: 0.055em !important;
+}
+
+.header-action,
+.footer-nav a {
+  font-weight: 510 !important;
+}
+
 /* Softer semibold hierarchy across key titles */
 .hero-copy h1,
 .page-title h1 {
