@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'planus253@naver.com';
+    }
+
+    function validInquiryCreate() {
+      return request.resource.data.keys().hasOnly([
+          'company', 'name', 'email', 'phone', 'projectType',
+          'schedule', 'budget', 'website', 'message',
+          'privacyAgreed', 'status', 'adminMemo', 'source',
+          'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.company is string
+        && request.resource.data.company.size() > 0
+        && request.resource.data.company.size() <= 120
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 3
+        && request.resource.data.email.size() <= 160
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() <= 60
+        && request.resource.data.projectType is string
+        && request.resource.data.projectType.size() > 0
+        && request.resource.data.projectType.size() <= 100
+        && request.resource.data.schedule is string
+        && request.resource.data.schedule.size() <= 120
+        && request.resource.data.budget is string
+        && request.resource.data.budget.size() <= 100
+        && request.resource.data.website is string
+        && request.resource.data.website.size() <= 300
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 5000
+        && request.resource.data.privacyAgreed == true
+        && request.resource.data.status == 'new'
+        && request.resource.data.adminMemo == ''
+        && request.resource.data.source is string
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    match /inquiries/{inquiryId} {
+      allow create: if validInquiryCreate();
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
