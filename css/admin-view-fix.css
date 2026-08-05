@@ -1,0 +1,8 @@
+.admin-login[hidden],
+.admin-dashboard[hidden] {
+  display: none !important;
+}
+
+.admin-dashboard:not([hidden]) {
+  display: block !important;
+}
