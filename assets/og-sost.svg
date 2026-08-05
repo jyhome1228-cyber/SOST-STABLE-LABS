@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">SOST STABLE LABS social preview</title>
+  <desc id="desc">기업과 브랜드의 구조를 설계하고 체계화하는 SOST STABLE LABS 카카오톡 미리보기 이미지</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08090b"/>
+      <stop offset="1" stop-color="#10131b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#aab7fa" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#aab7fa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#ffffff" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#000000" flood-opacity=".42"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="952" cy="292" rx="310" ry="300" fill="url(#glow)"/>
+  <circle cx="958" cy="304" r="210" fill="none" stroke="#aab7fa" stroke-opacity=".18" stroke-width="1"/>
+  <circle cx="958" cy="304" r="146" fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="1"/>
+  <path d="M720 160C880 58 1090 94 1178 258" fill="none" stroke="#aab7fa" stroke-opacity=".18" stroke-width="1"/>
+  <path d="M740 470C906 558 1084 520 1190 392" fill="none" stroke="#ffffff" stroke-opacity=".09" stroke-width="1"/>
+
+  <g transform="translate(807 168) scale(5.9)" filter="url(#softShadow)">
+    <path fill="#aab7fa" d="M0 23.34l2.7-4.95h36.73L44.57 9H18.02l-5.14 9.34-5.26-8.92L12.75 0h26.72l13.12 22.39-2.65 4.81H13.23l-4.94 9c-.09.17-.19.22-.29.24-.17.03-.34-.01-.45-.21L0 23.34Z"/>
+    <polygon fill="#aab7fa" points="13.58 45.68 18.61 36.43 34.78 36.42 39.8 27.36 45.01 36.18 39.81 45.69 13.58 45.68"/>
+  </g>
+
+  <text x="88" y="96" fill="#aab7fa" font-family="Noto Sans KR, Pretendard, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">SOST STABLE LABS</text>
+  <text x="88" y="206" fill="#f2f3f5" font-family="Noto Sans KR, Pretendard, Arial, sans-serif" font-size="61" font-weight="600" letter-spacing="-3">
+    <tspan x="88" dy="0">기업과 브랜드의 구조를</tspan>
+    <tspan x="88" dy="82" fill="#aab7fa">설계하고 체계화합니다.</tspan>
+  </text>
+  <text x="88" y="408" fill="#b8bdc7" font-family="Noto Sans KR, Pretendard, Arial, sans-serif" font-size="25" font-weight="400" letter-spacing="-1">
+    <tspan x="88" dy="0">웹사이트 · 커머스 · CRM · 기업 운영 시스템 구축</tspan>
+    <tspan x="88" dy="42">Stable Systems for Better Business.</tspan>
+  </text>
+
+  <line x1="88" y1="536" x2="650" y2="536" stroke="#ffffff" stroke-opacity=".12"/>
+  <text x="88" y="578" fill="#777e8a" font-family="Noto Sans KR, Pretendard, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="2">SOSTLABS.COM</text>
+  <text x="1035" y="578" text-anchor="end" fill="#aab7fa" fill-opacity=".72" font-family="Noto Sans KR, Pretendard, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="2">STRUCTURE · SYSTEM · FLOW</text>
+</svg>
