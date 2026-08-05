@@ -6,7 +6,9 @@
   const empty = document.querySelector('#project-empty');
   const count = document.querySelector('[data-project-count]');
   const filters = document.querySelectorAll('[data-project-filter]');
+  const temporaryNotice = document.querySelector('.portfolio-toolbar > p');
 
+  if (temporaryNotice) temporaryNotice.remove();
   if (!grid) return;
 
   const escapeHTML = (value = '') => String(value)
