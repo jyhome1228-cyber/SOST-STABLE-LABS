@@ -1,9 +1,9 @@
-import { firebaseReady, db } from './firebase-config.js';
+import { firebaseReady, db } from './firebase-config.js?v=20260805-2';
 import {
   addDoc,
   collection,
   serverTimestamp
-} from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
 
 const form = document.querySelector('[data-inquiry-form]');
 const message = document.querySelector('[data-inquiry-message]');
