@@ -8,6 +8,8 @@ import {
 const form = document.querySelector('[data-inquiry-form]');
 const message = document.querySelector('[data-inquiry-message]');
 const submitButton = form?.querySelector('button[type="submit"]');
+const projectTypeGroup = form?.querySelector('[data-project-type-group]');
+const projectTypeError = form?.querySelector('[data-project-type-error]');
 
 function setMessage(text, state = '') {
   if (!message) return;
@@ -26,21 +28,50 @@ function clean(value, maxLength = 5000) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+function normalizeWebsite(value) {
+  const website = clean(value, 300);
+  if (!website) return '';
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(website)) return website;
+  return `https://${website}`;
+}
+
+function selectedProjectTypes() {
+  return [...form.querySelectorAll('input[name="type"]:checked')]
+    .map((input) => clean(input.value, 80))
+    .filter(Boolean);
+}
+
+function validateProjectTypes() {
+  const selected = selectedProjectTypes();
+  const valid = selected.length > 0;
+  projectTypeGroup?.classList.toggle('is-invalid', !valid);
+  if (projectTypeError) projectTypeError.textContent = valid ? '' : '프로젝트 유형을 한 개 이상 선택해주세요.';
+  return valid;
+}
+
 function submitErrorMessage(error) {
   const messages = {
-    'permission-denied': '문의 저장 권한을 확인할 수 없습니다. Firestore 규칙을 확인해주세요.',
+    'permission-denied': '문의 저장 권한을 확인할 수 없습니다. Firestore 규칙이 게시됐는지 확인해주세요.',
     'unavailable': '일시적으로 서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.',
     'resource-exhausted': '요청이 많아 접수하지 못했습니다. 잠시 후 다시 시도해주세요.'
   };
   return messages[error.code] || '문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
 }
 
+form?.querySelectorAll('input[name="type"]').forEach((input) => {
+  input.addEventListener('change', validateProjectTypes);
+});
+
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    setMessage('필수 항목과 개인정보 수집 동의를 확인해주세요.', 'error');
+  const projectTypeValid = validateProjectTypes();
+  const nativeValid = form.checkValidity();
+
+  if (!nativeValid || !projectTypeValid) {
+    if (!nativeValid) form.reportValidity();
+    if (!projectTypeValid) projectTypeGroup?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setMessage('필수 항목과 프로젝트 유형, 개인정보 수집 동의를 확인해주세요.', 'error');
     return;
   }
 
@@ -52,15 +83,16 @@ form?.addEventListener('submit', async (event) => {
     return;
   }
 
+  const projectTypes = selectedProjectTypes();
   const payload = {
     company: clean(data.get('company'), 120),
     name: clean(data.get('name'), 80),
     email: clean(data.get('email'), 160),
     phone: clean(data.get('phone'), 60),
-    projectType: clean(data.get('type'), 100),
+    projectType: clean(projectTypes.join(' · '), 500),
     schedule: clean(data.get('schedule'), 120),
     budget: clean(data.get('budget'), 100),
-    website: clean(data.get('website'), 300),
+    website: normalizeWebsite(data.get('website')),
     message: clean(data.get('message'), 5000),
     privacyAgreed: data.get('privacy') === 'on',
     status: 'new',
@@ -77,6 +109,9 @@ form?.addEventListener('submit', async (event) => {
     const document = await addDoc(collection(db, 'inquiries'), payload);
     const receipt = document.id.slice(-8).toUpperCase();
     form.reset();
+    validateProjectTypes();
+    projectTypeGroup?.classList.remove('is-invalid');
+    if (projectTypeError) projectTypeError.textContent = '';
     setMessage(`문의가 정상적으로 접수되었습니다. 접수번호 ${receipt} · 영업일 기준 1–2일 내 확인 후 연락드리겠습니다.`, 'success');
   } catch (error) {
     console.error('Inquiry submit failed:', error);
