@@ -1,0 +1,38 @@
+name: Apply SEO metadata
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/apply-seo.py"
+      - ".github/workflows/apply-seo.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply SEO metadata
+        run: python scripts/apply-seo.py
+
+      - name: Commit generated SEO files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html about.html solutions.html projects.html capabilities.html labs.html contact.html project-detail.html robots.txt sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No SEO changes to commit."
+            exit 0
+          fi
+          git commit -m "Apply page SEO metadata and search files [skip ci]"
+          git push
