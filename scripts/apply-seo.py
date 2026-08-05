@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://sostlabs.com"
-OG_IMAGE = f"{SITE_URL}/assets/og-sost.png?v=20260806-1"
+OG_IMAGE = "https://cdn.imweb.me/upload/S2023030963558ef55ba8e/b8011da8ce265.png"
 LAST_MODIFIED = "2026-08-06"
 
 PAGES = {
@@ -70,8 +70,6 @@ def build_meta(config: dict[str, str]) -> str:
   <meta property="og:image" content="{image}" />
   <meta property="og:image:secure_url" content="{image}" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="SOST STABLE LABS 기업 홈페이지 제작·웹 개발·비즈니스 시스템 구축" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{title}" />
