@@ -1,16 +1,16 @@
-import { firebaseReady, auth, db } from './firebase-config.js';
+import { firebaseReady, auth, db } from './firebase-config.js?v=20260805-2';
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut
-} from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js';
 import {
   collection,
   doc,
   onSnapshot,
   serverTimestamp,
   updateDoc
-} from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
 
 const ADMIN_EMAIL = 'planus253@naver.com';
 const loginSection = document.querySelector('[data-admin-login]');
