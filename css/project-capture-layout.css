@@ -1,0 +1,291 @@
+/* Natural-ratio layouts for automated project captures */
+
+/* Archive browser preview */
+.portfolio-card-visual {
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.portfolio-browser-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  background: #0a0b0e;
+  box-shadow: 0 24px 70px rgba(0,0,0,.26);
+}
+
+.portfolio-browser-toolbar {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: #111318;
+}
+
+.portfolio-browser-toolbar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+}
+
+.portfolio-browser-toolbar span {
+  min-width: 0;
+  margin-left: 7px;
+  overflow: hidden;
+  color: rgba(255,255,255,.38);
+  font-size: 9px;
+  letter-spacing: .03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-browser-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  object-position: top center;
+  background: #fff;
+  transition: transform .65s var(--ease), filter .4s ease;
+}
+
+.portfolio-card:hover .portfolio-browser-frame img {
+  transform: scale(1.012);
+}
+
+/* Detail hero as a browser frame without image cropping */
+.project-detail .project-hero-visual {
+  position: relative;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+  padding-top: 36px;
+  border-radius: 14px;
+  background: #111318 !important;
+  box-shadow: 0 34px 100px rgba(0,0,0,.28);
+}
+
+.project-detail .project-hero-visual::before {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  left: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  box-shadow: 13px 0 rgba(255,255,255,.15), 26px 0 rgba(255,255,255,.1);
+  content: '';
+}
+
+.project-detail .project-hero-visual::after {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 66px;
+  width: min(38%, 390px);
+  height: 15px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 5px;
+  background: rgba(255,255,255,.025);
+  content: '';
+}
+
+.project-detail .project-hero-visual > img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: top center !important;
+  background: #fff;
+}
+
+/* Variable gallery grid */
+.project-detail .project-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 64px 24px !important;
+  align-items: start;
+}
+
+.project-detail .project-gallery-item {
+  min-width: 0;
+  grid-column: span 6;
+}
+
+.project-detail .project-gallery-item.layout-desktop,
+.project-detail .project-gallery-item.layout-section,
+.project-detail .project-gallery-item.layout-scroll,
+.project-detail .project-gallery-item.layout-editorial.is-wide {
+  grid-column: 1 / -1;
+}
+
+.project-detail .project-gallery-item.layout-visual,
+.project-detail .project-gallery-item.layout-editorial {
+  grid-column: span 6;
+}
+
+.project-detail .project-gallery-item.layout-mobile {
+  grid-column: span 4;
+  width: 100%;
+  max-width: 410px;
+  justify-self: center;
+}
+
+.project-detail .project-gallery-visual {
+  position: relative;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.project-detail .project-gallery-visual > img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: top center !important;
+}
+
+/* Desktop and section captures retain their generated ratio */
+.project-detail .layout-desktop .project-gallery-visual,
+.project-detail .layout-section .project-gallery-visual,
+.project-detail .layout-visual .project-gallery-visual,
+.project-detail .layout-editorial .project-gallery-visual {
+  overflow: hidden !important;
+  border: 1px solid rgba(255,255,255,.11) !important;
+  border-radius: 10px;
+  background: #fff !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.2);
+}
+
+.project-detail .layout-desktop .project-gallery-visual {
+  padding-top: 34px;
+  background: #111318 !important;
+}
+
+.project-detail .layout-desktop .project-gallery-visual::before,
+.project-detail .layout-scroll .project-gallery-visual::before {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  left: 15px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  box-shadow: 13px 0 rgba(255,255,255,.15), 26px 0 rgba(255,255,255,.1);
+  content: '';
+}
+
+/* Mobile captures appear in an actual phone-shaped frame */
+.project-detail .layout-mobile .project-gallery-visual {
+  overflow: hidden !important;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  border-radius: 32px;
+  background: #111318 !important;
+  box-shadow: 0 28px 80px rgba(0,0,0,.3);
+}
+
+.project-detail .layout-mobile .project-gallery-visual::before {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 50%;
+  width: 72px;
+  height: 16px;
+  border-radius: 0 0 10px 10px;
+  background: #111318;
+  content: '';
+  transform: translateX(-50%);
+}
+
+.project-detail .layout-mobile .project-gallery-visual > img {
+  border-radius: 23px;
+  background: #fff;
+}
+
+/* Full-page capture remains scrollable instead of being cropped */
+.project-detail .layout-scroll .project-gallery-visual {
+  max-height: min(78vh, 920px);
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding-top: 34px;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 12px;
+  background: #111318 !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,.24);
+  scrollbar-color: rgba(170,183,250,.55) rgba(255,255,255,.04);
+  scrollbar-width: thin;
+}
+
+.project-detail .layout-scroll .project-gallery-visual > img {
+  background: #fff;
+}
+
+.project-detail .project-gallery-item figcaption {
+  justify-content: space-between;
+  color: rgba(255,255,255,.58);
+}
+
+.project-detail .project-gallery-item figcaption::after {
+  color: rgba(170,183,250,.7);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.project-detail .layout-scroll figcaption::after {
+  content: 'SCROLL PREVIEW';
+}
+
+.project-detail .layout-mobile figcaption::after {
+  content: 'MOBILE';
+}
+
+@media (max-width: 1100px) {
+  .project-detail .project-gallery-item.layout-mobile {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-browser-toolbar {
+    height: 30px;
+  }
+
+  .project-detail .project-hero-visual {
+    padding-top: 31px;
+    border-radius: 9px;
+  }
+
+  .project-detail .project-gallery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+
+  .project-detail .project-gallery-item,
+  .project-detail .project-gallery-item.layout-desktop,
+  .project-detail .project-gallery-item.layout-section,
+  .project-detail .project-gallery-item.layout-scroll,
+  .project-detail .project-gallery-item.layout-visual,
+  .project-detail .project-gallery-item.layout-mobile,
+  .project-detail .project-gallery-item.layout-editorial {
+    grid-column: 1 !important;
+  }
+
+  .project-detail .project-gallery-item.layout-mobile {
+    width: min(100%, 360px);
+  }
+
+  .project-detail .layout-scroll .project-gallery-visual {
+    max-height: 620px;
+  }
+}
