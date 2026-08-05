@@ -175,6 +175,32 @@ body[data-page='capabilities'] .offering-card::before {
   max-width: 96%;
 }
 
+/* Shared business information footer */
+.site-footer {
+  position: relative;
+}
+
+.site-footer .copyright,
+.site-footer > .footer-bottom,
+.site-footer .footer-inner > .copyright {
+  display: none !important;
+}
+
+.site-footer::after {
+  display: block;
+  width: min(calc(100% - 80px), 1440px);
+  margin: 34px auto 0;
+  padding: 34px 0 44px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(241, 242, 244, 0.67);
+  content: '상호/대표자명 : SOST STABLE LABS / 박재영  |  사업자등록번호 : 820-13-02834\A주소 : 인천광역시 서구 원당대로 1039 915호(태경타워)  |  우편번호 : 23450\A전화번호 : 032-208-5650(평일 업무) / 010-5422-5650(상시)  |  대표 이메일 : info@9works.kr\ASOST STABLE LABS Office, Room 915, 1039, Wondang-daero, Seo-gu, Incheon 23450, Republic of Korea\A호스팅 제공자 : GitHub, Inc.\A\ACopyright © 2026 SOST STABLE LABS | 기업 웹사이트·커머스·비즈니스 시스템 구축. All rights reserved.';
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+  white-space: pre-line;
+}
+
 @media (max-width: 900px) {
   .sost-symbol-scene {
     min-height: 430px;
@@ -182,6 +208,10 @@ body[data-page='capabilities'] .offering-card::before {
 
   .symbol-stack {
     width: min(60%, 310px);
+  }
+
+  .site-footer::after {
+    width: min(calc(100% - 48px), 1440px);
   }
 }
 
@@ -202,6 +232,14 @@ body[data-page='capabilities'] .offering-card::before {
     right: 3%;
     bottom: 5%;
     font-size: 10px;
+  }
+
+  .site-footer::after {
+    width: calc(100% - 40px);
+    margin-top: 28px;
+    padding: 28px 0 36px;
+    font-size: 11px;
+    line-height: 1.8;
   }
 }
 
