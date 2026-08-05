@@ -10,7 +10,7 @@
   const assetSprite = './assets/3d/sost-3d-assets.svg';
   const officialLogo = './assets/logo-sost-stable-labs.svg';
   const symbolAsset = './assets/sost-symbol.svg';
-  const faviconAsset = './assets/favicon-sost-v2.svg?v=20260804-3';
+  const faviconAsset = './assets/sost-symbol.svg?v=20260805-4';
 
   const ensureStylesheet = (href) => {
     if (document.querySelector(`link[href="${href}"]`)) return;
