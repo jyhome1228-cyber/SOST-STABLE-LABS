@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Kakao Preview — SOST STABLE LABS</title>
+  <link rel="icon" href="./assets/sost-symbol.svg" type="image/svg+xml" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f2f3f5;
+      color: #111319;
+      font-family: Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .preview-page {
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      padding: 56px 20px;
+      background:
+        radial-gradient(circle at 76% 18%, rgba(170,183,250,.32), transparent 32%),
+        #eef0f4;
+    }
+    .preview-wrap { width: min(100%, 720px); }
+    .preview-label { margin: 0 0 18px; color: #6e7480; font-size: 13px; letter-spacing: .08em; }
+    .kakao-card {
+      overflow: hidden;
+      border: 1px solid #dde0e6;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 28px 70px rgba(20,24,34,.14);
+    }
+    .kakao-card-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1200 / 630;
+      object-fit: cover;
+      background: #08090b;
+    }
+    .kakao-card-body { padding: 25px 26px 22px; }
+    .kakao-card-body h1 { margin: 0; font-size: 22px; font-weight: 650; letter-spacing: -.035em; }
+    .kakao-card-body p { margin: 10px 0 0; color: #6c717b; font-size: 15px; line-height: 1.65; }
+    .kakao-card-host { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 17px; border-top: 1px solid #eceef2; color: #90959e; font-size: 12px; }
+    .preview-note { margin: 20px 0 0; color: #737984; font-size: 13px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="preview-page">
+    <div class="preview-wrap">
+      <p class="preview-label">KAKAOTALK OPEN GRAPH PREVIEW</p>
+      <article class="kakao-card">
+        <img class="kakao-card-image" src="./assets/og-sost.png?v=20260805-1" onerror="this.onerror=null;this.src='./assets/og-sost.svg?v=20260805-1';" alt="SOST STABLE LABS 카카오톡 미리보기 이미지" />
+        <div class="kakao-card-body">
+          <h1>SOST STABLE LABS</h1>
+          <p>기업과 브랜드의 구조를 설계하고, 웹사이트와 비즈니스 운영체계를 안정적인 디지털 시스템으로 구축합니다.</p>
+          <div class="kakao-card-host"><span>SOSTLABS.COM에서 확인</span><span>↗</span></div>
+        </div>
+      </article>
+      <p class="preview-note">실제 카카오톡에서는 기기와 앱 버전에 따라 여백과 글자 수가 일부 달라질 수 있습니다.</p>
+    </div>
+  </main>
+</body>
+</html>
