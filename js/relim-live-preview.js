@@ -121,9 +121,15 @@
   requestAnimationFrame(apply);
   window.setTimeout(apply, 250);
   window.setTimeout(apply, 800);
+  window.setTimeout(apply, 1600);
 
   const grid = document.querySelector('#project-grid');
   if (grid) {
     new MutationObserver(applyArchivePreview).observe(grid, { childList: true, subtree: true });
+  }
+
+  const detailRoot = document.querySelector('#project-detail');
+  if (detailRoot) {
+    new MutationObserver(applyDetailPreview).observe(detailRoot, { childList: true, subtree: true });
   }
 })();
