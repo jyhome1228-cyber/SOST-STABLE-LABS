@@ -13,8 +13,8 @@ window.SOST_PROJECTS.push({
   services: ['Brand Website Planning', 'Information Architecture', 'Reservation UX', 'Responsive Front-end'],
   technologies: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages', 'Responsive Web'],
   accent: 'green',
-  thumbnail: '',
-  hero: '',
+  thumbnail: 'https://re-lim.com/assets/images/relim-2026/F1ST2344.webp',
+  hero: 'https://re-lim.com/assets/images/relim-2026/F1ST2355.webp',
   overview: '리림은 용인 원삼면에 위치한 프라이빗 야외 복합 공간으로, 수영장과 수로, 개별 쉘터, 바비큐 공간과 카페를 오전·오후 시간제로 운영합니다. 브랜드의 공간 경험을 온라인에서도 자연스럽게 이해할 수 있도록 소개, 공간, 이용 안내, 예약, 오시는 길과 FAQ를 하나의 정보 흐름으로 설계했습니다.',
   challenge: '공간의 분위기를 충분히 전달하면서도 운영시간, 요금, 인원 기준, 준비물, 숙박 옵션과 예약 방식처럼 방문 전 확인해야 하는 정보가 많았습니다. 감성적인 공간 소개와 실제 예약 결정에 필요한 운영 정보를 분리하지 않고, 모바일에서도 빠르게 확인할 수 있는 구조가 필요했습니다.',
   approach: '메인에서 실제 공간 이미지와 오전·오후 이용 방식을 먼저 보여주고, 브랜드 소개와 공간 안내, 이용 규정, 예약 안내, 위치와 FAQ로 이어지는 탐색 구조를 구성했습니다. 공간 안내도와 실제 사진을 함께 배치하고, 일반 예약은 캠핏으로 연결하면서 숙박·당일·대관 문의는 운영 채널로 자연스럽게 분기되도록 설계했습니다.',
@@ -37,5 +37,9 @@ window.SOST_PROJECTS.push({
     { label: 'Planning · UX · Development', value: 'SOST STABLE LABS' },
     { label: 'Client', value: 'RE:LIM' }
   ],
-  gallery: []
+  gallery: [
+    { image: 'https://re-lim.com/assets/images/relim-2026/F1ST2344.webp', label: 'RE:LIM Outdoor Experience', layout: 'editorial' },
+    { image: 'https://re-lim.com/assets/images/relim-2026/F1ST2355.webp', label: 'Pool & Shelter View', layout: 'editorial' },
+    { image: 'https://re-lim.com/assets/images/relim-2026/F1ST2299.webp', label: 'Daytime Space Experience', layout: 'editorial' }
+  ]
 });
