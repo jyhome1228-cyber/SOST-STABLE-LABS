@@ -5,19 +5,7 @@
   "aesost-career-content-platform": {
     "base": "./assets/projects/aesost",
     "title": "AESOST Career Content Platform",
-    "version": "202608052356",
-    "desktopSections": [
-      "section-01.jpg"
-    ],
-    "visual": "",
-    "mobileSections": [
-      "mobile-section-01.jpg"
-    ]
-  },
-  "tne-corporate-website": {
-    "base": "./assets/projects/tne",
-    "title": "TNE Corporate Website",
-    "version": "202608052356",
+    "version": "202608060002",
     "desktopSections": [
       "section-01.jpg",
       "section-02.jpg",
@@ -25,13 +13,29 @@
     ],
     "visual": "",
     "mobileSections": [
-      "mobile-section-01.jpg"
+      "mobile-section-01.jpg",
+      "mobile-section-02.jpg"
+    ]
+  },
+  "tne-corporate-website": {
+    "base": "./assets/projects/tne",
+    "title": "TNE Corporate Website",
+    "version": "202608060002",
+    "desktopSections": [
+      "section-01.jpg",
+      "section-02.jpg",
+      "section-03.jpg"
+    ],
+    "visual": "",
+    "mobileSections": [
+      "mobile-section-01.jpg",
+      "mobile-section-02.jpg"
     ]
   },
   "thomastone-digital-healthcare-website": {
     "base": "./assets/projects/thomastone",
     "title": "THOMASTONE Digital Healthcare Website",
-    "version": "202608052356",
+    "version": "202608060002",
     "desktopSections": [
       "section-01.jpg",
       "section-02.jpg",
@@ -46,10 +50,16 @@
   "pentagon-law-office-corporate-center": {
     "base": "./assets/projects/pentagon",
     "title": "PENTAGON Law Office & Corporate Center",
-    "version": "202608052356",
-    "desktopSections": [],
+    "version": "202608060002",
+    "desktopSections": [
+      "section-01.jpg",
+      "section-02.jpg",
+      "section-03.jpg"
+    ],
     "visual": "",
-    "mobileSections": []
+    "mobileSections": [
+      "mobile-section-01.jpg"
+    ]
   }
 };
   const projects = Array.isArray(window.SOST_PROJECTS) ? window.SOST_PROJECTS : [];
