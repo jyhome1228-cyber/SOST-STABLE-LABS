@@ -15,14 +15,14 @@
 
     const generated = gallery.filter((item) => item?.layout !== 'editorial');
     const editorial = gallery.filter((item) => item?.layout === 'editorial').slice(0, 1);
-    const hasMobileFull = generated.some((item) => item?.layout === 'mobile-scroll');
+    const hasMobileFull = generated.some((item) => item?.label === 'Full Mobile Scroll');
 
     if (!hasMobileFull) {
       const desktopScrollIndex = generated.findIndex((item) => item?.layout === 'scroll');
       const mobileFull = {
         image: `${base}/mobile-full.jpg${query}`,
         label: 'Full Mobile Scroll',
-        layout: 'mobile-scroll'
+        layout: 'mobile'
       };
 
       if (desktopScrollIndex >= 0) generated.splice(desktopScrollIndex, 0, mobileFull);
@@ -104,4 +104,13 @@
     }
   `;
   document.head.appendChild(style);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.project-gallery-item').forEach((item) => {
+      const caption = item.querySelector('figcaption');
+      if (!caption || !caption.textContent.includes('Full Mobile Scroll')) return;
+      item.classList.add('layout-mobile-scroll');
+      item.dataset.layout = 'mobile-scroll';
+    });
+  });
 })();
