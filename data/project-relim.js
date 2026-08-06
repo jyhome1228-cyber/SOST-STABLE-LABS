@@ -48,3 +48,23 @@ window.SOST_PROJECTS.push({
   ],
   gallery: []
 });
+
+(() => {
+  const cssId = 'relim-live-preview-css';
+  if (!document.getElementById(cssId)) {
+    const link = document.createElement('link');
+    link.id = cssId;
+    link.rel = 'stylesheet';
+    link.href = './css/relim-live-preview.css?v=20260807-1';
+    document.head.appendChild(link);
+  }
+
+  const scriptId = 'relim-live-preview-js';
+  if (!document.getElementById(scriptId)) {
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = './js/relim-live-preview.js?v=20260807-1';
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+})();
