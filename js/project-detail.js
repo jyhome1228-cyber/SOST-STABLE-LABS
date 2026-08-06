@@ -44,11 +44,21 @@
 
   const createImage = (src, alt, fallbackLabel, accent, compact = false) => {
     if (!src) return createPlaceholder(fallbackLabel, accent, compact);
-    return `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="${compact ? 'lazy' : 'eager'}" />`;
+    return `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="${compact ? 'lazy' : 'eager'}" decoding="async" />`;
   };
 
   const normalizeLayout = (item, index) => {
-    const allowed = new Set(['desktop', 'section', 'visual', 'mobile', 'scroll', 'editorial']);
+    const allowed = new Set([
+      'desktop',
+      'menu',
+      'section',
+      'visual',
+      'mobile',
+      'mobile-scroll',
+      'scroll',
+      'editorial'
+    ]);
+
     if (allowed.has(item.layout)) return item.layout;
     if (/mobile/i.test(item.label || '')) return 'mobile';
     if (index === 0) return 'desktop';
