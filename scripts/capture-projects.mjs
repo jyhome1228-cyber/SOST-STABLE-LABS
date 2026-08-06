@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-import { access, mkdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const projects = [
@@ -7,7 +7,15 @@ const projects = [
     id: 'aesost-career-content-platform',
     slug: 'aesost',
     url: 'https://aesost.com/',
-    title: 'AESOST Career Content Platform'
+    title: 'AESOST Career Content Platform',
+    desktopSectionMaximum: 1,
+    mobileSectionMaximum: 1,
+    pageViews: [
+      { key: 'magazine', url: 'https://aesost.com/magazine.html', label: 'Magazine Archive' },
+      { key: 'article', url: 'https://aesost.com/article.html', label: 'Article Library' },
+      { key: 'column', url: 'https://aesost.com/column.html', label: 'Column Archive' },
+      { key: 'consulting', url: 'https://aesost.com/expert-feedback.html', label: 'Career Consulting' }
+    ]
   },
   {
     id: 'tne-corporate-website',
@@ -32,6 +40,10 @@ const projects = [
 const browser = await chromium.launch({ headless: true });
 const completed = [];
 const captureVersion = new Date().toISOString().replace(/\D/g, '').slice(0, 12);
+
+const HIGH_RES_SCALE = 2;
+const DESKTOP_VIEWPORT = { width: 1440, height: 900 };
+const MOBILE_VIEWPORT = { width: 390, height: 844 };
 
 async function exists(filePath) {
   try {
@@ -200,7 +212,8 @@ async function captureSections(page, outputDirectory, options) {
     markerPrefix,
     filePrefix,
     maximum,
-    mobile = false
+    mobile = false,
+    quality = 94
   } = options;
 
   const candidates = await markSectionCandidates(page, markerPrefix, mobile);
@@ -218,7 +231,8 @@ async function captureSections(page, outputDirectory, options) {
       await locator.screenshot({
         path: path.join(outputDirectory, filename),
         type: 'jpeg',
-        quality: 88
+        quality,
+        animations: 'disabled'
       });
       files.push(filename);
     } catch (error) {
@@ -231,7 +245,13 @@ async function captureSections(page, outputDirectory, options) {
 }
 
 async function completeSectionCaptures(page, outputDirectory, options, files) {
-  const { filePrefix, maximum, mobile = false } = options;
+  const {
+    filePrefix,
+    maximum,
+    mobile = false,
+    quality = 94
+  } = options;
+
   if (files.length >= maximum) return files.slice(0, maximum);
 
   const pageMetrics = await page.evaluate(() => ({
@@ -259,8 +279,9 @@ async function completeSectionCaptures(page, outputDirectory, options, files) {
       await page.screenshot({
         path: path.join(outputDirectory, filename),
         type: 'jpeg',
-        quality: 88,
-        fullPage: false
+        quality,
+        fullPage: false,
+        animations: 'disabled'
       });
       files.push(filename);
     } catch (error) {
@@ -332,10 +353,7 @@ async function captureVisualElement(page, outputDirectory) {
 
     if (!candidates.length) return null;
     candidates[0].element.setAttribute('data-sost-visual-id', 'primary');
-    return {
-      width: Math.round(candidates[0].width),
-      height: Math.round(candidates[0].height)
-    };
+    return true;
   });
 
   if (!visual) return '';
@@ -347,7 +365,8 @@ async function captureVisualElement(page, outputDirectory) {
     await locator.screenshot({
       path: path.join(outputDirectory, 'visual.jpg'),
       type: 'jpeg',
-      quality: 90
+      quality: 95,
+      animations: 'disabled'
     });
     return 'visual.jpg';
   } catch (error) {
@@ -356,11 +375,44 @@ async function captureVisualElement(page, outputDirectory) {
   }
 }
 
+async function captureProjectPageViews(project, outputDirectory) {
+  const pageViews = [];
+
+  for (const view of project.pageViews || []) {
+    const page = await browser.newPage({
+      viewport: DESKTOP_VIEWPORT,
+      deviceScaleFactor: HIGH_RES_SCALE
+    });
+
+    const filename = `view-${view.key}.jpg`;
+
+    try {
+      await preparePage(page, view.url);
+      await page.screenshot({
+        path: path.join(outputDirectory, filename),
+        type: 'jpeg',
+        quality: 95,
+        fullPage: false,
+        animations: 'disabled'
+      });
+      pageViews.push({ filename, label: view.label });
+    } catch (error) {
+      console.warn(`Page view capture skipped: ${view.url}`, error.message);
+    } finally {
+      await page.close();
+    }
+  }
+
+  return pageViews;
+}
+
 async function captureDesktop(project, outputDirectory) {
   const page = await browser.newPage({
-    viewport: { width: 1440, height: 900 },
-    deviceScaleFactor: 1
+    viewport: DESKTOP_VIEWPORT,
+    deviceScaleFactor: HIGH_RES_SCALE
   });
+
+  const maximum = project.desktopSectionMaximum ?? 3;
 
   try {
     await preparePage(page, project.url);
@@ -368,32 +420,47 @@ async function captureDesktop(project, outputDirectory) {
     await page.screenshot({
       path: path.join(outputDirectory, 'desktop-main.jpg'),
       type: 'jpeg',
-      quality: 90,
-      fullPage: false
+      quality: 95,
+      fullPage: false,
+      animations: 'disabled'
     });
 
     let sections = await captureSections(page, outputDirectory, {
       markerPrefix: 'desktop-section',
       filePrefix: 'section',
-      maximum: 3
+      maximum,
+      quality: 94
     });
 
     sections = await completeSectionCaptures(page, outputDirectory, {
       filePrefix: 'section',
-      maximum: 3
+      maximum,
+      quality: 94
     }, sections);
 
     const visual = await captureVisualElement(page, outputDirectory);
+    return { sections, visual };
+  } finally {
+    await page.close();
+  }
+}
 
+async function captureDesktopFull(project, outputDirectory) {
+  const page = await browser.newPage({
+    viewport: DESKTOP_VIEWPORT,
+    deviceScaleFactor: 1
+  });
+
+  try {
+    await preparePage(page, project.url);
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({
       path: path.join(outputDirectory, 'desktop-full.jpg'),
       type: 'jpeg',
-      quality: 78,
-      fullPage: true
+      quality: 84,
+      fullPage: true,
+      animations: 'disabled'
     });
-
-    return { sections, visual };
   } finally {
     await page.close();
   }
@@ -401,11 +468,13 @@ async function captureDesktop(project, outputDirectory) {
 
 async function captureMobile(project, outputDirectory) {
   const page = await browser.newPage({
-    viewport: { width: 390, height: 844 },
-    deviceScaleFactor: 1,
+    viewport: MOBILE_VIEWPORT,
+    deviceScaleFactor: HIGH_RES_SCALE,
     isMobile: true,
     hasTouch: true
   });
+
+  const maximum = project.mobileSectionMaximum ?? 2;
 
   try {
     await preparePage(page, project.url);
@@ -413,30 +482,25 @@ async function captureMobile(project, outputDirectory) {
     await page.screenshot({
       path: path.join(outputDirectory, 'mobile-main.jpg'),
       type: 'jpeg',
-      quality: 90,
-      fullPage: false
+      quality: 95,
+      fullPage: false,
+      animations: 'disabled'
     });
 
     let sections = await captureSections(page, outputDirectory, {
       markerPrefix: 'mobile-section',
       filePrefix: 'mobile-section',
-      maximum: 2,
-      mobile: true
+      maximum,
+      mobile: true,
+      quality: 94
     });
 
     sections = await completeSectionCaptures(page, outputDirectory, {
       filePrefix: 'mobile-section',
-      maximum: 2,
-      mobile: true
+      maximum,
+      mobile: true,
+      quality: 94
     }, sections);
-
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.screenshot({
-      path: path.join(outputDirectory, 'mobile-full.jpg'),
-      type: 'jpeg',
-      quality: 78,
-      fullPage: true
-    });
 
     return { sections };
   } finally {
@@ -444,17 +508,44 @@ async function captureMobile(project, outputDirectory) {
   }
 }
 
+async function captureMobileFull(project, outputDirectory) {
+  const page = await browser.newPage({
+    viewport: MOBILE_VIEWPORT,
+    deviceScaleFactor: 1,
+    isMobile: true,
+    hasTouch: true
+  });
+
+  try {
+    await preparePage(page, project.url);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({
+      path: path.join(outputDirectory, 'mobile-full.jpg'),
+      type: 'jpeg',
+      quality: 84,
+      fullPage: true,
+      animations: 'disabled'
+    });
+  } finally {
+    await page.close();
+  }
+}
+
 for (const project of projects) {
   const outputDirectory = path.resolve('assets', 'projects', project.slug);
+  await rm(outputDirectory, { recursive: true, force: true });
   await mkdir(outputDirectory, { recursive: true });
 
   console.log(`Capturing ${project.title}: ${project.url}`);
 
   try {
     const desktop = await captureDesktop(project, outputDirectory);
+    await captureDesktopFull(project, outputDirectory);
+    const pageViews = await captureProjectPageViews(project, outputDirectory);
     const mobile = await captureMobile(project, outputDirectory);
+    await captureMobileFull(project, outputDirectory);
 
-    const requiredFiles = ['desktop-main.jpg', 'desktop-full.jpg', 'mobile-main.jpg'];
+    const requiredFiles = ['desktop-main.jpg', 'desktop-full.jpg', 'mobile-main.jpg', 'mobile-full.jpg'];
     const ready = (await Promise.all(requiredFiles.map((name) => exists(path.join(outputDirectory, name))))).every(Boolean);
 
     if (ready) {
@@ -462,6 +553,7 @@ for (const project of projects) {
         ...project,
         desktopSections: desktop.sections,
         visual: desktop.visual,
+        pageViews,
         mobileSections: mobile.sections
       });
     }
@@ -485,6 +577,7 @@ const captureMap = Object.fromEntries(
       version: captureVersion,
       desktopSections: project.desktopSections,
       visual: project.visual,
+      pageViews: project.pageViews,
       mobileSections: project.mobileSections
     }
   ])
@@ -503,6 +596,11 @@ const overrideScript = `(() => {
     const asset = (filename) => \`${'${capture.base}'}/${'${filename}'}?v=${'${capture.version}'}\`;
     const generatedGallery = [
       { image: asset('desktop-main.jpg'), label: 'Main Desktop View', layout: 'desktop' },
+      ...(capture.pageViews || []).map((view) => ({
+        image: asset(view.filename),
+        label: view.label,
+        layout: 'menu'
+      })),
       ...capture.desktopSections.map((filename, index) => ({
         image: asset(filename),
         label: \`Key Section ${'${String(index + 1).padStart(2, \'0\')}'}\`,
@@ -531,4 +629,4 @@ const overrideScript = `(() => {
 `;
 
 await writeFile(path.resolve('data', 'project-captures.js'), overrideScript, 'utf8');
-console.log(`Generated structured captures for ${completed.length} projects.`);
+console.log(`Generated high-resolution captures for ${completed.length} projects.`);
