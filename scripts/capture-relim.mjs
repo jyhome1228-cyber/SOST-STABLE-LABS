@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import { access, mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+// RE:LIM capture schema v2 — trigger workflow after registration.
 const project = {
   id: 'relim-outdoor-space-brand-website',
   slug: 'relim',
