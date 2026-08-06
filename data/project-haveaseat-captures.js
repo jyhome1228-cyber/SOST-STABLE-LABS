@@ -5,7 +5,7 @@
   if (!project) return;
 
   const base = './assets/projects/haveaseat';
-  const asset = (filename) => `${base}/${filename}?v=202608060419`;
+  const asset = (filename) => `${base}/${filename}?v=202608060422`;
   const pageViews = [
   {
     "filename": "view-portfolio.jpg",
