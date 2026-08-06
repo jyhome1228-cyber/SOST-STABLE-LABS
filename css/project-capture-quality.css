@@ -4,8 +4,6 @@
 .project-detail .project-hero-visual > img,
 .project-detail .project-gallery-visual > img {
   image-rendering: auto;
-  backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
 /* Avoid scaling captured text on hover, which can make fine type look soft. */
