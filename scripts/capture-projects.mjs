@@ -128,7 +128,10 @@ async function markSectionCandidates(page, prefix, mobile = false) {
       '#main > section',
       '.section_wrap',
       '.doz_section',
+      '.section_obj',
+      '.inside',
       '[data-type="section"]',
+      '[class*="section" i]',
       'main section'
     ].join(',');
 
@@ -144,9 +147,9 @@ async function markSectionCandidates(page, prefix, mobile = false) {
       const style = getComputedStyle(element);
       const rect = element.getBoundingClientRect();
       const absoluteTop = rect.top + window.scrollY;
-      const minimumWidth = viewportWidth * (mobile ? 0.78 : 0.68);
-      const minimumHeight = mobile ? 220 : 280;
-      const maximumHeight = mobile ? 1350 : 1550;
+      const minimumWidth = viewportWidth * (mobile ? 0.76 : 0.64);
+      const minimumHeight = mobile ? 210 : 260;
+      const maximumHeight = mobile ? 1450 : 1700;
 
       if (
         style.display === 'none' ||
@@ -155,7 +158,7 @@ async function markSectionCandidates(page, prefix, mobile = false) {
         rect.width < minimumWidth ||
         rect.height < minimumHeight ||
         rect.height > maximumHeight ||
-        absoluteTop < viewportHeight * 0.58 ||
+        absoluteTop < viewportHeight * 0.52 ||
         element.closest('header, footer, nav')
       ) return;
 
@@ -179,7 +182,7 @@ async function markSectionCandidates(page, prefix, mobile = false) {
       if (!overlaps) reduced.push(candidate);
     });
 
-    return reduced.slice(0, 18).map((candidate, index) => {
+    return reduced.slice(0, 24).map((candidate, index) => {
       const id = `${prefix}-${index + 1}`;
       candidate.element.setAttribute('data-sost-capture-id', id);
       return {
@@ -227,6 +230,48 @@ async function captureSections(page, outputDirectory, options) {
   return files;
 }
 
+async function completeSectionCaptures(page, outputDirectory, options, files) {
+  const { filePrefix, maximum, mobile = false } = options;
+  if (files.length >= maximum) return files.slice(0, maximum);
+
+  const pageMetrics = await page.evaluate(() => ({
+    scrollHeight: document.documentElement.scrollHeight,
+    viewportHeight: window.innerHeight
+  }));
+
+  const maxScroll = Math.max(0, pageMetrics.scrollHeight - pageMetrics.viewportHeight);
+  const fractions = mobile ? [0.34, 0.68, 0.88] : [0.26, 0.52, 0.78, 0.9];
+  const usedPositions = new Set();
+
+  for (const fraction of fractions) {
+    if (files.length >= maximum) break;
+
+    const position = Math.round(maxScroll * fraction);
+    const bucket = Math.round(position / Math.max(1, pageMetrics.viewportHeight));
+    if (usedPositions.has(bucket)) continue;
+    usedPositions.add(bucket);
+
+    const filename = `${filePrefix}-${String(files.length + 1).padStart(2, '0')}.jpg`;
+    await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop), position);
+    await page.waitForTimeout(500);
+
+    try {
+      await page.screenshot({
+        path: path.join(outputDirectory, filename),
+        type: 'jpeg',
+        quality: 88,
+        fullPage: false
+      });
+      files.push(filename);
+    } catch (error) {
+      console.warn(`Viewport section capture skipped: ${filename}`, error.message);
+    }
+  }
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  return files.slice(0, maximum);
+}
+
 async function captureVisualElement(page, outputDirectory) {
   const visual = await page.evaluate(() => {
     document.querySelectorAll('[data-sost-visual-id]').forEach((element) => {
@@ -235,7 +280,25 @@ async function captureVisualElement(page, outputDirectory) {
 
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    const candidates = [...document.querySelectorAll('main img, main video, main canvas, main svg')]
+    const selector = [
+      'main img',
+      'main video',
+      'main canvas',
+      'main svg',
+      'main picture',
+      'main [class*="visual" i]',
+      'main [class*="banner" i]',
+      'main [class*="hero" i]',
+      'main [style*="background-image" i]'
+    ].join(',');
+
+    const seen = new Set();
+    const candidates = [...document.querySelectorAll(selector)]
+      .filter((element) => {
+        if (seen.has(element)) return false;
+        seen.add(element);
+        return true;
+      })
       .map((element) => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
@@ -243,7 +306,7 @@ async function captureVisualElement(page, outputDirectory) {
         const naturalWidth = element.naturalWidth || rect.width;
         const naturalHeight = element.naturalHeight || rect.height;
         const area = rect.width * rect.height;
-        const score = area * (top > viewportHeight ? 1.15 : 0.75);
+        const score = area * (top > viewportHeight ? 1.18 : 0.72);
 
         return {
           element,
@@ -258,12 +321,12 @@ async function captureVisualElement(page, outputDirectory) {
       })
       .filter((item) => (
         item.visible &&
-        item.top > viewportHeight * 0.65 &&
-        item.width >= Math.min(480, viewportWidth * 0.42) &&
-        item.height >= 220 &&
-        item.height <= 1200 &&
-        item.naturalWidth >= 600 &&
-        item.naturalHeight >= 300
+        item.top > viewportHeight * 0.48 &&
+        item.width >= Math.min(440, viewportWidth * 0.38) &&
+        item.height >= 210 &&
+        item.height <= 1350 &&
+        item.naturalWidth >= 500 &&
+        item.naturalHeight >= 260
       ))
       .sort((a, b) => b.score - a.score);
 
@@ -309,11 +372,16 @@ async function captureDesktop(project, outputDirectory) {
       fullPage: false
     });
 
-    const sections = await captureSections(page, outputDirectory, {
+    let sections = await captureSections(page, outputDirectory, {
       markerPrefix: 'desktop-section',
       filePrefix: 'section',
       maximum: 3
     });
+
+    sections = await completeSectionCaptures(page, outputDirectory, {
+      filePrefix: 'section',
+      maximum: 3
+    }, sections);
 
     const visual = await captureVisualElement(page, outputDirectory);
 
@@ -349,12 +417,18 @@ async function captureMobile(project, outputDirectory) {
       fullPage: false
     });
 
-    const sections = await captureSections(page, outputDirectory, {
+    let sections = await captureSections(page, outputDirectory, {
       markerPrefix: 'mobile-section',
       filePrefix: 'mobile-section',
       maximum: 2,
       mobile: true
     });
+
+    sections = await completeSectionCaptures(page, outputDirectory, {
+      filePrefix: 'mobile-section',
+      maximum: 2,
+      mobile: true
+    }, sections);
 
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({
