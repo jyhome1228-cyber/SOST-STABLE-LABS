@@ -1,0 +1,98 @@
+/* High-resolution capture presentation and AESOST menu views */
+
+.portfolio-browser-frame img,
+.project-detail .project-hero-visual > img,
+.project-detail .project-gallery-visual > img {
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Avoid scaling captured text on hover, which can make fine type look soft. */
+.portfolio-card:hover .portfolio-browser-frame img,
+.portfolio-card:focus-within .portfolio-browser-frame img {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Menu-level page captures are shown as paired browser windows. */
+.project-detail .project-gallery-item.layout-menu {
+  grid-column: span 6;
+}
+
+.project-detail .layout-menu .project-gallery-visual {
+  position: relative;
+  overflow: hidden !important;
+  padding-top: 32px;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 11px;
+  background: #111318 !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.22);
+}
+
+.project-detail .layout-menu .project-gallery-visual::before {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 14px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  box-shadow: 13px 0 rgba(255,255,255,.15), 26px 0 rgba(255,255,255,.1);
+  content: '';
+}
+
+.project-detail .layout-menu .project-gallery-visual::after {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  left: 62px;
+  width: min(44%, 250px);
+  height: 14px;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 5px;
+  background: rgba(255,255,255,.025);
+  content: '';
+}
+
+.project-detail .layout-menu .project-gallery-visual > img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: top center !important;
+  background: #fff;
+}
+
+.project-detail .layout-menu figcaption::after {
+  content: 'MENU VIEW';
+  color: rgba(170,183,250,.72);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+/* Give high-resolution images enough space without upscaling beyond their container. */
+.project-detail .layout-desktop .project-gallery-visual > img,
+.project-detail .layout-menu .project-gallery-visual > img,
+.project-detail .layout-section .project-gallery-visual > img,
+.project-detail .layout-visual .project-gallery-visual > img {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .project-detail .project-gallery-item.layout-menu {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .project-detail .project-gallery-item.layout-menu {
+    grid-column: 1 !important;
+  }
+
+  .project-detail .layout-menu .project-gallery-visual {
+    padding-top: 29px;
+    border-radius: 9px;
+  }
+}
