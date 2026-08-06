@@ -1,5 +1,6 @@
 name: Capture RE:LIM
 
+# Capture the actual website UI for portfolio presentation.
 on:
   workflow_dispatch:
   push:
