@@ -1,0 +1,40 @@
+/* LABS title scale refinement */
+body[data-page='labs'] .business-chapter-title h2 {
+  max-width: 920px !important;
+  font-size: clamp(25px, 2.25vw, 34px) !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.04em !important;
+}
+
+body[data-page='labs'] .business-chapter-title > p {
+  max-width: 900px;
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+body[data-page='labs'] .labs-series-hero h1 {
+  font-size: clamp(38px, 4vw, 58px) !important;
+}
+
+body[data-page='labs'] .labs-series-closing h2 {
+  font-size: clamp(32px, 3.4vw, 48px) !important;
+}
+
+@media (max-width: 760px) {
+  body[data-page='labs'] .business-chapter-title h2 {
+    font-size: 28px !important;
+  }
+
+  body[data-page='labs'] .business-chapter-title > p {
+    font-size: 16px;
+  }
+
+  body[data-page='labs'] .labs-series-hero h1 {
+    font-size: 38px !important;
+  }
+
+  body[data-page='labs'] .labs-series-closing h2 {
+    font-size: 32px !important;
+  }
+}
