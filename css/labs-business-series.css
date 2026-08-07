@@ -1,0 +1,552 @@
+/* =========================================================
+   SOST LABS — BUSINESS DIGITAL STRUCTURE SERIES
+========================================================= */
+
+.labs-series-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--header-height) + 110px);
+  padding-bottom: 96px;
+  border-bottom: 1px solid var(--line);
+}
+
+.labs-series-hero::after {
+  position: absolute;
+  top: 72px;
+  right: -6vw;
+  width: min(520px, 42vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(167,183,255,.08);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 54px rgba(167,183,255,.025),
+    0 0 0 108px rgba(167,183,255,.018);
+  content: '';
+  pointer-events: none;
+}
+
+.labs-series-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, .82fr);
+  gap: clamp(60px, 8vw, 130px);
+  align-items: end;
+}
+
+.labs-series-hero h1 {
+  max-width: 900px;
+  margin-top: 24px;
+  font-size: clamp(48px, 5.15vw, 76px);
+  font-weight: 470;
+  line-height: 1.08;
+  letter-spacing: -.057em;
+}
+
+.labs-series-hero h1 span {
+  color: var(--point);
+}
+
+.labs-series-intro {
+  padding-bottom: 8px;
+}
+
+.labs-series-intro > p {
+  color: var(--text-soft);
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.labs-series-intro strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.labs-series-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1px;
+  margin-top: 34px;
+  background: var(--line);
+}
+
+.labs-series-meta div {
+  min-height: 96px;
+  padding: 18px;
+  background: var(--bg);
+}
+
+.labs-series-meta small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.labs-series-meta strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--point);
+  font-size: 16px;
+  font-weight: 590;
+}
+
+.labs-diagnostic {
+  padding: 74px 0 78px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.labs-diagnostic-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 38px;
+}
+
+.labs-diagnostic-head h2 {
+  margin-top: 10px;
+  font-size: clamp(28px, 2.7vw, 40px);
+  font-weight: 510;
+  letter-spacing: -.04em;
+}
+
+.labs-diagnostic-head > p {
+  max-width: 470px;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.labs-diagnostic-track {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0,1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.labs-diagnostic-track a {
+  position: relative;
+  min-height: 175px;
+  padding: 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background .25s ease, transform .25s ease;
+}
+
+.labs-diagnostic-track a:hover {
+  z-index: 2;
+  background: rgba(167,183,255,.045);
+  transform: translateY(-3px);
+}
+
+.labs-diagnostic-track span {
+  color: var(--point);
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.labs-diagnostic-track strong {
+  display: block;
+  margin-top: 52px;
+  font-size: 15px;
+  font-weight: 580;
+  line-height: 1.45;
+}
+
+.labs-diagnostic-track small {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .05em;
+}
+
+.business-chapter {
+  position: relative;
+  padding: 120px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+.business-chapter:nth-of-type(even) {
+  background: var(--bg-soft);
+}
+
+.business-chapter-head {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 110px);
+  align-items: start;
+}
+
+.business-chapter-index {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: .1em;
+}
+
+.business-chapter-index strong {
+  color: var(--point);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -.03em;
+}
+
+.business-chapter-title .eyebrow {
+  color: var(--point);
+}
+
+.business-chapter-title h2 {
+  max-width: 1030px;
+  margin-top: 16px;
+  font-size: clamp(34px, 3.8vw, 56px);
+  font-weight: 490;
+  line-height: 1.17;
+  letter-spacing: -.052em;
+}
+
+.business-chapter-title > p {
+  max-width: 870px;
+  margin-top: 24px;
+  color: var(--text-soft);
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.business-chapter-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  margin-top: 58px;
+  margin-left: calc(170px + clamp(40px, 7vw, 110px));
+}
+
+.chapter-problem,
+.chapter-solution {
+  min-height: 390px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.012);
+}
+
+.chapter-problem > span,
+.chapter-solution > span,
+.chapter-checklist > span {
+  color: var(--point);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .11em;
+}
+
+.chapter-problem h3,
+.chapter-solution h3 {
+  margin-top: 46px;
+  font-size: 25px;
+  font-weight: 540;
+  line-height: 1.35;
+  letter-spacing: -.035em;
+}
+
+.chapter-problem > p,
+.chapter-solution > p {
+  margin-top: 20px;
+  color: var(--text-soft);
+  font-size: 16px;
+  line-height: 1.82;
+}
+
+.chapter-signals {
+  display: grid;
+  gap: 1px;
+  margin-top: 28px;
+  background: var(--line);
+}
+
+.chapter-signals li {
+  position: relative;
+  padding: 15px 16px 15px 42px;
+  background: var(--bg);
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.chapter-signals li::before {
+  position: absolute;
+  top: 18px;
+  left: 17px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--point);
+  content: '';
+}
+
+.chapter-solution-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.chapter-solution-flow div {
+  position: relative;
+  min-height: 118px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.chapter-solution-flow div:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -16px;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--point);
+  content: '→';
+  transform: translateY(-50%);
+}
+
+.chapter-solution-flow small {
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: .09em;
+}
+
+.chapter-solution-flow strong {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 570;
+  line-height: 1.5;
+}
+
+.chapter-checklist {
+  margin-top: 18px;
+  margin-left: calc(170px + clamp(40px, 7vw, 110px));
+  padding: 28px 30px;
+  border: 1px solid rgba(167,183,255,.25);
+  background: rgba(167,183,255,.035);
+}
+
+.chapter-checklist h3 {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 560;
+}
+
+.chapter-checklist ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px 28px;
+  margin-top: 20px;
+}
+
+.chapter-checklist li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.chapter-checklist li::before {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(167,183,255,.55);
+  content: '';
+}
+
+.labs-series-closing {
+  padding: 110px 0;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 76% 22%, rgba(167,183,255,.08), transparent 30%),
+    var(--bg-soft);
+}
+
+.labs-series-closing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(330px, .8fr);
+  gap: 80px;
+  align-items: end;
+}
+
+.labs-series-closing h2 {
+  max-width: 900px;
+  margin-top: 16px;
+  font-size: clamp(38px, 4.3vw, 62px);
+  font-weight: 480;
+  line-height: 1.18;
+  letter-spacing: -.055em;
+}
+
+.labs-series-closing p:not(.eyebrow) {
+  max-width: 760px;
+  margin-top: 24px;
+  color: var(--text-soft);
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+.labs-series-closing-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.labs-series-closing-actions a {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  border: 1px solid var(--line-strong);
+  color: var(--text-soft);
+  font-size: 15px;
+  font-weight: 600;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+.labs-series-closing-actions a:first-child {
+  border-color: var(--point);
+  background: var(--point);
+  color: #08090b;
+}
+
+.labs-series-closing-actions a:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1100px) {
+  .labs-series-hero-grid,
+  .labs-series-closing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .labs-diagnostic-track {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .business-chapter-head {
+    grid-template-columns: 120px minmax(0,1fr);
+  }
+
+  .business-chapter-grid,
+  .chapter-checklist {
+    margin-left: calc(120px + clamp(40px, 7vw, 110px));
+  }
+
+  .business-chapter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .labs-series-hero {
+    padding-top: calc(var(--header-height) + 74px);
+    padding-bottom: 70px;
+  }
+
+  .labs-series-hero-grid {
+    gap: 40px;
+  }
+
+  .labs-series-hero h1 {
+    font-size: 44px;
+  }
+
+  .labs-series-intro > p {
+    font-size: 16px;
+  }
+
+  .labs-diagnostic {
+    padding: 58px 0;
+  }
+
+  .labs-diagnostic-head {
+    display: block;
+  }
+
+  .labs-diagnostic-head > p {
+    margin-top: 16px;
+  }
+
+  .labs-diagnostic-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .labs-diagnostic-track a {
+    min-height: 150px;
+  }
+
+  .business-chapter {
+    padding: 80px 0;
+  }
+
+  .business-chapter-head {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .business-chapter-grid,
+  .chapter-checklist {
+    margin-left: 0;
+  }
+
+  .business-chapter-grid {
+    margin-top: 38px;
+  }
+
+  .business-chapter-title h2 {
+    font-size: 34px;
+  }
+
+  .business-chapter-title > p {
+    font-size: 16px;
+  }
+
+  .chapter-problem,
+  .chapter-solution {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .chapter-solution-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-solution-flow div:not(:last-child)::after {
+    top: auto;
+    right: 50%;
+    bottom: -20px;
+    content: '↓';
+    transform: translateX(50%);
+  }
+
+  .chapter-checklist ul {
+    grid-template-columns: 1fr;
+  }
+
+  .labs-series-closing {
+    padding: 78px 0;
+  }
+
+  .labs-series-closing h2 {
+    font-size: 38px;
+  }
+}
