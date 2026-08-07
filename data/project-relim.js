@@ -18,30 +18,30 @@ window.SOST_PROJECTS.push({
     { label: 'FAQ', url: 'https://re-lim.com/faq.html' }
   ],
   visualLabel: 'RE:LIM WEB UI',
-  excerpt: '프라이빗 아웃도어 공간의 브랜드 소개, 공간 안내, 이용 규정과 예약 흐름을 하나의 반응형 웹사이트로 정리한 프로젝트입니다.',
-  services: ['Brand Website Planning', 'Information Architecture', 'Reservation UX', 'Responsive Front-end'],
+  excerpt: '공간 브랜드 웹사이트와 함께 인스타 DM 반복 문의를 수집·분류해 FAQ와 키워드 답변 체계로 전환하고, 예약 유형별 문의 동선을 정리한 운영형 웹 프로젝트입니다.',
+  services: ['Brand Website Planning', 'Inquiry Data Architecture', 'Reservation UX', 'Responsive Front-end'],
   technologies: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages', 'Responsive Web'],
   accent: 'green',
   thumbnail: '',
   hero: '',
-  overview: '리림은 수영장과 수로, 개별 쉘터, 바비큐 공간과 카페를 운영하는 프라이빗 아웃도어 공간 브랜드입니다. 공간의 분위기를 소개하는 감성 영역과 실제 이용에 필요한 운영 정보, 예약 안내와 위치 정보를 하나의 사용자 흐름으로 연결하는 웹사이트를 구축했습니다.',
-  challenge: '공간의 분위기를 충분히 전달하면서도 운영시간, 요금, 인원 기준, 준비물, 숙박 옵션과 예약 방식처럼 방문 전 확인해야 하는 정보가 많았습니다. 감성적인 공간 소개와 실제 예약 결정에 필요한 정보를 분리하지 않고 모바일에서도 빠르게 확인할 수 있는 구조가 필요했습니다.',
-  approach: '메인에서 브랜드 인상과 오전·오후 이용 방식을 먼저 보여주고, 브랜드 소개, 공간 안내, 이용 안내, 예약 안내, 위치와 FAQ로 이어지는 탐색 구조를 구성했습니다. 포트폴리오에서는 공간 사진 자체가 아니라 각 페이지의 실제 UI와 예약 동선이 보이도록 라이브 웹 미리보기와 UI 캡처 중심으로 보여줍니다.',
+  overview: '리림은 수영장과 수로, 개별 쉘터, 바비큐 공간과 카페를 운영하는 프라이빗 아웃도어 공간 브랜드입니다. 공간을 소개하는 웹사이트 구축과 동시에 실제 인스타그램 DM에서 반복되는 예약·요금·숙박·준비물·취소 문의를 수집해 질문군으로 정리하고, 웹 FAQ와 키워드 답변 구조로 재설계했습니다. 보여주는 사이트를 넘어 고객 문의와 예약 운영을 줄여주는 디지털 운영 도구로 확장한 프로젝트입니다.',
+  challenge: '운영시간, 요금, 인원 기준, 준비물, 숙박 옵션, 외부 음식과 취소 규정처럼 방문 전 확인해야 하는 정보가 많아 동일한 질문이 인스타그램 DM으로 반복 유입되고 있었습니다. 공간의 분위기를 전달하는 것뿐 아니라 반복 문의를 줄이고, 고객이 자신의 상황에 맞는 답을 스스로 빠르게 찾도록 운영 정보 자체를 구조화할 필요가 있었습니다.',
+  approach: '실제 DM 문의를 질문 유형별로 수집·분류하고 예약, 요금, 타임, 숙박, 준비물, 외부 음식, 취소 등 핵심 키워드를 정의했습니다. 이를 FAQ·이용안내 콘텐츠와 연결하고, 일반 오전·오후 예약은 캠핏으로, 별도 확인이 필요한 숙박·당일·대관 문의는 운영 채널로 분기해 웹과 DM이 같은 기준으로 답변하도록 설계했습니다.',
   system: [
-    '브랜드 소개와 공간 안내 정보 구조',
-    '수영장·수로·개별 쉘터 공간 정보 구성',
-    '오전·오후 타임별 운영 정보와 요금 안내',
-    '캠핏 예약과 별도 문의 동선 분리',
-    'FAQ·오시는 길·준비사항 통합 안내',
-    'PC·태블릿·모바일 반응형 웹 구조'
+    '인스타그램 DM 반복 문의 수집·분류와 Q&A 데이터화',
+    '예약·요금·타임·숙박·준비물·취소 키워드 답변 구조',
+    '웹 FAQ와 운영 답변을 연결한 일관된 문의 기준',
+    '오전·오후 일반 예약과 별도 문의 예약 동선 분리',
+    '요금·인원·준비사항·취소 규정 운영 정보 구조화',
+    'PC·태블릿·모바일 반응형 공간 브랜드 웹 구조'
   ],
   results: [
-    '공간의 브랜드 인상과 실제 예약 정보를 하나의 웹 경험으로 연결했습니다.',
-    '방문 전 필요한 운영 조건과 준비사항을 목적에 따라 빠르게 찾도록 정리했습니다.',
-    '공간 안내와 예약 정보의 정보 위계를 명확하게 정리했습니다.',
-    '모바일에서도 예약과 이용 정보를 빠르게 찾을 수 있도록 반응형으로 구현했습니다.'
+    '반복되던 인스타 DM 문의를 검색 가능한 운영 Q&A 자산으로 전환했습니다.',
+    '고객과 운영자가 같은 키워드와 답변 기준을 사용하도록 문의 응대 체계를 정리했습니다.',
+    '일반 예약과 별도 상담이 필요한 문의를 분리해 예약 과정의 혼선을 줄였습니다.',
+    '브랜드 소개, 이용 안내, 예약과 FAQ가 하나의 운영 흐름으로 연결되도록 구축했습니다.'
   ],
-  scope: ['Brand Content Structure', 'Information Architecture', 'Responsive UX/UI', 'Front-end Development', 'Reservation Flow', 'Content Management'],
+  scope: ['Brand Content Structure', 'Inquiry Data Architecture', 'Keyword Q&A System', 'Responsive UX/UI', 'Reservation Flow', 'Front-end Development'],
   credits: [
     { label: 'Planning · UX · Development', value: 'SOST STABLE LABS' },
     { label: 'Client', value: 'RE:LIM' }
