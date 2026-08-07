@@ -90,13 +90,15 @@
   };
 
   const updateUI = () => {
-    const index = Math.max(0, Math.min(currentIndex(), Math.max(0, projects.length - 1)));
     const visible = visibleCount();
+    const lastStart = Math.max(0, projects.length - visible);
+    const index = Math.max(0, Math.min(currentIndex(), lastStart));
     const lastVisible = Math.min(projects.length, index + visible);
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth - 2);
 
     if (prevButton) prevButton.disabled = viewport.scrollLeft <= 2;
     if (nextButton) nextButton.disabled = viewport.scrollLeft >= maxScroll;
+
     if (status) {
       const start = String(index + 1).padStart(2, '0');
       const end = String(lastVisible).padStart(2, '0');
@@ -105,12 +107,12 @@
     }
 
     if (progress) {
-      const ratio = maxScroll <= 0 ? 1 : Math.min(1, viewport.scrollLeft / maxScroll);
+      const ratio = maxScroll <= 0 ? 0 : Math.min(1, Math.max(0, viewport.scrollLeft / maxScroll));
       const thumbRatio = Math.min(1, visible / projects.length);
       const width = thumbRatio * 100;
       const travel = Math.max(0, 100 - width);
       progress.style.width = `${width}%`;
-      progress.style.transform = `translateX(${travel * ratio}%)`;
+      progress.style.left = `${travel * ratio}%`;
     }
   };
 
