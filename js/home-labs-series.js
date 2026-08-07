@@ -45,7 +45,7 @@
   section.classList.add('home-labs-series');
   section.innerHTML = `
     <div class="shell">
-      <div class="home-labs-series-head reveal">
+      <div class="home-labs-series-head">
         <div>
           <p class="eyebrow">LABS · BUSINESS SYSTEM 01–06</p>
           <h2>회사가 성장할수록 필요한<br />디지털 구조를 정리합니다.</h2>
@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div class="home-labs-cards reveal">
+      <div class="home-labs-cards">
         ${chapters.map((chapter) => `
           <a class="home-labs-card" href="./labs.html#${chapter.anchor}">
             <div class="home-labs-card-top">
@@ -73,7 +73,7 @@
         `).join('')}
       </div>
 
-      <nav class="home-labs-rail reveal" aria-label="LABS 6개 챕터">
+      <nav class="home-labs-rail" aria-label="LABS 6개 챕터">
         ${rail.map(([no, title], index) => `
           <a href="./labs.html#chapter-${String(index + 1).padStart(2, '0')}">
             <span>${no}</span>
