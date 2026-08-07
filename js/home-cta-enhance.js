@@ -36,6 +36,32 @@
   }
 
   /* =========================================================
+     HOME LABS — BUSINESS NEED SERIES PREVIEW
+  ========================================================= */
+  const labsSection = [...document.querySelectorAll('.section-block')]
+    .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'LABS & INSIGHTS');
+
+  if (labsSection) {
+    const title = labsSection.querySelector('.section-heading h2');
+    if (title) title.textContent = '회사가 성장할수록 필요한 디지털 구조';
+
+    const list = labsSection.querySelector('.article-list');
+    if (list) {
+      list.innerHTML = `
+        <a class="article-row reveal" href="./labs.html#chapter-01">
+          <span>01</span><p>WEBSITE</p><h3>회사에 홈페이지가 필요한 진짜 이유</h3><time>TRUST · SALES</time>
+        </a>
+        <a class="article-row reveal" href="./labs.html#chapter-02">
+          <span>02</span><p>CRM</p><h3>문의가 늘어나는데 매출로 연결되지 않는 이유</h3><time>LEAD · SALES</time>
+        </a>
+        <a class="article-row reveal" href="./labs.html#chapter-03">
+          <span>03</span><p>OPERATIONS</p><h3>엑셀과 카카오톡으로 업무를 관리하는 회사의 한계</h3><time>PROJECT · OPS</time>
+        </a>
+      `;
+    }
+  }
+
+  /* =========================================================
      HOME SELECTED PROJECTS — DATA DRIVEN 3-COLUMN SLIDER
   ========================================================= */
   const selectedSection = [...document.querySelectorAll('.section-block')]
