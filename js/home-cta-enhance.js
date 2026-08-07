@@ -1,6 +1,35 @@
 (() => {
   'use strict';
 
+  const loadStyle = (href, id) => {
+    if (document.getElementById(id)) return;
+    const link = document.createElement('link');
+    link.id = id;
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  const loadScript = (src, id) => new Promise((resolve, reject) => {
+    const existing = document.getElementById(id);
+    if (existing) {
+      if (existing.dataset.loaded === 'true') resolve();
+      else existing.addEventListener('load', resolve, { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.id = id;
+    script.src = src;
+    script.async = false;
+    script.addEventListener('load', () => {
+      script.dataset.loaded = 'true';
+      resolve();
+    }, { once: true });
+    script.addEventListener('error', reject, { once: true });
+    document.head.appendChild(script);
+  });
+
   /* =========================================================
      GLOBAL CTA
   ========================================================= */
@@ -36,29 +65,15 @@
   }
 
   /* =========================================================
-     HOME LABS — BUSINESS NEED SERIES PREVIEW
+     HOME LABS — 6 CHAPTER BUSINESS NEED SERIES
   ========================================================= */
   const labsSection = [...document.querySelectorAll('.section-block')]
     .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'LABS & INSIGHTS');
 
   if (labsSection) {
-    const title = labsSection.querySelector('.section-heading h2');
-    if (title) title.textContent = '회사가 성장할수록 필요한 디지털 구조';
-
-    const list = labsSection.querySelector('.article-list');
-    if (list) {
-      list.innerHTML = `
-        <a class="article-row reveal" href="./labs.html#chapter-01">
-          <span>01</span><p>WEBSITE</p><h3>회사에 홈페이지가 필요한 진짜 이유</h3><time>TRUST · SALES</time>
-        </a>
-        <a class="article-row reveal" href="./labs.html#chapter-02">
-          <span>02</span><p>CRM</p><h3>문의가 늘어나는데 매출로 연결되지 않는 이유</h3><time>LEAD · SALES</time>
-        </a>
-        <a class="article-row reveal" href="./labs.html#chapter-03">
-          <span>03</span><p>OPERATIONS</p><h3>엑셀과 카카오톡으로 업무를 관리하는 회사의 한계</h3><time>PROJECT · OPS</time>
-        </a>
-      `;
-    }
+    loadStyle('./css/home-labs-series.css?v=20260807-1', 'home-labs-series-css');
+    loadScript('./js/home-labs-series.js?v=20260807-1', 'home-labs-series-js')
+      .catch((error) => console.error('Home LABS series failed to load.', error));
   }
 
   /* =========================================================
@@ -96,35 +111,6 @@
       </div>
     </div>
   `;
-
-  const loadStyle = (href, id) => {
-    if (document.getElementById(id)) return;
-    const link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  };
-
-  const loadScript = (src, id) => new Promise((resolve, reject) => {
-    const existing = document.getElementById(id);
-    if (existing) {
-      if (existing.dataset.loaded === 'true') resolve();
-      else existing.addEventListener('load', resolve, { once: true });
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.id = id;
-    script.src = src;
-    script.async = false;
-    script.addEventListener('load', () => {
-      script.dataset.loaded = 'true';
-      resolve();
-    }, { once: true });
-    script.addEventListener('error', reject, { once: true });
-    document.head.appendChild(script);
-  });
 
   loadStyle('./css/home-project-slider.css?v=20260807-2', 'home-project-slider-css');
 
