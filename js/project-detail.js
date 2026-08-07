@@ -49,16 +49,9 @@
 
   const normalizeLayout = (item, index) => {
     const allowed = new Set([
-      'desktop',
-      'menu',
-      'section',
-      'visual',
-      'mobile',
-      'mobile-scroll',
-      'scroll',
-      'editorial'
+      'desktop', 'menu', 'section', 'visual', 'mobile',
+      'mobile-scroll', 'scroll', 'editorial'
     ]);
-
     if (allowed.has(item.layout)) return item.layout;
     if (/mobile/i.test(item.label || '')) return 'mobile';
     if (index === 0) return 'desktop';
@@ -71,10 +64,24 @@
     <div><dt>${escapeHTML(item.label)}</dt><dd>${escapeHTML(item.value)}</dd></div>
   `).join('');
 
+  const highlights = (project.caseHighlights || []).map((item, index) => `
+    <article class="case-build-card">
+      <div class="case-build-card-top">
+        <span>${String(index + 1).padStart(2, '0')}</span>
+        <p>${escapeHTML(item.label)}</p>
+      </div>
+      <h3>${escapeHTML(item.title)}</h3>
+      <p class="case-build-description">${escapeHTML(item.description)}</p>
+      <div class="case-build-outcome">
+        <small>OPERATION EFFECT</small>
+        <strong>${escapeHTML(item.outcome)}</strong>
+      </div>
+    </article>
+  `).join('');
+
   const gallery = (project.gallery || []).map((item, index) => {
     const layout = normalizeLayout(item, index);
     const wideClass = ['desktop', 'section', 'scroll'].includes(layout) ? ' is-wide' : '';
-
     return `
       <figure class="project-gallery-item layout-${escapeHTML(layout)}${wideClass}" data-layout="${escapeHTML(layout)}">
         <div class="project-gallery-visual">
@@ -84,6 +91,11 @@
       </figure>
     `;
   }).join('');
+
+  const siteHost = (() => {
+    try { return new URL(project.url).hostname.replace(/^www\./, ''); }
+    catch { return 'PROJECT WEBSITE'; }
+  })();
 
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
@@ -129,15 +141,32 @@
       </div>
     </section>
 
-    <section class="case-section case-system-section">
+    <section class="case-section case-build-section">
+      <div class="shell">
+        <div class="case-section-heading case-build-heading">
+          <div class="case-label"><span>04</span><p>WHAT WE BUILT</p></div>
+          <div>
+            <h2>화면보다 먼저, 실제 운영에 필요한 구조를 만들었습니다.</h2>
+            <p>${escapeHTML(project.caseSummary || '프로젝트의 핵심 구현 내용과 운영 효과를 정리했습니다.')}</p>
+          </div>
+        </div>
+        <div class="case-build-flow">${highlights}</div>
+      </div>
+    </section>
+
+    <section class="case-section case-system-section case-section-muted">
       <div class="shell">
         <div class="case-section-heading">
-          <div class="case-label"><span>04</span><p>SYSTEM</p></div>
-          <h2>프로젝트를 구성한 핵심 기능</h2>
+          <div class="case-label"><span>05</span><p>FUNCTIONS</p></div>
+          <h2>프로젝트에 실제로 구현한 핵심 기능</h2>
         </div>
         <div class="system-feature-grid">
           ${(project.system || []).map((item, index) => `
-            <article><span>${String(index + 1).padStart(2, '0')}</span><h3>${escapeHTML(item)}</h3></article>
+            <article>
+              <span>${String(index + 1).padStart(2, '0')}</span>
+              <div class="system-feature-mark" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div>
+              <h3>${escapeHTML(item)}</h3>
+            </article>
           `).join('')}
         </div>
       </div>
@@ -146,7 +175,7 @@
     <section class="project-gallery-section">
       <div class="shell">
         <div class="case-section-heading">
-          <div class="case-label"><span>05</span><p>PROJECT VIEW</p></div>
+          <div class="case-label"><span>06</span><p>PROJECT VIEW</p></div>
           <h2>실제 화면 구성과 반응형 경험</h2>
         </div>
         <div class="project-gallery-grid">${gallery}</div>
@@ -156,7 +185,7 @@
     <section class="case-section case-section-muted case-result-section">
       <div class="shell result-layout">
         <div>
-          <div class="case-label"><span>06</span><p>RESULT</p></div>
+          <div class="case-label"><span>07</span><p>RESULT</p></div>
           <h2>프로젝트를 통해 정리한 결과</h2>
           <ul class="result-list">${list(project.results)}</ul>
         </div>
@@ -167,6 +196,21 @@
         </aside>
       </div>
     </section>
+
+    ${project.url ? `
+      <section class="project-site-cta-section">
+        <div class="shell project-site-cta">
+          <div>
+            <p class="eyebrow">VIEW LIVE PROJECT</p>
+            <h2>실제 제작 사이트에서<br />완성된 경험을 확인하세요.</h2>
+            <span>${escapeHTML(siteHost)}</span>
+          </div>
+          <a href="${escapeHTML(project.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(project.title)} 제작 사이트 새창으로 확인하기">
+            <span>제작 사이트 확인하기</span><strong>↗</strong>
+          </a>
+        </div>
+      </section>
+    ` : ''}
 
     <nav class="next-project" aria-label="다음 프로젝트">
       <div class="shell next-project-inner">
