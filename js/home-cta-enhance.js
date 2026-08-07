@@ -100,7 +100,7 @@
     document.head.appendChild(script);
   });
 
-  loadStyle('./css/home-project-slider.css?v=20260807-1', 'home-project-slider-css');
+  loadStyle('./css/home-project-slider.css?v=20260807-2', 'home-project-slider-css');
 
   const projectScripts = [
     ['./data/featured-projects.js?v=20260807-1', 'home-project-data-featured'],
@@ -120,7 +120,7 @@
       for (const [src, id] of projectScripts) {
         await loadScript(src, id);
       }
-      await loadScript('./js/home-project-slider.js?v=20260807-1', 'home-project-slider-js');
+      await loadScript('./js/home-project-slider.js?v=20260807-2', 'home-project-slider-js');
     } catch (error) {
       console.error('Home project slider failed to load.', error);
     }
