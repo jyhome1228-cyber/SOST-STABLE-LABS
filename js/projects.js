@@ -22,20 +22,13 @@
     try {
       return new URL(url).hostname.replace(/^www\./, '');
     } catch {
-      return 'project preview';
+      return '';
     }
   };
 
   const createVisual = (project) => {
     if (project.thumbnail) {
-      return `
-        <div class="portfolio-browser-frame">
-          <div class="portfolio-browser-toolbar" aria-hidden="true">
-            <i></i><i></i><i></i><span>${escapeHTML(displayHost(project.url))}</span>
-          </div>
-          <img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 메인 화면 미리보기" loading="lazy" />
-        </div>
-      `;
+      return `<img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 메인 화면 미리보기" loading="lazy" decoding="async" />`;
     }
 
     return `
@@ -51,11 +44,12 @@
     const tags = (project.services || []).slice(0, 3)
       .map((service) => `<span>${escapeHTML(service)}</span>`)
       .join('');
-
+    const domain = project.displayDomain || displayHost(project.url);
     const captureClass = project.hasAutomatedCapture ? ' has-automated-capture' : '';
+    const thumbPosition = project.thumbPosition || '50% 12%';
 
     return `
-      <article class="portfolio-card${captureClass}" data-category="${escapeHTML(project.category)}" style="--card-order:${index}">
+      <article class="portfolio-card${captureClass}" data-category="${escapeHTML(project.category)}" style="--card-order:${index};--thumb-position:${escapeHTML(thumbPosition)}">
         <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 자세히 보기">
           <div class="portfolio-card-visual">
             ${createVisual(project)}
@@ -63,7 +57,7 @@
           </div>
           <div class="portfolio-card-meta">
             <p>${escapeHTML(project.categoryLabel)} · ${escapeHTML(project.year)}</p>
-            <span>${escapeHTML(project.client)}</span>
+            <span class="portfolio-card-domain">${escapeHTML(domain)}</span>
           </div>
           <h2>${escapeHTML(project.title)}</h2>
           <p class="portfolio-card-description">${escapeHTML(project.excerpt)}</p>
