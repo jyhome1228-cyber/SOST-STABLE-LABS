@@ -1,0 +1,250 @@
+/* SOSTLABS. — shared footer CTA + final homepage ordering */
+
+/* ---------------------------------------------------------
+   HOME ORDER: HERO → ABOUT → SELECTED PROJECTS → SOLUTIONS
+--------------------------------------------------------- */
+body[data-page='home'] main {
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page='home'] .home-hero { order: 1 !important; }
+body[data-page='home'] .home-intro { order: 2 !important; }
+body[data-page='home'] .home-projects-section,
+body[data-page='home'] .home-projects-first { order: 3 !important; }
+body[data-page='home'] main > section:has(.preview-grid.three-column) { order: 4 !important; }
+body[data-page='home'] main > section:has(.labs-preview) { order: 5 !important; }
+body[data-page='home'] .contact-banner { order: 20 !important; }
+
+/* ---------------------------------------------------------
+   SHARED CTA — ALWAYS DIRECTLY ABOVE FOOTER
+--------------------------------------------------------- */
+.contact-banner.global-system-cta {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: var(--point) !important;
+  color: #fff !important;
+  isolation: isolate;
+}
+
+.global-cta-inner {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  min-height: 330px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+  align-items: center;
+  gap: clamp(48px, 7vw, 120px);
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+
+.global-cta-copy {
+  max-width: 790px;
+}
+
+.global-cta-copy .eyebrow,
+.contact-banner.global-system-cta .eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255,255,255,.68) !important;
+}
+
+.global-cta-copy h2,
+.contact-banner.global-system-cta h2 {
+  max-width: 760px;
+  margin: 0;
+  color: #fff !important;
+  font-size: clamp(30px, 3vw, 46px);
+  font-weight: 540;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+}
+
+.global-cta-copy > p:last-child {
+  max-width: 660px;
+  margin-top: 20px;
+  color: rgba(255,255,255,.78) !important;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.global-cta-button {
+  display: inline-flex;
+  min-width: 184px;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 0 24px;
+  border: 1px solid rgba(255,255,255,.75);
+  background: rgba(255,255,255,.08);
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  transition: transform .28s ease, background .28s ease, border-color .28s ease;
+}
+
+.global-cta-button span {
+  color: #fff !important;
+  transition: transform .28s ease;
+}
+
+.global-cta-button:hover,
+.global-cta-button:focus-visible {
+  transform: translateY(-3px);
+  border-color: #fff;
+  background: rgba(255,255,255,.15);
+}
+
+.global-cta-button:hover span,
+.global-cta-button:focus-visible span {
+  transform: translate(2px,-2px);
+}
+
+/* right-side architecture visual */
+.global-cta-diagram {
+  position: relative;
+  width: min(100%, 500px);
+  height: 240px;
+  justify-self: end;
+  pointer-events: none;
+}
+
+.global-cta-diagram::before {
+  position: absolute;
+  inset: 12% 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.16), transparent 68%);
+  filter: blur(18px);
+  content: '';
+}
+
+.cta-system-panel {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  width: 210px;
+  height: 142px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.48);
+  border-radius: 26px;
+  background: rgba(255,255,255,.09);
+  box-shadow: 0 26px 50px rgba(44,55,130,.16), inset 0 1px 0 rgba(255,255,255,.25);
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.cta-system-panel::before {
+  display: block;
+  width: 88px;
+  height: 8px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.78);
+  content: '';
+}
+
+.cta-system-panel::after {
+  display: block;
+  width: 100%;
+  height: 76px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
+  background-size: 20px 20px;
+  content: '';
+}
+
+.cta-system-node {
+  position: absolute;
+  display: grid;
+  width: 104px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.46);
+  border-radius: 16px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  backdrop-filter: blur(8px);
+}
+
+.cta-system-node.node-web { top: 18px; left: 4px; }
+.cta-system-node.node-data { top: 20px; right: 0; }
+.cta-system-node.node-ops { right: 14px; bottom: 0; }
+.cta-system-node.node-brand { left: 8px; bottom: 2px; }
+
+.cta-system-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);
+  transform-origin: left center;
+}
+
+.cta-system-line.line-a { top: 64px; left: 93px; width: 120px; transform: rotate(16deg); }
+.cta-system-line.line-b { top: 66px; right: 90px; width: 118px; transform: rotate(163deg); }
+.cta-system-line.line-c { bottom: 56px; left: 90px; width: 130px; transform: rotate(-14deg); }
+.cta-system-line.line-d { right: 86px; bottom: 58px; width: 126px; transform: rotate(194deg); }
+
+.cta-system-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 7px rgba(255,255,255,.12);
+  animation: cta-dot-pulse 3.6s ease-in-out infinite;
+}
+
+.cta-system-dot.dot-a { top: 61px; left: 188px; }
+.cta-system-dot.dot-b { right: 174px; bottom: 54px; animation-delay: -1.6s; }
+
+@keyframes cta-dot-pulse {
+  0%,100% { opacity:.45; transform:scale(.8); }
+  50% { opacity:1; transform:scale(1.08); }
+}
+
+@media (max-width: 900px) {
+  .global-cta-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .global-cta-diagram {
+    width: min(100%, 470px);
+    justify-self: start;
+  }
+}
+
+@media (max-width: 680px) {
+  .global-cta-inner {
+    min-height: 0;
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  .global-cta-copy h2,
+  .contact-banner.global-system-cta h2 {
+    font-size: 29px;
+  }
+
+  .global-cta-diagram {
+    height: 200px;
+    transform: scale(.88);
+    transform-origin: left top;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-system-dot { animation: none !important; }
+}
