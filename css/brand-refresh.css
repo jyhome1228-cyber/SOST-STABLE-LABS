@@ -181,7 +181,6 @@
   white-space: nowrap;
 }
 
-/* Legacy browser frame is no longer used, but keep it neutral if cached markup remains. */
 .portfolio-browser-frame {
   width: 100% !important;
   height: 100% !important;
@@ -310,6 +309,119 @@ html[data-theme='light'] .home-real-project .project-arrow {
   color: #111;
 }
 
+/* =========================================================
+   HOME HERO — SUBTLE ORBIT MOTION, NO BRAND SYMBOL
+========================================================= */
+body[data-page='home'] .home-hero .home-hero-inner {
+  position: relative !important;
+  grid-template-columns: minmax(0, .9fr) minmax(380px, .7fr) !important;
+  align-items: center !important;
+  justify-content: stretch !important;
+  gap: clamp(64px, 8vw, 130px) !important;
+  overflow: visible;
+}
+
+body[data-page='home'] .home-hero .hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 690px !important;
+}
+
+body[data-page='home'] .home-hero .home-hero-inner::before,
+body[data-page='home'] .home-hero .home-hero-inner::after {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 2%;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  transform-origin: center;
+}
+
+body[data-page='home'] .home-hero .home-hero-inner::before {
+  width: min(40vw, 500px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border: 1px solid color-mix(in srgb, var(--point) 28%, transparent);
+  background:
+    radial-gradient(circle at 50% 0%, var(--point) 0 3px, transparent 4px),
+    radial-gradient(circle at 12% 62%, color-mix(in srgb, var(--point) 85%, #fff) 0 2px, transparent 3px),
+    radial-gradient(circle at 83% 72%, var(--point) 0 3px, transparent 4px),
+    radial-gradient(circle, transparent 0 27%, color-mix(in srgb, var(--point) 22%, transparent) 27.3% 27.7%, transparent 28% 42%, color-mix(in srgb, var(--text) 10%, transparent) 42.3% 42.6%, transparent 43% 59%, color-mix(in srgb, var(--point) 16%, transparent) 59.2% 59.5%, transparent 60%),
+    radial-gradient(circle, color-mix(in srgb, var(--point) 7%, transparent), transparent 64%);
+  box-shadow: 0 0 100px color-mix(in srgb, var(--point) 5%, transparent);
+  animation: sost-orbit-field 24s linear infinite;
+}
+
+body[data-page='home'] .home-hero .home-hero-inner::after {
+  width: min(35vw, 430px);
+  aspect-ratio: 1.72;
+  transform: translateY(-50%) rotate(-22deg);
+  border: 1px solid color-mix(in srgb, var(--text) 11%, transparent);
+  box-shadow: inset 0 0 70px color-mix(in srgb, var(--point) 3%, transparent);
+  animation: sost-orbit-ellipse 18s ease-in-out infinite alternate;
+}
+
+@keyframes sost-orbit-field {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes sost-orbit-ellipse {
+  0% { transform: translateY(-50%) rotate(-24deg) scale(.94); opacity: .45; }
+  50% { transform: translateY(-52%) rotate(-10deg) scale(1.03); opacity: .85; }
+  100% { transform: translateY(-48%) rotate(8deg) scale(.96); opacity: .55; }
+}
+
+/* =========================================================
+   CAPABILITIES — TECHNOLOGY STACK REBALANCE
+========================================================= */
+body[data-page='capabilities'] .tech-stack-section {
+  padding: 88px 0 112px !important;
+}
+
+body[data-page='capabilities'] .tech-stack-head {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: clamp(56px, 7vw, 108px) !important;
+  align-items: start;
+  margin-bottom: 40px !important;
+}
+
+body[data-page='capabilities'] .tech-stack-head > div {
+  max-width: 650px;
+}
+
+body[data-page='capabilities'] .tech-stack-head h2 {
+  margin-top: 12px;
+  font-size: clamp(26px, 2.4vw, 36px) !important;
+  font-weight: 540 !important;
+  line-height: 1.32 !important;
+  letter-spacing: -.04em !important;
+}
+
+body[data-page='capabilities'] .tech-stack-head > p {
+  max-width: 620px !important;
+  padding-top: 4px;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
+body[data-page='capabilities'] .tech-stack-grid article {
+  min-height: 220px !important;
+  padding: 26px 28px !important;
+}
+
+body[data-page='capabilities'] .tech-stack-grid h3 {
+  margin-bottom: 20px !important;
+  font-size: 12px !important;
+}
+
+body[data-page='capabilities'] .tech-stack-grid p {
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
 @media (max-width: 900px) {
   .site-header .brand img {
     width: 118px !important;
@@ -320,8 +432,26 @@ html[data-theme='light'] .home-real-project .project-arrow {
     width: 130px !important;
   }
 
-  .home-hero-inner {
+  body[data-page='home'] .home-hero .home-hero-inner {
     grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::before {
+    right: -15%;
+    width: 420px;
+    opacity: .42;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    right: -8%;
+    width: 360px;
+    opacity: .34;
+  }
+
+  body[data-page='capabilities'] .tech-stack-head {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
   }
 
   .nw-overview-section,
@@ -360,6 +490,30 @@ html[data-theme='light'] .home-real-project .project-arrow {
     width: 122px !important;
   }
 
+  body[data-page='home'] .home-hero .home-hero-inner::before {
+    right: -48%;
+    width: 360px;
+    opacity: .3;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    right: -36%;
+    width: 310px;
+    opacity: .24;
+  }
+
+  body[data-page='capabilities'] .tech-stack-section {
+    padding: 70px 0 86px !important;
+  }
+
+  body[data-page='capabilities'] .tech-stack-head h2 {
+    font-size: 27px !important;
+  }
+
+  body[data-page='capabilities'] .tech-stack-head > p {
+    font-size: 14px !important;
+  }
+
   .nw-overview-copy > p {
     font-size: 16px !important;
     line-height: 1.78 !important;
@@ -390,5 +544,12 @@ html[data-theme='light'] .home-real-project .project-arrow {
 
   .portfolio-card-domain {
     font-size: 10px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page='home'] .home-hero .home-hero-inner::before,
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    animation: none !important;
   }
 }
