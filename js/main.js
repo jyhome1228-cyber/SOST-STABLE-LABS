@@ -8,8 +8,13 @@
     document.documentElement.dataset.theme = 'light';
   }
 
-  const script = document.createElement('script');
-  script.src = './js/main-core.js?v=20260814-1';
-  script.async = false;
-  document.head.appendChild(script);
+  const core = document.createElement('script');
+  core.src = './js/main-core.js?v=20260814-1';
+  core.async = false;
+  document.head.appendChild(core);
+
+  const finalize = document.createElement('script');
+  finalize.src = './js/site-finalize.js?v=20260814-1';
+  finalize.async = false;
+  document.head.appendChild(finalize);
 })();
