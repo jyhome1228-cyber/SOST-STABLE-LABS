@@ -35,7 +35,7 @@
   ensureStylesheet('./css/visual-refresh.css');
   ensureStylesheet('./css/refinement-v2.css');
   ensureStylesheet('./css/theme-toggle.css?v=20260813-1');
-  ensureScript('./js/theme-toggle.js?v=20260813-4');
+  ensureScript('./js/theme-toggle.js?v=20260813-5');
 
   document.querySelectorAll('a.brand, a.footer-brand').forEach((brandLink) => {
     const isFooter = brandLink.classList.contains('footer-brand');
