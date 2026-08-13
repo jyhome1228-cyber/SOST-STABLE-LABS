@@ -9,12 +9,17 @@
   const headerAction = header?.querySelector('.header-action');
   const brandLogo = './assets/logo-sost-labs.svg?v=20260813-4';
 
-  const ensureBrandStyles = () => {
-    if (document.querySelector('link[href*="brand-refresh.css"]')) return;
+  const ensureStylesheet = (href, matcher) => {
+    if (document.querySelector(`link[href*="${matcher}"]`)) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './css/brand-refresh.css?v=20260813-5';
+    link.href = href;
     document.head.appendChild(link);
+  };
+
+  const ensureBrandStyles = () => {
+    ensureStylesheet('./css/brand-refresh.css?v=20260813-5', 'brand-refresh.css');
+    ensureStylesheet('./css/home-reference-refresh.css?v=20260813-1', 'home-reference-refresh.css');
   };
 
   ensureBrandStyles();
@@ -135,7 +140,7 @@
       meta.name = 'theme-color';
       document.head.appendChild(meta);
     }
-    meta.content = theme === 'light' ? '#ffffff' : '#08090b';
+    meta.content = theme === 'light' ? '#f8f8f9' : '#08090b';
   };
 
   const applyTheme = (theme, persist = false) => {
@@ -186,6 +191,18 @@
   }
 
   applyTheme(readTheme());
+
+  const arrangeHomeSections = () => {
+    if (body.dataset.page !== 'home') return;
+    const grid = document.querySelector('.project-preview-grid');
+    const projectSection = grid?.closest('.section-block');
+    const homeIntro = document.querySelector('.home-intro');
+    if (!projectSection || !homeIntro) return;
+    projectSection.classList.add('home-projects-first');
+    homeIntro.before(projectSection);
+  };
+
+  arrangeHomeSections();
 
   const escapeHTML = (value = '') => String(value)
     .replace(/&/g, '&amp;')
