@@ -209,7 +209,7 @@
     const selected = projects.slice(0, 4);
     grid.classList.add('home-real-project-grid');
     grid.innerHTML = selected.map((project, index) => `
-      <a class="home-real-project reveal is-visible" data-delay="${index * 60}" href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기" style="--thumb-position:${escapeHTML(project.thumbPosition || '50% 12%')}">
+      <a class="home-real-project reveal is-visible" data-delay="${index * 60}" href="./projects.html" aria-label="포트폴리오 페이지 보기" style="--thumb-position:${escapeHTML(project.thumbPosition || '50% 12%')}">
         <div class="project-art">
           <img src="${escapeHTML(project.thumbnail || '')}" alt="${escapeHTML(project.title)} 프로젝트 썸네일" loading="lazy" decoding="async" />
           <span class="project-arrow">↗</span>
