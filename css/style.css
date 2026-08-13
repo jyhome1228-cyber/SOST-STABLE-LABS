@@ -48,8 +48,33 @@
   min-height: 25px;
 }
 
-/* Keep the page background stable while deferred scripts finish enhancing the DOM. */
+/* Reserve six-item navigation geometry before CAPABILITIES is injected. */
+@media (min-width: 901px) {
+  .global-nav {
+    width: clamp(560px, 43vw, 660px);
+    min-width: 560px;
+    justify-content: space-between !important;
+    gap: 0 !important;
+  }
+}
+
+/* Hide only the unstable first frame; JS reveals the final layout immediately. */
+html:not(.sost-page-ready) body {
+  opacity: 0;
+}
+
+html.sost-page-ready body {
+  opacity: 1;
+  transition: opacity .12s ease;
+}
+
 html,
 body {
   background: var(--bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.sost-page-ready body {
+    transition: none;
+  }
 }
