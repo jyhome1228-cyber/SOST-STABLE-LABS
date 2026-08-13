@@ -1,4 +1,4 @@
-/* SOST STABLE LABS — Light / Dark theme system */
+/* SOST LABS — Light / Dark theme system */
 
 :root {
   color-scheme: dark;
@@ -7,9 +7,9 @@
 :root[data-theme='light'] {
   color-scheme: light;
   --bg: #ffffff;
-  --bg-soft: #f5f5f2;
+  --bg-soft: #eef1ff;
   --panel: #ffffff;
-  --panel-2: #f1f2ef;
+  --panel-2: #f4f6ff;
   --text: #111216;
   --text-soft: #41454d;
   --text-muted: #737983;
@@ -126,7 +126,7 @@ body,
   transform: scale(1) rotate(0deg);
 }
 
-/* The official SVG has a white wordmark. In light mode the wordmark becomes black. */
+/* Wordmark becomes black in light mode; the separate dot stays brand blue. */
 :root[data-theme='light'] a.brand img,
 :root[data-theme='light'] a.footer-brand img {
   filter: brightness(0) saturate(100%);
@@ -137,17 +137,53 @@ body,
   filter: none;
 }
 
+/* Brand dot beside the symbol-free wordmark. */
+html .site-header .brand,
+html .site-footer .footer-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+html .site-header .brand::before,
+html .site-footer .footer-brand::before {
+  display: block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: #a7b7ff;
+  content: '';
+  box-shadow: 0 0 16px color-mix(in srgb, #a7b7ff 28%, transparent);
+}
+
+html .site-footer .footer-brand::before {
+  width: 11px;
+  height: 11px;
+  flex-basis: 11px;
+}
+
 /* Scrolled header and mobile navigation use the active surface color. */
 :root[data-theme='light'] .site-header.is-scrolled {
   border-color: var(--line);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 :root[data-theme='light'] .global-nav {
   --nav-overlay-bg: rgba(255, 255, 255, 0.985);
 }
 
-/* Replace legacy hard-coded dark surfaces used by older visual components. */
+/* Brand-tinted soft surfaces instead of warm ivory. */
+:root[data-theme='light'] .section-contrast,
+:root[data-theme='light'] .offering-section,
+:root[data-theme='light'] .portfolio-section,
+:root[data-theme='light'] .home-labs-series,
+:root[data-theme='light'] .labs-business-series {
+  background: var(--bg-soft) !important;
+}
+
 :root[data-theme='light'] .visual-core,
 :root[data-theme='light'] .visual-node,
 :root[data-theme='light'] .mock-window,
@@ -164,32 +200,32 @@ body,
   background:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px),
-    #f5f5f2;
+    #eef1ff;
   background-size: 44px 44px;
 }
 
 :root[data-theme='light'] .art-commerce,
 :root[data-theme='light'] .cover-shop {
-  background: linear-gradient(150deg, #eef0f8, #f7f7f4 72%);
+  background: linear-gradient(150deg, #e9edff, #f7f8ff 72%);
 }
 
 :root[data-theme='light'] .cover-corporate {
-  background: linear-gradient(140deg, #f7f7f4, #e8ebf6);
+  background: linear-gradient(140deg, #f7f8ff, #e7ebff);
 }
 
 :root[data-theme='light'] .cover-platform {
-  background: radial-gradient(circle at center, rgba(111, 126, 220, 0.12), transparent 54%), #f7f7f4;
+  background: radial-gradient(circle at center, rgba(111, 126, 220, 0.12), transparent 54%), #f4f6ff;
 }
 
 :root[data-theme='light'] .cover-booking {
-  background: linear-gradient(145deg, #f0f1ee, #fafafa);
+  background: linear-gradient(145deg, #eef1ff, #fafbff);
 }
 
 :root[data-theme='light'] .featured-article-art {
   background:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px),
-    #f5f5f2;
+    #eef1ff;
   background-size: 40px 40px;
 }
 
@@ -197,7 +233,7 @@ body,
 :root[data-theme='light'] .article-row:hover,
 :root[data-theme='light'] .crm-list span,
 :root[data-theme='light'] .dashboard-frame i {
-  background-color: rgba(17, 18, 22, 0.035);
+  background-color: rgba(111, 126, 220, 0.055);
 }
 
 :root[data-theme='light'] .field select option {
@@ -211,7 +247,7 @@ body,
 }
 
 :root[data-theme='light'] .site-footer {
-  background: #f5f5f2;
+  background: #eef1ff;
 }
 
 :root[data-theme='light'] .site-footer::after {
@@ -278,6 +314,19 @@ body,
   color: var(--text);
 }
 
+/* Home order: hero → about → portfolio → six solutions → labs → contact. */
+body[data-page='home'] main {
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page='home'] .home-hero { order: 1; }
+body[data-page='home'] .home-intro { order: 2; }
+body[data-page='home'] section:has(.project-preview-grid) { order: 3; }
+body[data-page='home'] section:has(.preview-grid.three-column) { order: 4; }
+body[data-page='home'] section:has(.labs-preview) { order: 5; }
+body[data-page='home'] .contact-banner { order: 6; }
+
 @media (max-width: 1180px) and (min-width: 901px) {
   .header-inner {
     grid-template-columns: 1fr auto auto !important;
@@ -310,6 +359,17 @@ body,
     width: 34px;
     height: 34px;
     flex-basis: 34px;
+  }
+
+  html .site-header .brand,
+  html .site-footer .footer-brand {
+    gap: 8px !important;
+  }
+
+  html .site-header .brand::before {
+    width: 9px;
+    height: 9px;
+    flex-basis: 9px;
   }
 
   :root[data-theme='light'] .global-nav {
