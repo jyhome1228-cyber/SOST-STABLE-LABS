@@ -14,10 +14,7 @@
   const nav = document.querySelector('.global-nav');
   const currentPage = body.dataset.page;
   const yearTargets = document.querySelectorAll('[data-year]');
-  const assetSprite = './assets/3d/sost-3d-assets.svg';
-  const officialLogo = './assets/logo-sost-stable-labs.svg';
-  const symbolAsset = './assets/sost-symbol.svg';
-  const faviconAsset = './assets/sost-symbol.svg?v=20260805-4';
+  const officialLogo = './assets/logo-sost-labs.svg?v=20260813-4';
 
   const ensureStylesheet = (href) => {
     if (document.querySelector(`link[href="${href}"]`)) return;
@@ -38,20 +35,14 @@
   ensureStylesheet('./css/visual-refresh.css');
   ensureStylesheet('./css/refinement-v2.css');
   ensureStylesheet('./css/theme-toggle.css?v=20260813-1');
-  ensureScript('./js/theme-toggle.js?v=20260813-1');
-
-  document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
-  const favicon = document.createElement('link');
-  favicon.rel = 'icon';
-  favicon.type = 'image/svg+xml';
-  favicon.href = faviconAsset;
-  document.head.appendChild(favicon);
+  ensureScript('./js/theme-toggle.js?v=20260813-4');
 
   document.querySelectorAll('a.brand, a.footer-brand').forEach((brandLink) => {
     const isFooter = brandLink.classList.contains('footer-brand');
-    brandLink.innerHTML = `<img src="${officialLogo}" alt="SOST STABLE LABS" />`;
+    brandLink.innerHTML = `<img src="${officialLogo}" alt="SOSTLABS." />`;
+    brandLink.setAttribute('aria-label', 'SOSTLABS. 홈');
     brandLink.style.display = 'block';
-    brandLink.style.width = isFooter ? '205px' : 'clamp(172px, 14vw, 194px)';
+    brandLink.style.width = isFooter ? '138px' : '126px';
     brandLink.style.maxWidth = '100%';
     brandLink.style.height = 'auto';
     brandLink.style.fontSize = '0';
@@ -64,12 +55,6 @@
       image.style.height = 'auto';
     }
   });
-
-  const createAssetSvg = (symbolId, label = '') => `
-    <svg viewBox="0 0 128 128" role="img"${label ? ` aria-label="${label}"` : ' aria-hidden="true"'}>
-      <use href="${assetSprite}#${symbolId}"></use>
-    </svg>
-  `;
 
   const insertCapabilitiesLink = (targetNav, isFooter = false) => {
     if (!targetNav || targetNav.querySelector('[data-nav="capabilities"], a[href="./capabilities.html"]')) return;
@@ -142,41 +127,10 @@
     if (partnershipSection) partnershipSection.remove();
   }
 
-  const homeSystemVisual = document.querySelector('.system-visual');
-  if (currentPage === 'home' && homeSystemVisual) {
-    homeSystemVisual.classList.add('system-visual-3d');
-    homeSystemVisual.innerHTML = `
-      <div class="sost-symbol-scene" aria-label="SOST 심볼 기반 시스템 그래픽">
-        <span class="scene-orbit scene-orbit-a"></span>
-        <span class="scene-orbit scene-orbit-b"></span>
-        <span class="scene-particle p1"></span>
-        <span class="scene-particle p2"></span>
-        <span class="scene-particle p3"></span>
-        <span class="scene-particle p4"></span>
-        <div class="symbol-stack" aria-hidden="true">
-          <img class="symbol-layer symbol-layer-back" src="${symbolAsset}" alt="" />
-          <img class="symbol-layer symbol-layer-mid" src="${symbolAsset}" alt="" />
-          <img class="symbol-layer symbol-layer-front" src="${symbolAsset}" alt="" />
-        </div>
-        <p class="scene-caption">STRUCTURE · SYSTEM · FLOW</p>
-      </div>
-    `;
-  }
-
   if (currentPage === 'home') {
-    const previewIcons = ['icon-web', 'icon-operation', 'icon-commerce'];
+    document.querySelector('.system-visual')?.remove();
+
     const previewCards = [...document.querySelectorAll('.preview-card')];
-
-    previewCards.forEach((card, index) => {
-      const symbolId = previewIcons[index];
-      if (!symbolId || card.querySelector('.preview-card-3d')) return;
-      const visual = document.createElement('div');
-      visual.className = 'preview-card-3d';
-      visual.innerHTML = createAssetSvg(symbolId);
-      card.classList.add('has-3d-asset');
-      card.appendChild(visual);
-    });
-
     const businessCard = previewCards[1];
     if (businessCard) {
       const label = businessCard.querySelector('.card-label');
@@ -202,9 +156,7 @@
     if (offeringGrid && !offeringGrid.querySelector('[data-added-solution="hr"]')) {
       const newSolutions = [
         {
-          key: 'hr',
-          number: '10',
-          category: 'HR',
+          key: 'hr', number: '10', category: 'HR',
           title: 'HR 인사관리 시스템 구축',
           subtitle: 'Human Resources Management System',
           description: '직원 정보, 조직, 근태, 휴가와 평가 기록을 한곳에서 관리할 수 있는 기업 맞춤형 HR 시스템을 구축합니다.',
@@ -212,9 +164,7 @@
           keywords: ['HR', '인사관리', '근태', '휴가', '조직관리']
         },
         {
-          key: 'procurement',
-          number: '11',
-          category: 'PROCUREMENT',
+          key: 'procurement', number: '11', category: 'PROCUREMENT',
           title: '주문·발주 관리 시스템 구축',
           subtitle: 'Order & Procurement Management',
           description: '견적과 주문 접수부터 거래처 발주, 납기와 정산 상태까지 이어지는 주문·발주 업무 체계를 구축합니다.',
@@ -222,9 +172,7 @@
           keywords: ['주문관리', '발주관리', '거래처', '납기', '구매관리']
         },
         {
-          key: 'approval',
-          number: '12',
-          category: 'APPROVAL',
+          key: 'approval', number: '12', category: 'APPROVAL',
           title: '전자결재·승인 시스템 구축',
           subtitle: 'Digital Approval Workflow',
           description: '기업 내부의 신청, 검토와 승인 과정을 정형화해 담당자와 결재 상태를 명확하게 관리하는 워크플로를 구축합니다.',
@@ -252,49 +200,23 @@
   }
 
   const revealItems = document.querySelectorAll('.reveal');
-
   if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const delay = Number(entry.target.dataset.delay || 0);
-          window.setTimeout(() => entry.target.classList.add('is-visible'), delay);
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
-    );
-
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const delay = Number(entry.target.dataset.delay || 0);
+        window.setTimeout(() => entry.target.classList.add('is-visible'), delay);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     revealItems.forEach((item) => revealObserver.observe(item));
   } else {
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
   const offeringCards = [...document.querySelectorAll('.offering-card')];
-
   if (offeringCards.length) {
     ensureStylesheet('./css/offering-accordion.css');
-
-    if (currentPage === 'solutions') {
-      const solutionIcons = [
-        'icon-web', 'icon-platform', 'icon-operation', 'icon-crm',
-        'icon-booking', 'icon-admin', 'icon-commerce', 'icon-automation',
-        'icon-maintenance', 'icon-crm', 'icon-commerce', 'icon-admin'
-      ];
-
-      offeringCards.forEach((card, index) => {
-        const symbolId = solutionIcons[index];
-        const cardTop = card.querySelector('.offering-card-top');
-        if (!symbolId || !cardTop || card.querySelector('.solution-3d-asset')) return;
-
-        const visual = document.createElement('div');
-        visual.className = 'solution-3d-asset';
-        visual.innerHTML = createAssetSvg(symbolId);
-        card.classList.add('solution-has-asset');
-        cardTop.insertAdjacentElement('afterend', visual);
-      });
-    }
 
     const closeOffering = (card) => {
       const details = card.querySelector('.offering-card-details');
@@ -310,9 +232,7 @@
       const details = card.querySelector('.offering-card-details');
       const toggleLabel = card.querySelector('.offering-card-toggle-label');
       if (!details) return;
-      offeringCards.forEach((item) => {
-        if (item !== card) closeOffering(item);
-      });
+      offeringCards.forEach((item) => { if (item !== card) closeOffering(item); });
       card.classList.add('is-open');
       card.setAttribute('aria-expanded', 'true');
       details.style.maxHeight = `${details.scrollHeight}px`;
@@ -349,10 +269,7 @@
       const toggle = document.createElement('div');
       toggle.className = 'offering-card-toggle';
       toggle.setAttribute('aria-hidden', 'true');
-      toggle.innerHTML = `
-        <span class="offering-card-toggle-label">자세히 보기</span>
-        <span class="offering-card-toggle-icon"></span>
-      `;
+      toggle.innerHTML = '<span class="offering-card-toggle-label">자세히 보기</span><span class="offering-card-toggle-icon"></span>';
 
       card.append(details, toggle);
       card.classList.add('is-interactive');
@@ -382,9 +299,7 @@
     button.addEventListener('click', () => {
       const category = button.dataset.filter;
       projectButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-      projectEntries.forEach((entry) => {
-        entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.category !== category);
-      });
+      projectEntries.forEach((entry) => entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.category !== category));
     });
   });
 
@@ -394,9 +309,7 @@
     button.addEventListener('click', () => {
       const category = button.dataset.articleFilter;
       articleButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-      articleEntries.forEach((entry) => {
-        entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.articleCategory !== category);
-      });
+      articleEntries.forEach((entry) => entry.classList.toggle('is-hidden', category !== 'all' && entry.dataset.articleCategory !== category));
     });
   });
 
