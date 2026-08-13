@@ -8,6 +8,24 @@
     document.documentElement.dataset.theme = 'light';
   }
 
+  const applyFavicon = () => {
+    document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
+
+    const ico = document.createElement('link');
+    ico.rel = 'icon';
+    ico.type = 'image/x-icon';
+    ico.href = '/favicon.ico?v=20260814-1';
+    document.head.appendChild(ico);
+
+    const svg = document.createElement('link');
+    svg.rel = 'icon';
+    svg.type = 'image/svg+xml';
+    svg.href = '/assets/favicon-circle.svg?v=20260814-1';
+    document.head.appendChild(svg);
+  };
+
+  applyFavicon();
+
   if (!document.querySelector('link[href*="project-unify.css"]')) {
     const projectStyle = document.createElement('link');
     projectStyle.rel = 'stylesheet';
