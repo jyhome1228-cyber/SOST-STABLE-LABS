@@ -18,7 +18,7 @@
   };
 
   ensureStylesheet('./css/brand-refresh.css?v=20260813-5', 'brand-refresh.css');
-  ensureStylesheet('./css/home-reference-v2.css?v=20260814-2', 'home-reference-v2.css');
+  ensureStylesheet('./css/home-reference-v2.css?v=20260814-3', 'home-reference-v2.css');
 
   const replacements = [
     ['SOST STABLE LABS', 'SOST LABS'],
@@ -55,8 +55,9 @@
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach((node) => {
-      const next = replaceBrandCopy(node.nodeValue || '');
-      if (next !== node.nodeValue) node.nodeValue = next;
+      const current = node.nodeValue || '';
+      const next = replaceBrandCopy(current);
+      if (next !== current) node.nodeValue = next;
     });
 
     document.querySelectorAll('[aria-label], [title], [alt], meta[content]').forEach((element) => {
@@ -87,12 +88,16 @@
   const moonIcon = '<svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 15.2A7.7 7.7 0 0 1 8.8 4.6 8.1 8.1 0 1 0 19.4 15.2Z"></path></svg>';
 
   const readTheme = () => {
-    try { return localStorage.getItem(STORAGE_KEY) === 'light' ? 'light' : 'dark'; }
-    catch { return root.dataset.theme === 'light' ? 'light' : 'dark'; }
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved === 'dark' ? 'dark' : 'light';
+    } catch {
+      return root.dataset.theme === 'dark' ? 'dark' : 'light';
+    }
   };
 
   const applyTheme = (theme, persist = false) => {
-    const next = theme === 'light' ? 'light' : 'dark';
+    const next = theme === 'dark' ? 'dark' : 'light';
     root.dataset.theme = next;
     root.style.colorScheme = next;
 
@@ -154,28 +159,80 @@
   const createHeroGraphic = () => {
     if (body.dataset.page !== 'home') return;
     const heroInner = document.querySelector('.home-hero-inner');
-    if (!heroInner || heroInner.querySelector('.hero-curve-stage')) return;
+    if (!heroInner || heroInner.querySelector('.hero-system-stage')) return;
+    heroInner.querySelector('.hero-curve-stage')?.remove();
 
     const stage = document.createElement('div');
-    stage.className = 'hero-curve-stage';
+    stage.className = 'hero-system-stage';
     stage.setAttribute('aria-hidden', 'true');
     stage.innerHTML = `
-      <svg viewBox="0 0 760 620" focusable="false">
+      <svg viewBox="0 0 780 610" focusable="false">
         <defs>
-          <linearGradient id="sostCurveBlue" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#a7b7ff"/><stop offset=".5" stop-color="#7f91ee"/><stop offset="1" stop-color="#6474d7"/>
+          <linearGradient id="systemBlue" x1="100" y1="80" x2="680" y2="520" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#a7b7ff"/><stop offset=".48" stop-color="#7e8fea"/><stop offset="1" stop-color="#6172d7"/>
           </linearGradient>
-          <linearGradient id="sostCurveBlueSoft" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0" stop-color="#8191e7" stop-opacity=".42"/><stop offset="1" stop-color="#a7b7ff" stop-opacity=".92"/>
+          <linearGradient id="panelBlue" x1="300" y1="180" x2="520" y2="400" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#a7b7ff" stop-opacity=".2"/><stop offset="1" stop-color="#697adc" stop-opacity=".05"/>
           </linearGradient>
-          <filter id="sostGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+          <filter id="systemGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
         </defs>
-        <ellipse class="curve-glow" cx="426" cy="314" rx="215" ry="195" fill="#8191e7" filter="url(#sostGlow)"/>
-        <g class="curve-layer curve-layer-a"><path class="curve-main" d="M42 502 C70 300 169 126 344 70 C525 12 691 102 674 246 C657 394 501 445 363 386 C259 341 176 373 141 461 C110 540 177 592 310 572 C436 553 518 491 427 430 C334 368 292 278 320 207 C349 132 447 117 528 156"/></g>
-        <g class="curve-layer curve-layer-b"><path class="curve-grey" d="M-18 165 C135 50 329 42 474 132 C612 218 651 361 583 472 C515 581 354 619 204 556 C96 511 22 425 9 321"/></g>
-        <g class="curve-layer curve-layer-c"><path class="curve-blue-soft" d="M167 626 C154 508 216 407 327 366 C438 325 567 355 653 438 C707 490 744 548 773 615"/></g>
-        <g class="curve-layer curve-layer-d"><path class="curve-grey-thin" d="M506 -24 C590 78 614 188 571 287 C537 365 467 412 382 420 C279 430 194 386 159 312"/></g>
-        <circle class="curve-dot dot-a" cx="646" cy="140" r="5"/><circle class="curve-dot dot-b" cx="184" cy="448" r="4"/>
+
+        <g class="system-grid">
+          <path d="M90 100H690M90 180H690M90 260H690M90 340H690M90 420H690M90 500H690"/>
+          <path d="M130 65V535M230 65V535M330 65V535M430 65V535M530 65V535M630 65V535"/>
+        </g>
+
+        <ellipse class="system-glow" cx="405" cy="303" rx="215" ry="190" fill="#8191e7" filter="url(#systemGlow)"/>
+
+        <g class="system-routes">
+          <path class="route route-blue" d="M220 151H280C306 151 326 171 326 197V218"/>
+          <path class="route route-grey" d="M560 151H515C489 151 468 171 468 197V218"/>
+          <path class="route route-grey" d="M220 455H280C306 455 326 435 326 409V388"/>
+          <path class="route route-blue" d="M560 455H515C489 455 468 435 468 409V388"/>
+          <path class="route route-core" d="M395 218V173M395 388V435"/>
+        </g>
+
+        <g class="system-module module-web">
+          <rect x="92" y="104" width="146" height="94" rx="25"/>
+          <circle cx="121" cy="131" r="5"/><rect class="module-line" x="139" y="126" width="67" height="10" rx="5"/>
+          <rect class="module-line soft" x="121" y="153" width="88" height="8" rx="4"/>
+          <text x="121" y="181">WEB</text>
+        </g>
+        <g class="system-module module-brand">
+          <rect x="542" y="104" width="146" height="94" rx="25"/>
+          <circle cx="571" cy="131" r="5"/><rect class="module-line" x="589" y="126" width="67" height="10" rx="5"/>
+          <rect class="module-line soft" x="571" y="153" width="88" height="8" rx="4"/>
+          <text x="571" y="181">BRAND</text>
+        </g>
+        <g class="system-module module-data">
+          <rect x="92" y="408" width="146" height="94" rx="25"/>
+          <circle cx="121" cy="435" r="5"/><rect class="module-line" x="139" y="430" width="67" height="10" rx="5"/>
+          <rect class="module-line soft" x="121" y="457" width="88" height="8" rx="4"/>
+          <text x="121" y="485">DATA</text>
+        </g>
+        <g class="system-module module-ops">
+          <rect x="542" y="408" width="146" height="94" rx="25"/>
+          <circle cx="571" cy="435" r="5"/><rect class="module-line" x="589" y="430" width="67" height="10" rx="5"/>
+          <rect class="module-line soft" x="571" y="457" width="88" height="8" rx="4"/>
+          <text x="571" y="485">OPS</text>
+        </g>
+
+        <g class="system-core">
+          <rect class="core-shell" x="278" y="212" width="234" height="182" rx="38" fill="url(#panelBlue)"/>
+          <rect class="core-top" x="306" y="240" width="178" height="36" rx="14"/>
+          <circle cx="329" cy="258" r="6"/><rect class="core-title" x="347" y="253" width="96" height="10" rx="5"/>
+          <rect class="core-cell" x="306" y="296" width="79" height="70" rx="18"/>
+          <rect class="core-cell" x="397" y="296" width="87" height="70" rx="18"/>
+          <path class="core-mini" d="M326 339L341 321L354 332L368 312"/>
+          <circle class="core-node" cx="422" cy="322" r="7"/><circle class="core-node soft" cx="448" cy="340" r="7"/><circle class="core-node" cx="458" cy="316" r="5"/>
+          <text class="core-label" x="395" y="423" text-anchor="middle">SYSTEM ARCHITECTURE</text>
+        </g>
+
+        <g class="flow-points">
+          <circle class="flow-dot dot-1" cx="265" cy="151" r="6"/>
+          <circle class="flow-dot dot-2" cx="515" cy="455" r="6"/>
+          <circle class="flow-dot dot-3" cx="395" cy="184" r="5"/>
+        </g>
       </svg>`;
     heroInner.appendChild(stage);
   };
