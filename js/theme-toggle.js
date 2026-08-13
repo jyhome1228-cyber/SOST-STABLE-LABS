@@ -7,13 +7,13 @@
   const header = document.querySelector('[data-header]');
   const headerInner = header?.querySelector('.header-inner');
   const headerAction = header?.querySelector('.header-action');
-  const brandLogo = './assets/logo-sost-labs.svg';
+  const brandLogo = './assets/logo-sost-labs.svg?v=20260813-4';
 
   const ensureBrandStyles = () => {
     if (document.querySelector('link[href*="brand-refresh.css"]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './css/brand-refresh.css?v=20260813-1';
+    link.href = './css/brand-refresh.css?v=20260813-4';
     document.head.appendChild(link);
   };
 
@@ -91,13 +91,13 @@
     document.querySelectorAll('a.brand, a.footer-brand').forEach((brandLink) => {
       let image = brandLink.querySelector('img');
       if (!image) {
-        brandLink.innerHTML = '<img alt="SOST LABS" />';
+        brandLink.innerHTML = '<img alt="SOSTLABS." />';
         image = brandLink.querySelector('img');
       }
       if (!image) return;
-      if (!image.src.endsWith('/assets/logo-sost-labs.svg')) image.src = brandLogo;
-      image.alt = 'SOST LABS';
-      brandLink.setAttribute('aria-label', 'SOST LABS 홈');
+      image.src = brandLogo;
+      image.alt = 'SOSTLABS.';
+      brandLink.setAttribute('aria-label', 'SOSTLABS. 홈');
     });
   };
 
@@ -194,6 +194,12 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
+  const displayHost = (project) => {
+    if (project.displayDomain) return project.displayDomain;
+    try { return new URL(project.url).hostname.replace(/^www\./, ''); }
+    catch { return ''; }
+  };
+
   const renderHomePortfolio = () => {
     if (body.dataset.page !== 'home') return;
     const grid = document.querySelector('.project-preview-grid');
@@ -203,7 +209,7 @@
     const selected = projects.slice(0, 4);
     grid.classList.add('home-real-project-grid');
     grid.innerHTML = selected.map((project, index) => `
-      <a class="home-real-project reveal is-visible" data-delay="${index * 60}" href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기">
+      <a class="home-real-project reveal is-visible" data-delay="${index * 60}" href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기" style="--thumb-position:${escapeHTML(project.thumbPosition || '50% 12%')}">
         <div class="project-art">
           <img src="${escapeHTML(project.thumbnail || '')}" alt="${escapeHTML(project.title)} 프로젝트 썸네일" loading="lazy" decoding="async" />
           <span class="project-arrow">↗</span>
@@ -213,7 +219,7 @@
             <p>${escapeHTML(project.categoryLabel || 'DEVELOP')} · ${escapeHTML(project.year || '')}</p>
             <h3>${escapeHTML(project.title)}</h3>
           </div>
-          <span>${escapeHTML((project.services || []).slice(0, 3).join(' / '))}</span>
+          <span>${escapeHTML(displayHost(project))}</span>
         </div>
       </a>`).join('');
 
@@ -236,7 +242,7 @@
     if (existing) return;
 
     const script = document.createElement('script');
-    script.src = './data/featured-projects.js?v=20260813-2';
+    script.src = './data/featured-projects.js?v=20260813-4';
     script.dataset.homeProjectData = '';
     script.onload = renderHomePortfolio;
     document.body.appendChild(script);
