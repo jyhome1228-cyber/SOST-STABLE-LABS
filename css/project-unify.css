@@ -1,0 +1,130 @@
+/* SOSTLABS. — project archive / home slider visual unification */
+
+/* PROJECTS: active ALL/WEB/PLATFORM filter */
+.portfolio-toolbar .filter-button.is-active {
+  border-color: #6f7edc !important;
+  background: #6f7edc !important;
+  color: #fff !important;
+}
+
+.portfolio-toolbar .filter-button:hover:not(.is-active) {
+  border-color: color-mix(in srgb, #6f7edc 55%, var(--line)) !important;
+  color: #6f7edc !important;
+}
+
+/* HOME: keep existing 3-up rolling behavior, remove browser chrome */
+.home-project-browser {
+  overflow: hidden !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: var(--panel) !important;
+  box-shadow: none !important;
+}
+
+.home-project-browser-bar {
+  display: none !important;
+}
+
+.home-project-image {
+  aspect-ratio: 16 / 9 !important;
+  background: var(--panel) !important;
+}
+
+.home-project-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: var(--home-thumb-position, 50% 12%) !important;
+  background: var(--panel) !important;
+}
+
+.home-project-card:nth-child(1) { --home-thumb-position: 50% 14%; }
+.home-project-card:nth-child(2) { --home-thumb-position: 50% 12%; }
+.home-project-card:nth-child(3) { --home-thumb-position: 50% 12%; }
+.home-project-card:nth-child(4) { --home-thumb-position: 50% 10%; }
+.home-project-card:nth-child(5) { --home-thumb-position: 50% 12%; }
+.home-project-card:nth-child(6) { --home-thumb-position: 50% 10%; }
+.home-project-card:nth-child(7) { --home-thumb-position: 50% 10%; }
+
+.home-project-card:hover .home-project-browser {
+  transform: none !important;
+  border-color: color-mix(in srgb, #6f7edc 38%, var(--line)) !important;
+  box-shadow: none !important;
+}
+
+.home-project-card:hover .home-project-image img {
+  transform: scale(1.025);
+}
+
+.home-project-card-copy {
+  padding-top: 18px !important;
+}
+
+.home-project-card-meta {
+  margin: 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: .055em !important;
+}
+
+.home-project-card-meta p {
+  color: var(--point) !important;
+}
+
+.home-project-card-meta span {
+  color: var(--text-muted) !important;
+  text-transform: none !important;
+}
+
+.home-project-card h3 {
+  margin-top: 10px !important;
+  color: var(--text) !important;
+  font-size: clamp(22px, 1.7vw, 28px) !important;
+  font-weight: 570 !important;
+  line-height: 1.24 !important;
+  letter-spacing: -.035em !important;
+}
+
+.home-project-card-description {
+  min-height: 78px !important;
+  margin-top: 13px !important;
+  color: var(--text-soft) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+.home-project-card-tags {
+  margin-top: 18px !important;
+  gap: 7px !important;
+}
+
+.home-project-card-tags span {
+  padding: 7px 10px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+}
+
+.home-projects-track {
+  gap: 22px !important;
+}
+
+.home-projects-nav button:hover:not(:disabled) {
+  border-color: #6f7edc !important;
+  background: color-mix(in srgb, #6f7edc 8%, transparent) !important;
+  color: #6f7edc !important;
+}
+
+.home-projects-progress i {
+  background: #6f7edc !important;
+}
+
+/* Previous CTA request: remove the four connector lines */
+.cta-system-line {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-project-card-description { min-height: 0 !important; }
+}
