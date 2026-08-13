@@ -1,0 +1,159 @@
+/* SOST LABS — brand refresh */
+
+.site-header .brand {
+  width: clamp(142px, 11.5vw, 165px) !important;
+}
+
+.site-header .brand img,
+.footer-brand img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.footer-brand {
+  width: 176px !important;
+}
+
+.site-footer::after {
+  content: '상호/대표자명 : 소스트랩스 / 박재영  |  사업자등록번호 : 820-13-02834\A주소 : 인천광역시 서구 원당대로 1039 915호(태경타워)  |  우편번호 : 23450\A전화번호 : 032-208-5650(평일 업무) / 010-5422-5650(상시)  |  대표 이메일 : info@9works.kr\ASOST LABS Office, Room 915, 1039, Wondang-daero, Seo-gu, Incheon 23450, Republic of Korea\A호스팅 제공자 : GitHub, Inc.\A\ACopyright © 2026 SOST LABS | 기업 웹사이트·커머스·비즈니스 시스템 구축. All rights reserved.' !important;
+}
+
+/* Home — real portfolio */
+.project-preview-grid.home-real-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 38px 22px;
+  margin-top: 8px;
+}
+
+.home-real-project {
+  display: block;
+  min-width: 0;
+  color: var(--text);
+}
+
+.home-real-project .project-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.home-real-project .project-art::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  content: '';
+  pointer-events: none;
+  transition: border-color .3s ease;
+}
+
+.home-real-project .project-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s var(--ease), filter .35s ease;
+}
+
+.home-real-project:hover .project-art img {
+  transform: scale(1.025);
+}
+
+.home-real-project:hover .project-art::after {
+  border-color: color-mix(in srgb, var(--point) 45%, transparent);
+}
+
+.home-real-project .project-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+  padding-top: 18px;
+}
+
+.home-real-project .project-meta p {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .085em;
+}
+
+.home-real-project .project-meta h3 {
+  margin-top: 8px;
+  font-size: clamp(23px, 2vw, 30px);
+  font-weight: 520 !important;
+  line-height: 1.25;
+  letter-spacing: -.04em;
+}
+
+.home-real-project .project-meta > span {
+  max-width: 260px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: .045em;
+  text-align: right;
+}
+
+.home-real-project .project-arrow {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  background: rgba(8,9,11,.56);
+  color: #fff;
+  font-size: 17px;
+  backdrop-filter: blur(8px);
+}
+
+html[data-theme='light'] .home-real-project .project-arrow {
+  border-color: rgba(0,0,0,.16);
+  background: rgba(255,255,255,.76);
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .site-header .brand {
+    width: 146px !important;
+  }
+
+  .project-preview-grid.home-real-project-grid {
+    gap: 30px 16px;
+  }
+
+  .home-real-project .project-meta {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .home-real-project .project-meta > span {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+@media (max-width: 680px) {
+  .project-preview-grid.home-real-project-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .home-real-project .project-art {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-real-project .project-meta h3 {
+    font-size: 24px;
+  }
+
+  .footer-brand {
+    width: 158px !important;
+  }
+}
