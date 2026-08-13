@@ -1,38 +1,55 @@
-/* SOST LABS — brand refresh */
+/* SOST LABS — final brand cleanup */
 
-/* Horizontal SOSTLABS. wordmark — compact in both header and footer */
+/* =========================================================
+   SYMBOL-FREE BRAND
+========================================================= */
 .site-header .brand,
 .site-footer .footer-brand {
   display: block !important;
+  width: auto !important;
+  max-width: none !important;
   font-size: 0 !important;
   line-height: 0 !important;
   white-space: nowrap;
-}
-
-.site-header .brand {
-  width: clamp(138px, 10.5vw, 154px) !important;
-}
-
-.site-footer .footer-brand {
-  width: 160px !important;
 }
 
 .site-header .brand img,
 .site-footer .footer-brand img,
 .footer-brand img {
   display: block !important;
-  width: 100% !important;
+  width: 126px !important;
   height: auto !important;
+  max-height: 23px !important;
   object-fit: contain;
   object-position: left center;
 }
 
-.site-header .brand img {
-  max-height: 23px !important;
+.site-footer .footer-brand img,
+.footer-brand img {
+  width: 138px !important;
+  max-height: 25px !important;
 }
 
-.site-footer .footer-brand img {
-  max-height: 24px !important;
+/* Remove the large brand symbol and decorative 3D icon language. */
+.home-hero .system-visual,
+.sost-symbol-scene,
+.preview-card-3d,
+.solution-3d-asset {
+  display: none !important;
+}
+
+.home-hero-inner {
+  grid-template-columns: minmax(0, 860px) !important;
+  justify-content: start !important;
+  gap: 0 !important;
+}
+
+.home-hero .hero-copy {
+  max-width: 860px;
+}
+
+.preview-card.has-3d-asset .card-label {
+  margin-top: 0 !important;
 }
 
 .site-footer::after {
@@ -40,8 +57,7 @@
 }
 
 /* =========================================================
-   DEVELOP CASE — smaller editorial scale
-   Large copy is reduced to roughly half of the previous visual scale.
+   DEVELOP CASE — COMPACT EDITORIAL SCALE
 ========================================================= */
 .nw-overview-section {
   padding: 72px 0 !important;
@@ -127,13 +143,66 @@
   letter-spacing: -0.035em !important;
 }
 
-/* User requested removal of the large blue bottom area. */
 .nw-live-cta,
 .next-project {
   display: none !important;
 }
 
-/* Home — real portfolio */
+/* =========================================================
+   PROJECT ARCHIVE — EDGE-TO-EDGE THUMBNAILS
+========================================================= */
+.portfolio-card-visual {
+  position: relative !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.portfolio-card-visual > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: var(--thumb-position, 50% 12%) !important;
+}
+
+.portfolio-card-meta {
+  align-items: center !important;
+  margin-top: 16px !important;
+}
+
+.portfolio-card-domain {
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: .015em !important;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+/* Legacy browser frame is no longer used, but keep it neutral if cached markup remains. */
+.portfolio-browser-frame {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  background: var(--panel) !important;
+}
+
+.portfolio-browser-toolbar {
+  display: none !important;
+}
+
+.portfolio-browser-frame > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: var(--thumb-position, 50% 12%) !important;
+}
+
+/* =========================================================
+   HOME — REAL PORTFOLIO, SAME CROPPING SYSTEM
+========================================================= */
 .project-preview-grid.home-real-project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -150,7 +219,7 @@
 .home-real-project .project-art {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9 !important;
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--panel);
@@ -166,11 +235,18 @@
 }
 
 .home-real-project .project-art img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover !important;
+  object-position: var(--thumb-position, 50% 12%) !important;
   transition: transform .55s var(--ease), filter .35s ease;
 }
+
+.home-real-project:nth-child(1) { --thumb-position: 50% 14%; }
+.home-real-project:nth-child(2) { --thumb-position: 50% 12%; }
+.home-real-project:nth-child(3) { --thumb-position: 50% 12%; }
+.home-real-project:nth-child(4) { --thumb-position: 50% 10%; }
 
 .home-real-project:hover .project-art img {
   transform: scale(1.025);
@@ -204,11 +280,11 @@
 }
 
 .home-real-project .project-meta > span {
-  max-width: 260px;
+  max-width: 240px;
   color: var(--text-muted);
   font-size: 11px;
   line-height: 1.55;
-  letter-spacing: .045em;
+  letter-spacing: .02em;
   text-align: right;
 }
 
@@ -235,12 +311,17 @@ html[data-theme='light'] .home-real-project .project-arrow {
 }
 
 @media (max-width: 900px) {
-  .site-header .brand {
-    width: 142px !important;
+  .site-header .brand img {
+    width: 118px !important;
   }
 
-  .site-footer .footer-brand {
-    width: 150px !important;
+  .site-footer .footer-brand img,
+  .footer-brand img {
+    width: 130px !important;
+  }
+
+  .home-hero-inner {
+    grid-template-columns: 1fr !important;
   }
 
   .nw-overview-section,
@@ -270,12 +351,13 @@ html[data-theme='light'] .home-real-project .project-arrow {
 }
 
 @media (max-width: 680px) {
-  .site-header .brand {
-    width: 136px !important;
+  .site-header .brand img {
+    width: 110px !important;
   }
 
-  .site-footer .footer-brand {
-    width: 144px !important;
+  .site-footer .footer-brand img,
+  .footer-brand img {
+    width: 122px !important;
   }
 
   .nw-overview-copy > p {
@@ -299,10 +381,14 @@ html[data-theme='light'] .home-real-project .project-arrow {
   }
 
   .home-real-project .project-art {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10 !important;
   }
 
   .home-real-project .project-meta h3 {
     font-size: 24px;
+  }
+
+  .portfolio-card-domain {
+    font-size: 10px !important;
   }
 }
