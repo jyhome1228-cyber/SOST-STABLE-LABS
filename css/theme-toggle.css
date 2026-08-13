@@ -1,0 +1,341 @@
+/* SOST STABLE LABS — Light / Dark theme system */
+
+:root {
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-soft: #f5f5f2;
+  --panel: #ffffff;
+  --panel-2: #f1f2ef;
+  --text: #111216;
+  --text-soft: #41454d;
+  --text-muted: #737983;
+  --point: #6f7edc;
+  --point-strong: #5d6dcb;
+  --line: rgba(17, 18, 22, 0.11);
+  --line-strong: rgba(17, 18, 22, 0.22);
+}
+
+html,
+body,
+.site-header,
+.site-footer,
+.section-contrast,
+.preview-card,
+.solution-card,
+.offering-card,
+.featured-article,
+.contact-form,
+.partnership-roles article,
+.home-labs-card,
+.lab-business-card,
+.project-case-card,
+.project-capture-card {
+  transition:
+    background-color 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease;
+}
+
+.header-inner {
+  position: relative;
+}
+
+.header-tools {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.header-tools .header-action {
+  justify-self: auto;
+}
+
+.theme-toggle {
+  position: relative;
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    transform 0.25s var(--ease),
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--point);
+  background: color-mix(in srgb, var(--point) 10%, var(--bg));
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--point);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.55;
+}
+
+.theme-toggle .theme-icon-sun,
+.theme-toggle .theme-icon-moon {
+  position: absolute;
+  transition: opacity 0.22s ease, transform 0.32s var(--ease);
+}
+
+:root[data-theme='dark'] .theme-toggle .theme-icon-sun {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+:root[data-theme='dark'] .theme-toggle .theme-icon-moon {
+  opacity: 0;
+  transform: scale(0.55) rotate(-24deg);
+}
+
+:root[data-theme='light'] .theme-toggle .theme-icon-sun {
+  opacity: 0;
+  transform: scale(0.55) rotate(24deg);
+}
+
+:root[data-theme='light'] .theme-toggle .theme-icon-moon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* The official SVG has a white wordmark. In light mode the wordmark becomes black. */
+:root[data-theme='light'] a.brand img,
+:root[data-theme='light'] a.footer-brand img {
+  filter: brightness(0) saturate(100%);
+}
+
+:root[data-theme='dark'] a.brand img,
+:root[data-theme='dark'] a.footer-brand img {
+  filter: none;
+}
+
+/* Scrolled header and mobile navigation use the active surface color. */
+:root[data-theme='light'] .site-header.is-scrolled {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme='light'] .global-nav {
+  --nav-overlay-bg: rgba(255, 255, 255, 0.985);
+}
+
+/* Replace legacy hard-coded dark surfaces used by older visual components. */
+:root[data-theme='light'] .visual-core,
+:root[data-theme='light'] .visual-node,
+:root[data-theme='light'] .mock-window,
+:root[data-theme='light'] .phone-frame,
+:root[data-theme='light'] .shop-frame,
+:root[data-theme='light'] .dashboard-frame,
+:root[data-theme='light'] .platform-map span {
+  background: #ffffff;
+}
+
+:root[data-theme='light'] .art-system,
+:root[data-theme='light'] .cover-dashboard,
+:root[data-theme='light'] .cover-crm {
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    #f5f5f2;
+  background-size: 44px 44px;
+}
+
+:root[data-theme='light'] .art-commerce,
+:root[data-theme='light'] .cover-shop {
+  background: linear-gradient(150deg, #eef0f8, #f7f7f4 72%);
+}
+
+:root[data-theme='light'] .cover-corporate {
+  background: linear-gradient(140deg, #f7f7f4, #e8ebf6);
+}
+
+:root[data-theme='light'] .cover-platform {
+  background: radial-gradient(circle at center, rgba(111, 126, 220, 0.12), transparent 54%), #f7f7f4;
+}
+
+:root[data-theme='light'] .cover-booking {
+  background: linear-gradient(145deg, #f0f1ee, #fafafa);
+}
+
+:root[data-theme='light'] .featured-article-art {
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    #f5f5f2;
+  background-size: 40px 40px;
+}
+
+:root[data-theme='light'] .button-ghost:hover,
+:root[data-theme='light'] .article-row:hover,
+:root[data-theme='light'] .crm-list span,
+:root[data-theme='light'] .dashboard-frame i {
+  background-color: rgba(17, 18, 22, 0.035);
+}
+
+:root[data-theme='light'] .field select option {
+  background: #ffffff;
+  color: var(--text);
+}
+
+:root[data-theme='light'] .field input::placeholder,
+:root[data-theme='light'] .field textarea::placeholder {
+  color: #8a8f97;
+}
+
+:root[data-theme='light'] .site-footer {
+  background: #f5f5f2;
+}
+
+:root[data-theme='light'] .site-footer::after {
+  border-top-color: var(--line) !important;
+  color: rgba(17, 18, 22, 0.62) !important;
+}
+
+:root[data-theme='light'] .scene-orbit-b {
+  border-color: rgba(17, 18, 22, 0.1);
+}
+
+:root[data-theme='light'] .scene-caption {
+  color: rgba(17, 18, 22, 0.56);
+}
+
+:root[data-theme='light'] .symbol-layer-back {
+  filter: blur(1px) brightness(1) saturate(1.05);
+}
+
+:root[data-theme='light'] .symbol-layer-mid {
+  filter: brightness(1) saturate(1.05) drop-shadow(0 18px 28px rgba(79, 94, 177, 0.16));
+}
+
+:root[data-theme='light'] .symbol-layer-front {
+  filter: drop-shadow(0 24px 30px rgba(45, 59, 139, 0.18)) drop-shadow(0 0 28px rgba(111, 126, 220, 0.12));
+}
+
+:root[data-theme='light'] .preview-card-3d svg,
+:root[data-theme='light'] .solution-3d-asset svg {
+  filter: drop-shadow(0 8px 12px rgba(45, 59, 139, 0.16));
+}
+
+/* Keep point CTA contrast consistent in both modes. */
+:root[data-theme='light'] .button-point,
+:root[data-theme='light'] .filter-button:hover,
+:root[data-theme='light'] .filter-button.is-active {
+  color: #ffffff;
+}
+
+:root[data-theme='light'] .contact-banner {
+  color: #111216;
+}
+
+:root[data-theme='light'] .contact-banner .button-point {
+  border-color: #111216;
+  background: #111216;
+  color: #ffffff;
+}
+
+/* Optional cards loaded by page-specific modules. */
+:root[data-theme='light'] .home-labs-series,
+:root[data-theme='light'] .labs-business-series,
+:root[data-theme='light'] .project-capture-layout,
+:root[data-theme='light'] .project-case-section {
+  color: var(--text);
+}
+
+:root[data-theme='light'] .home-labs-card,
+:root[data-theme='light'] .labs-business-card,
+:root[data-theme='light'] .project-capture-card,
+:root[data-theme='light'] .project-case-card {
+  border-color: var(--line);
+  background-color: var(--panel);
+  color: var(--text);
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+  .header-inner {
+    grid-template-columns: 1fr auto auto !important;
+    gap: 24px;
+  }
+
+  .header-tools {
+    gap: 0;
+  }
+
+  .header-tools .header-action {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-tools {
+    position: absolute;
+    z-index: 1003;
+    top: 50%;
+    right: 52px;
+    transform: translateY(-50%);
+  }
+
+  .header-tools .header-action {
+    display: none !important;
+  }
+
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  :root[data-theme='light'] .global-nav {
+    background: var(--nav-overlay-bg) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-tools {
+    right: 48px;
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .site-header,
+  .site-footer,
+  .theme-toggle,
+  .theme-toggle * {
+    transition: none !important;
+  }
+}

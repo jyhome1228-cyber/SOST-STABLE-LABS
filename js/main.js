@@ -1,6 +1,13 @@
 (() => {
   'use strict';
 
+  try {
+    const savedTheme = localStorage.getItem('sost-theme');
+    document.documentElement.dataset.theme = savedTheme === 'light' ? 'light' : 'dark';
+  } catch (error) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+
   const body = document.body;
   const header = document.querySelector('[data-header]');
   const menuToggle = document.querySelector('.menu-toggle');
@@ -20,8 +27,18 @@
     document.head.appendChild(link);
   };
 
+  const ensureScript = (src) => {
+    if (document.querySelector(`script[src="${src}"]`)) return;
+    const script = document.createElement('script');
+    script.src = src;
+    script.defer = true;
+    document.head.appendChild(script);
+  };
+
   ensureStylesheet('./css/visual-refresh.css');
   ensureStylesheet('./css/refinement-v2.css');
+  ensureStylesheet('./css/theme-toggle.css?v=20260813-1');
+  ensureScript('./js/theme-toggle.js?v=20260813-1');
 
   document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
   const favicon = document.createElement('link');
