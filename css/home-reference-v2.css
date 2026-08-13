@@ -1,0 +1,274 @@
+/* SOSTLABS. — polished homepage curve system */
+
+:root[data-theme='light'] {
+  --bg: #f8f8f9;
+  --bg-soft: #eef0f8;
+  --panel: #ffffff;
+  --panel-2: #e9edf9;
+  --text: #111216;
+  --text-soft: #41454d;
+  --text-muted: #767b85;
+  --point: #6f7edc;
+  --point-strong: #5d6dcb;
+  --line: rgba(17,18,22,.085);
+  --line-strong: rgba(17,18,22,.17);
+}
+
+:root[data-theme='light'] body,
+:root[data-theme='light'] .home-hero,
+:root[data-theme='light'] .home-intro,
+:root[data-theme='light'] .home-projects-first {
+  background: var(--bg) !important;
+}
+
+:root[data-theme='light'] .section-contrast,
+:root[data-theme='light'] .site-footer {
+  background: var(--bg-soft) !important;
+}
+
+/* Header / footer brand dot */
+.site-header .brand,
+.site-footer .footer-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.site-header .brand::before,
+.site-footer .footer-brand::before {
+  display: block;
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: var(--point);
+  content: '';
+}
+
+/* ---------------------------------------------------------
+   HOME SECTION ORDER
+   HERO → ABOUT → PORTFOLIO → SOLUTIONS → LABS → CTA
+--------------------------------------------------------- */
+body[data-page='home'] main {
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page='home'] main > section {
+  width: 100%;
+  order: 20;
+}
+
+body[data-page='home'] .home-hero { order: 1; }
+body[data-page='home'] .home-intro { order: 2; }
+body[data-page='home'] main > section:has(.project-preview-grid) { order: 3; }
+body[data-page='home'] main > section:has(.preview-grid.three-column) { order: 4; }
+body[data-page='home'] main > section:has(.labs-preview) { order: 5; }
+body[data-page='home'] .contact-banner { order: 6; }
+
+body[data-page='home'] main > section:has(.project-preview-grid) {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------
+   HERO — LARGE FINISHED CURVE COMPOSITION
+--------------------------------------------------------- */
+body[data-page='home'] .home-hero {
+  position: relative !important;
+  isolation: isolate;
+  overflow: hidden !important;
+}
+
+body[data-page='home'] .home-hero .home-hero-inner {
+  position: relative !important;
+  z-index: 2;
+  grid-template-columns: minmax(0,.82fr) minmax(500px,.88fr) !important;
+  align-items: center !important;
+  gap: clamp(52px,6vw,100px) !important;
+}
+
+body[data-page='home'] .home-hero .hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 680px !important;
+}
+
+/* remove legacy pseudo-orbits completely */
+body[data-page='home'] .home-hero::before,
+body[data-page='home'] .home-hero::after,
+body[data-page='home'] .home-hero .home-hero-inner::before,
+body[data-page='home'] .home-hero .home-hero-inner::after {
+  display: none !important;
+  content: none !important;
+}
+
+.hero-curve-stage {
+  position: relative;
+  z-index: 1;
+  width: min(48vw,720px);
+  aspect-ratio: 760 / 620;
+  justify-self: end;
+  margin-right: -4%;
+  pointer-events: none;
+}
+
+.hero-curve-stage::before {
+  position: absolute;
+  inset: 13% 10% 12% 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb,var(--point) 12%,transparent), transparent 68%);
+  filter: blur(18px);
+  content: '';
+}
+
+.hero-curve-stage svg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 26px 54px color-mix(in srgb,var(--point) 8%,transparent));
+}
+
+.hero-curve-stage path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.hero-curve-stage .curve-main {
+  stroke: url(#sostCurveBlue);
+  stroke-width: 30;
+}
+
+.hero-curve-stage .curve-grey {
+  stroke: #9a9eaa;
+  stroke-width: 20;
+  opacity: .18;
+}
+
+.hero-curve-stage .curve-blue-soft {
+  stroke: url(#sostCurveBlueSoft);
+  stroke-width: 18;
+  opacity: .82;
+}
+
+.hero-curve-stage .curve-grey-thin {
+  stroke: #a3a7b2;
+  stroke-width: 9;
+  opacity: .15;
+}
+
+.hero-curve-stage .curve-glow {
+  opacity: .12;
+}
+
+.hero-curve-stage .curve-dot {
+  fill: var(--point);
+  opacity: .8;
+}
+
+.hero-curve-stage .curve-layer {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero-curve-stage .curve-layer-a { animation: curve-float-a 12s ease-in-out infinite alternate; }
+.hero-curve-stage .curve-layer-b { animation: curve-float-b 16s ease-in-out infinite alternate; }
+.hero-curve-stage .curve-layer-c { animation: curve-float-c 14s ease-in-out infinite alternate; }
+.hero-curve-stage .curve-layer-d { animation: curve-float-d 18s ease-in-out infinite alternate; }
+.hero-curve-stage .dot-a { animation: curve-dot-a 7s ease-in-out infinite alternate; }
+.hero-curve-stage .dot-b { animation: curve-dot-b 8s ease-in-out infinite alternate; }
+
+@keyframes curve-float-a {
+  from { transform: translate(-5px,7px) rotate(-1.5deg); }
+  to { transform: translate(8px,-8px) rotate(2deg); }
+}
+@keyframes curve-float-b {
+  from { transform: translate(4px,-5px) rotate(1deg); }
+  to { transform: translate(-8px,8px) rotate(-2deg); }
+}
+@keyframes curve-float-c {
+  from { transform: translate(-4px,0) rotate(-1deg); }
+  to { transform: translate(9px,-6px) rotate(1.5deg); }
+}
+@keyframes curve-float-d {
+  from { transform: translate(0,5px) rotate(0); }
+  to { transform: translate(-7px,-5px) rotate(2deg); }
+}
+@keyframes curve-dot-a {
+  from { opacity: .35; transform: translate(0,0); }
+  to { opacity: 1; transform: translate(-10px,10px); }
+}
+@keyframes curve-dot-b {
+  from { opacity: .25; transform: translate(0,0); }
+  to { opacity: .9; transform: translate(12px,-8px); }
+}
+
+:root[data-theme='light'] .hero-curve-stage .curve-grey {
+  stroke: #b8bbc5;
+  opacity: .46;
+}
+:root[data-theme='light'] .hero-curve-stage .curve-grey-thin {
+  stroke: #c6c9d1;
+  opacity: .5;
+}
+:root[data-theme='light'] .hero-curve-stage .curve-glow { opacity: .08; }
+
+/* portfolio gets a restrained continuation of the same language */
+body[data-page='home'] main > section:has(.project-preview-grid)::after {
+  position: absolute;
+  z-index: 0;
+  right: -190px;
+  bottom: -250px;
+  width: 520px;
+  height: 520px;
+  border: 18px solid color-mix(in srgb,var(--point) 10%,transparent);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  transform: rotate(-22deg);
+}
+
+body[data-page='home'] main > section:has(.project-preview-grid) > .shell {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  body[data-page='home'] .home-hero .home-hero-inner {
+    grid-template-columns: minmax(0,.9fr) minmax(390px,.7fr) !important;
+  }
+  .hero-curve-stage { width: min(46vw,590px); margin-right: -8%; }
+}
+
+@media (max-width: 900px) {
+  body[data-page='home'] .home-hero .home-hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  .hero-curve-stage {
+    position: absolute;
+    top: 50%;
+    right: -24%;
+    width: 520px;
+    opacity: .28;
+    transform: translateY(-50%);
+  }
+  body[data-page='home'] .home-hero .hero-copy { max-width: 640px !important; }
+}
+
+@media (max-width: 680px) {
+  .hero-curve-stage { right: -70%; width: 480px; opacity: .2; }
+  body[data-page='home'] main > section:has(.project-preview-grid)::after { display:none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-curve-stage .curve-layer,
+  .hero-curve-stage .curve-dot { animation: none !important; }
+}
