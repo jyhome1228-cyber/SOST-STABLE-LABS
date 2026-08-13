@@ -1,0 +1,301 @@
+/* SOSTLABS. — homepage reference refresh
+   Bright neutral surfaces + brand-blue / light-gray sweeping curves */
+
+/* =========================================================
+   LIGHT MODE — NEUTRAL GREY, NOT IVORY
+========================================================= */
+html:root[data-theme='light'] {
+  --bg: #f8f8f9;
+  --bg-soft: #f1f2f5;
+  --panel: #ffffff;
+  --panel-2: #eceff7;
+  --text: #111216;
+  --text-soft: #41454d;
+  --text-muted: #767b85;
+  --point: #6f7edc;
+  --point-strong: #5d6dcb;
+  --line: rgba(17, 18, 22, 0.085);
+  --line-strong: rgba(17, 18, 22, 0.17);
+}
+
+html:root[data-theme='light'] body,
+html:root[data-theme='light'] .home-hero,
+html:root[data-theme='light'] .home-intro {
+  background: var(--bg) !important;
+}
+
+html:root[data-theme='light'] .section-contrast,
+html:root[data-theme='light'] .site-footer {
+  background: var(--bg-soft) !important;
+}
+
+html:root[data-theme='light'] .preview-card,
+html:root[data-theme='light'] .home-real-project .project-art {
+  background: rgba(255,255,255,.72) !important;
+}
+
+/* =========================================================
+   WORDMARK DOT — SIMPLE BRAND ANCHOR
+========================================================= */
+.site-header .brand,
+.site-footer .footer-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.site-header .brand::before,
+.site-footer .footer-brand::before {
+  display: block;
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 999px;
+  background: var(--point);
+  content: '';
+}
+
+/* =========================================================
+   HOME ORDER / PROJECT SECTION
+========================================================= */
+body[data-page='home'] .home-projects-first {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+html:root[data-theme='light'] body[data-page='home'] .home-projects-first {
+  background: #f8f8f9 !important;
+}
+
+body[data-page='home'] .home-projects-first > .shell {
+  position: relative;
+  z-index: 2;
+}
+
+/* soft decorative curve in the first portfolio section */
+body[data-page='home'] .home-projects-first::before {
+  position: absolute;
+  top: -245px;
+  right: -155px;
+  width: 520px;
+  height: 520px;
+  border: 18px solid color-mix(in srgb, var(--point) 15%, transparent);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  transform: rotate(28deg);
+}
+
+/* =========================================================
+   HOME HERO — SWEEPING CURVE LANGUAGE
+========================================================= */
+body[data-page='home'] .home-hero {
+  position: relative !important;
+  isolation: isolate;
+  overflow: hidden !important;
+}
+
+body[data-page='home'] .home-hero .home-hero-inner {
+  position: relative !important;
+  z-index: 2;
+  grid-template-columns: minmax(0, .86fr) minmax(390px, .74fr) !important;
+  align-items: center !important;
+  gap: clamp(64px, 8vw, 130px) !important;
+}
+
+body[data-page='home'] .home-hero .hero-copy {
+  position: relative;
+  z-index: 5;
+  max-width: 690px !important;
+}
+
+/* erase the previous thin orbital treatment */
+body[data-page='home'] .home-hero .home-hero-inner::before,
+body[data-page='home'] .home-hero .home-hero-inner::after {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* brand-blue ribbon / loop */
+body[data-page='home'] .home-hero .home-hero-inner::before {
+  position: absolute !important;
+  z-index: 0 !important;
+  top: 48% !important;
+  right: -2% !important;
+  width: min(43vw, 560px) !important;
+  height: min(31vw, 405px) !important;
+  border: 22px solid color-mix(in srgb, var(--point) 88%, transparent) !important;
+  border-left-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-radius: 50% !important;
+  content: '' !important;
+  opacity: .9 !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) rotate(24deg) !important;
+  transform-origin: center;
+  animation: sost-ribbon-blue 10s ease-in-out infinite alternate !important;
+}
+
+/* soft grey counter-curve */
+body[data-page='home'] .home-hero .home-hero-inner::after {
+  position: absolute !important;
+  z-index: -1 !important;
+  top: 54% !important;
+  right: 2% !important;
+  width: min(40vw, 520px) !important;
+  height: min(36vw, 470px) !important;
+  border: 18px solid color-mix(in srgb, var(--text-muted) 22%, transparent) !important;
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-radius: 50% !important;
+  content: '' !important;
+  opacity: .65 !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) rotate(-33deg) !important;
+  transform-origin: center;
+  animation: sost-ribbon-grey 13s ease-in-out infinite alternate !important;
+}
+
+/* additional oversized arcs crossing the edge, inspired by the reference */
+body[data-page='home'] .home-hero::before,
+body[data-page='home'] .home-hero::after {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  transform-origin: center;
+}
+
+body[data-page='home'] .home-hero::before {
+  top: -360px;
+  right: -310px;
+  width: 820px;
+  height: 820px;
+  border: 28px solid color-mix(in srgb, var(--point) 20%, transparent);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(21deg);
+  animation: sost-ribbon-outer 18s ease-in-out infinite alternate;
+}
+
+body[data-page='home'] .home-hero::after {
+  right: -205px;
+  bottom: -455px;
+  width: 730px;
+  height: 730px;
+  border: 24px solid color-mix(in srgb, var(--text-muted) 13%, transparent);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(-16deg);
+  animation: sost-ribbon-outer-grey 20s ease-in-out infinite alternate;
+}
+
+html:root[data-theme='light'] body[data-page='home'] .home-hero .home-hero-inner::after {
+  border-color: rgba(180,184,194,.38) !important;
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+html:root[data-theme='light'] body[data-page='home'] .home-hero::after {
+  border-color: rgba(185,189,199,.25);
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+@keyframes sost-ribbon-blue {
+  0% { transform: translateY(-50%) rotate(19deg) scale(.96); }
+  50% { transform: translateY(-53%) rotate(26deg) scale(1.02); }
+  100% { transform: translateY(-48%) rotate(31deg) scale(.98); }
+}
+
+@keyframes sost-ribbon-grey {
+  0% { transform: translateY(-50%) rotate(-38deg) scale(.95); }
+  100% { transform: translateY(-46%) rotate(-24deg) scale(1.04); }
+}
+
+@keyframes sost-ribbon-outer {
+  0% { transform: rotate(15deg) translate(0,0); }
+  100% { transform: rotate(29deg) translate(-12px,18px); }
+}
+
+@keyframes sost-ribbon-outer-grey {
+  0% { transform: rotate(-21deg) translate(0,0); }
+  100% { transform: rotate(-8deg) translate(-16px,-10px); }
+}
+
+/* tighter graphic hierarchy in light mode */
+html:root[data-theme='light'] body[data-page='home'] .hero-copy h1 span {
+  color: var(--point) !important;
+}
+
+html:root[data-theme='light'] body[data-page='home'] .button-point {
+  background: var(--point) !important;
+  border-color: var(--point) !important;
+}
+
+@media (max-width: 900px) {
+  body[data-page='home'] .home-hero .home-hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::before {
+    right: -34% !important;
+    width: 440px !important;
+    height: 330px !important;
+    border-width: 16px !important;
+    opacity: .42 !important;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    right: -28% !important;
+    width: 390px !important;
+    height: 350px !important;
+    border-width: 13px !important;
+    opacity: .35 !important;
+  }
+
+  body[data-page='home'] .home-hero::before {
+    top: -290px;
+    right: -350px;
+    width: 650px;
+    height: 650px;
+    border-width: 20px;
+  }
+
+  body[data-page='home'] .home-projects-first::before {
+    opacity: .55;
+  }
+}
+
+@media (max-width: 680px) {
+  body[data-page='home'] .home-hero .home-hero-inner::before {
+    right: -78% !important;
+    opacity: .24 !important;
+  }
+
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    right: -72% !important;
+    opacity: .2 !important;
+  }
+
+  body[data-page='home'] .home-hero::before,
+  body[data-page='home'] .home-hero::after {
+    opacity: .5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page='home'] .home-hero::before,
+  body[data-page='home'] .home-hero::after,
+  body[data-page='home'] .home-hero .home-hero-inner::before,
+  body[data-page='home'] .home-hero .home-hero-inner::after {
+    animation: none !important;
+  }
+}
