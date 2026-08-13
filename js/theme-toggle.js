@@ -13,7 +13,7 @@
     if (document.querySelector('link[href*="brand-refresh.css"]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './css/brand-refresh.css?v=20260813-4';
+    link.href = './css/brand-refresh.css?v=20260813-5';
     document.head.appendChild(link);
   };
 
