@@ -66,7 +66,7 @@
       return;
     }
 
-    document.title = `${work.title} — SOST STABLE LABS`;
+    document.title = `${work.title} — SOST LABS`;
     const description = document.querySelector('meta[name="description"]');
     if (description) description.content = work.summary || work.lead || work.subtitle || projectMeta.excerpt;
 
@@ -190,12 +190,6 @@
         </section>`;
     }).join('');
 
-    const nextProject = projects[(projectIndex + 1) % projects.length];
-    const siteHost = (() => {
-      try { return new URL(liveUrl).hostname.replace(/^www\./, ''); }
-      catch { return 'LIVE PROJECT'; }
-    })();
-
     root.innerHTML = `
       <article class="nw-project-case">
         <section class="nw-project-hero">
@@ -235,15 +229,6 @@
             <dl>${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
           </div>
         </section>
-
-        ${liveUrl ? `<section class="nw-live-cta"><div class="shell nw-live-cta-inner"><div><p class="eyebrow">VIEW LIVE PROJECT</p><h2>완성된 프로젝트를<br />실제 사이트에서 확인하세요.</h2><span>${esc(siteHost)}</span></div><a href="${esc(liveUrl)}" target="_blank" rel="noopener noreferrer"><span>LIVE SITE</span><strong>↗</strong></a></div></section>` : ''}
-
-        <nav class="next-project" aria-label="다음 프로젝트">
-          <div class="shell next-project-inner">
-            <div><p>NEXT PROJECT</p><h2>${esc(nextProject.title)}</h2></div>
-            <a href="./project-detail.html?id=${encodeURIComponent(nextProject.id)}" aria-label="다음 프로젝트 ${esc(nextProject.title)} 보기">↗</a>
-          </div>
-        </nav>
       </article>`;
 
     window.NW_WORK = null;
