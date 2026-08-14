@@ -1,0 +1,52 @@
+name: Capture PTG LAW Website
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/capture-ptg.mjs"
+      - ".github/workflows/capture-ptg.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-ptg-law
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Install Playwright
+        run: npm install --no-save playwright
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Capture PTG LAW views
+        run: node scripts/capture-ptg.mjs
+
+      - name: Commit PTG LAW screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/projects/pentagon
+          if git diff --cached --quiet; then
+            echo "No PTG LAW screenshot changes detected."
+            exit 0
+          fi
+          git commit -m "Update PTG LAW screenshots [skip ci]"
+          git pull --rebase origin main
+          git push origin main
