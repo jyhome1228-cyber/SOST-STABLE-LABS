@@ -102,6 +102,23 @@ window.SOST_PROJECTS = [
     thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png'
   },
   {
+    id: 'the-petrichor',
+    title: 'THE PETRICHOR',
+    client: 'THE PETRICHOR / 더 페트리셔',
+    year: '2026',
+    category: 'web',
+    categoryLabel: 'BRAND · COMMERCE',
+    url: 'https://thepetrichor.co.kr/',
+    displayDomain: 'thepetrichor.co.kr',
+    thumbPosition: '50% 12%',
+    visualLabel: 'THE PETRICHOR',
+    excerpt: 'Brand Website, Product Commerce, Journal & Membership Experience',
+    services: ['Imweb', 'Commerce', 'Brand Content'],
+    technologies: ['Imweb', 'Responsive Web', 'Member Flow'],
+    accent: 'blue',
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png'
+  },
+  {
     id: 'fineb',
     title: 'FINE.B',
     client: 'FINE.B / 파인비',
