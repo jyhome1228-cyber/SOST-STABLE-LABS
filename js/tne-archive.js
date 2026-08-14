@@ -24,22 +24,29 @@
 
   const card = (page) => `
     <article class="tne-page-card">
-      <a class="tne-screen" href="${esc(page.image)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(page.title)} 전체 페이지 캡처 보기">
-        <img src="${esc(page.image)}" alt="TNE ${esc(page.title)} 페이지" loading="lazy" decoding="async" />
-      </a>
+      <div class="tne-screen" aria-label="TNE ${esc(page.title)} 페이지 미리보기">
+        <img src="${esc(page.image)}" alt="TNE ${esc(page.title)} 페이지" loading="lazy" decoding="async" draggable="false" />
+      </div>
       <div class="tne-page-meta">
         <div>
           <small>${esc(page.group)} · ${esc(page.no)}</small>
           <h4>${esc(page.title)}</h4>
         </div>
         <div class="tne-page-actions">
-          <a href="${esc(page.image)}" target="_blank" rel="noopener noreferrer">FULL CAPTURE ↗</a>
           <a href="${esc(page.url)}" target="_blank" rel="noopener noreferrer">LIVE PAGE ↗</a>
         </div>
       </div>
     </article>`;
 
   const find = (title) => pages.find((page) => page.title === title);
+
+  const archiveCard = (page) => `
+    <article class="tne-page-row">
+      <div class="tne-page-row-top"><span>${esc(page.no)}</span><small>${esc(page.group)}</small></div>
+      <strong>${esc(page.title)}</strong>
+      <code>${esc(page.url.replace('https://', ''))}</code>
+      <a href="${esc(page.url)}" target="_blank" rel="noopener noreferrer">LIVE PAGE ↗</a>
+    </article>`;
 
   const render = () => {
     const root = document.querySelector('#project-detail .nw-project-case');
@@ -63,7 +70,7 @@
           <div>
             <p class="eyebrow">TNE WEBSITE ARCHIVE</p>
             <h2>한 개의 화면이 아니라,<br />기업 사이트 전체 구조를 구축했습니다.</h2>
-            <p>회사 소개부터 조직, 연혁, 인증, 협약과 파트너 정보, 사업과정, 운영실적과 전국 현황까지 실제 기업 운영에 필요한 정보를 하나의 웹 구조로 정리했습니다. 각 화면은 라이브 페이지와 전체 캡처를 함께 확인할 수 있습니다.</p>
+            <p>회사 소개부터 조직, 연혁, 인증, 협약과 파트너 정보, 사업과정, 운영실적과 전국 현황까지 실제 기업 운영에 필요한 정보를 하나의 웹 구조로 정리했습니다. 화면 이미지는 포트폴리오 안에서만 확인하고, 실제 페이지 이동은 LIVE PAGE 링크로 분리했습니다.</p>
             <div class="tne-archive-stats"><span>11 PAGES</span><span>COMPANY ARCHIVE</span><span>BUSINESS DATA</span><span>RESPONSIVE WEB</span></div>
           </div>
         </header>
@@ -94,14 +101,8 @@
         </section>
 
         <div class="tne-page-index">
-          <div class="tne-page-index-head"><h3>Full Page Archive</h3><span>11 LIVE PAGES / FULL CAPTURES</span></div>
-          <div class="tne-page-list">
-            ${pages.map((page) => `
-              <div class="tne-page-row">
-                <span>${esc(page.no)}</span><strong>${esc(page.title)}</strong><code>${esc(page.url.replace('https://', ''))}</code>
-                <a href="${esc(page.url)}" target="_blank" rel="noopener noreferrer">VIEW ↗</a>
-              </div>`).join('')}
-          </div>
+          <div class="tne-page-index-head"><h3>Full Page Archive</h3><span>11 LIVE PAGES</span></div>
+          <div class="tne-page-list">${pages.map(archiveCard).join('')}</div>
         </div>
       </div>`;
 
@@ -110,7 +111,6 @@
   };
 
   if (render()) return;
-
   const observer = new MutationObserver(() => {
     if (render()) observer.disconnect();
   });
