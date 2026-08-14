@@ -17,8 +17,11 @@
     aesost: 'aesost.js',
     relim: 'relim.js',
     'tne-epc': 'tne-epc.js',
+    'the-petrichor': './data/project-the-petrichor.js?v=20260815-1',
     fineb: 'fineb.js'
   };
+
+  const localWorkIds = new Set(['the-petrichor']);
 
   const esc = (value = '') => String(value)
     .replace(/&/g, '&amp;')
@@ -235,7 +238,9 @@
   };
 
   const script = document.createElement('script');
-  script.src = `https://9works.kr/assets/js/works/${encodeURIComponent(workFiles[projectId])}?v=20260813-1`;
+  script.src = localWorkIds.has(projectId)
+    ? workFiles[projectId]
+    : `https://9works.kr/assets/js/works/${encodeURIComponent(workFiles[projectId])}?v=20260813-1`;
   script.async = true;
   script.onload = renderWork;
   script.onerror = () => {
@@ -244,7 +249,7 @@
         <div class="shell">
           <p class="eyebrow">PROJECT DATA ERROR</p>
           <h1>${esc(projectMeta.title)}</h1>
-          <p>원본 상세 데이터를 불러오지 못했습니다. 라이브 사이트 또는 프로젝트 목록을 이용해주세요.</p>
+          <p>상세 데이터를 불러오지 못했습니다. 라이브 사이트 또는 프로젝트 목록을 이용해주세요.</p>
           <div class="nw-missing-actions">
             <a class="button button-point" href="${esc(projectMeta.url)}" target="_blank" rel="noopener noreferrer">라이브 사이트 보기 ↗</a>
             <a class="button button-ghost" href="./projects.html">프로젝트 목록</a>
