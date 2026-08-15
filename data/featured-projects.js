@@ -25,13 +25,13 @@ window.SOST_PROJECTS = [
     categoryLabel: 'CORPORATE WEBSITE',
     url: 'https://thomastone.co.kr/',
     displayDomain: 'thomastone.co.kr',
-    thumbPosition: '50% 12%',
+    thumbPosition: '50% 8%',
     visualLabel: 'THOMASTONE',
     excerpt: 'AI Oral Healthcare Corporate Website & Dynamic News Experience',
     services: ['Imweb', 'Responsive UI', 'Dynamic News'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Loading'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/df99c31030165.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png'
   },
   {
     id: 'kekomi',
