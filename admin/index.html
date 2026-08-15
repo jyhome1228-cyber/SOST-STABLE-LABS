@@ -11,8 +11,17 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/admin.css?v=20260815-1" />
   <link rel="stylesheet" href="/css/admin-view-fix.css?v=20260815-1" />
-  <script type="module" src="/js/admin-inquiries.js?v=20260815-1"></script>
-  <script type="module" src="/js/admin-view-fix.js?v=20260815-1"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js": "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js",
+      "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js": "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js",
+      "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js": "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js"
+    }
+  }
+  </script>
+  <script type="module" src="/js/admin-inquiries.js?v=20260815-2"></script>
+  <script type="module" src="/js/admin-view-fix.js?v=20260815-2"></script>
 </head>
 <body class="admin-body" data-page="admin">
   <main class="admin-app">
