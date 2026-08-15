@@ -59,13 +59,13 @@ window.SOST_PROJECTS = [
     categoryLabel: 'COMMUNITY PLATFORM',
     url: 'https://aesost.com/index.html',
     displayDomain: 'aesost.com',
-    thumbPosition: '50% 10%',
+    thumbPosition: '50% 8%',
     visualLabel: 'AESOST',
-    excerpt: 'Community Platform, Member Publishing & Personal Spec Profiles',
-    services: ['Community', 'Member Flow', 'Publishing'],
-    technologies: ['Responsive Web', 'Member System', 'Content Platform'],
+    excerpt: 'Community Platform, Editorial Publishing, Global Reference & Career Consulting',
+    services: ['Content Platform', 'Publishing', 'Consulting'],
+    technologies: ['Responsive Web', 'Content System', 'Member Flow'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/28a06e82e7fbb.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png'
   },
   {
     id: 'relim',
