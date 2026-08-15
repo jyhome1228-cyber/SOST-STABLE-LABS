@@ -30,9 +30,6 @@
     document.head.appendChild(script);
   });
 
-  /* =========================================================
-     GLOBAL CTA
-  ========================================================= */
   const banner = document.querySelector('.contact-banner');
 
   if (banner && !banner.classList.contains('global-system-cta')) {
@@ -64,9 +61,6 @@
     `;
   }
 
-  /* =========================================================
-     HOME LABS — 6 CHAPTER BUSINESS NEED SERIES
-  ========================================================= */
   const labsSection = [...document.querySelectorAll('.section-block')]
     .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'LABS & INSIGHTS');
 
@@ -76,9 +70,6 @@
       .catch((error) => console.error('Home LABS series failed to load.', error));
   }
 
-  /* =========================================================
-     HOME SELECTED PROJECTS — DATA DRIVEN 3-COLUMN SLIDER
-  ========================================================= */
   const selectedSection = [...document.querySelectorAll('.section-block')]
     .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'SELECTED PROJECTS');
 
@@ -114,25 +105,12 @@
 
   loadStyle('./css/home-project-slider.css?v=20260807-2', 'home-project-slider-css');
 
-  const projectScripts = [
-    ['./data/featured-projects.js?v=20260815-3', 'home-project-data-featured'],
-    ['./data/project-ptglaw.js?v=20260815-1', 'home-project-data-pentagon'],
-    ['./data/project-haveaseat.js?v=20260806-1', 'home-project-data-haveaseat'],
-    ['./data/project-relim.js?v=20260807-4', 'home-project-data-relim'],
-    ['./data/project-jncostech.js?v=20260807-1', 'home-project-data-jncostech'],
-    ['./data/project-captures.js?v=20260815-1', 'home-project-captures-main'],
-    ['./data/project-haveaseat-captures.js?v=20260806-1', 'home-project-captures-haveaseat'],
-    ['./data/project-relim-captures.js?v=20260807-1', 'home-project-captures-relim'],
-    ['./data/project-pentagon-fallback.js?v=20260807-1', 'home-project-captures-pentagon'],
-    ['./data/project-jncostech-captures.js?v=20260807-1', 'home-project-captures-jncostech']
-  ];
-
+  /* Keep the home carousel identical to PROJECTS: same data, thumbnails,
+     crop positions, ordering and individual detail routes. */
   (async () => {
     try {
-      for (const [src, id] of projectScripts) {
-        await loadScript(src, id);
-      }
-      await loadScript('./js/home-project-slider.js?v=20260807-2', 'home-project-slider-js');
+      await loadScript('./data/featured-projects.js?v=20260815-4', 'home-project-data-featured');
+      await loadScript('./js/home-project-slider.js?v=20260815-1', 'home-project-slider-js');
     } catch (error) {
       console.error('Home project slider failed to load.', error);
     }
