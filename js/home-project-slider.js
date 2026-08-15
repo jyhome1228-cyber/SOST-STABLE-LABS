@@ -17,7 +17,7 @@
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
   const host = (url = '') => {
@@ -32,9 +32,10 @@
     const tags = (project.services || []).slice(0, 3)
       .map((item) => `<span>${escapeHTML(item)}</span>`)
       .join('');
+    const thumbPosition = project.thumbPosition || '50% 12%';
 
     return `
-      <article class="home-project-card">
+      <article class="home-project-card" style="--home-thumb-position:${escapeHTML(thumbPosition)}">
         <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기">
           <div class="home-project-browser">
             <div class="home-project-browser-bar" aria-hidden="true">
