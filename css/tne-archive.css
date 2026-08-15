@@ -1,8 +1,9 @@
-/* TNE / RE:LIM / THE PETRICHOR / THOMASTONE full-site portfolio archive */
+/* TNE / RE:LIM / THE PETRICHOR / THOMASTONE / AESOST full-site portfolio archive */
 .tne-archive,
 .relim-archive,
 .petrichor-archive,
-.thomastone-archive {
+.thomastone-archive,
+.aesost-archive {
   padding: 110px 0 120px;
   border-top: 1px solid var(--line);
   background: var(--bg-soft);
@@ -290,7 +291,8 @@
   .tne-archive,
   .relim-archive,
   .petrichor-archive,
-  .thomastone-archive {
+  .thomastone-archive,
+  .aesost-archive {
     padding: 78px 0 90px;
   }
 
