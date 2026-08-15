@@ -115,7 +115,7 @@
   loadStyle('./css/home-project-slider.css?v=20260807-2', 'home-project-slider-css');
 
   const projectScripts = [
-    ['./data/featured-projects.js?v=20260815-2', 'home-project-data-featured'],
+    ['./data/featured-projects.js?v=20260815-3', 'home-project-data-featured'],
     ['./data/project-ptglaw.js?v=20260815-1', 'home-project-data-pentagon'],
     ['./data/project-haveaseat.js?v=20260806-1', 'home-project-data-haveaseat'],
     ['./data/project-relim.js?v=20260807-4', 'home-project-data-relim'],
