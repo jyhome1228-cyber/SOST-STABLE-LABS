@@ -74,6 +74,7 @@
   };
 
   applyFavicon();
+  import('./traffic-tracker.js?v=20260816-1').catch(() => {});
 
   (async () => {
     await loadStyle('./css/project-unify.css?v=20260814-1', 'project-unify.css');
