@@ -44,9 +44,74 @@ service cloud.firestore {
         && request.resource.data.updatedAt == request.time;
     }
 
+    function validVisitorCreate(visitorId) {
+      return request.resource.data.keys().hasOnly([
+          'visitorId', 'firstSeenAt', 'lastSeenAt', 'firstPath',
+          'lastPath', 'lastVisitDate', 'pageViews'
+        ])
+        && request.resource.data.visitorId == visitorId
+        && request.resource.data.visitorId is string
+        && request.resource.data.visitorId.size() >= 16
+        && request.resource.data.visitorId.size() <= 80
+        && request.resource.data.firstSeenAt == request.time
+        && request.resource.data.lastSeenAt == request.time
+        && request.resource.data.firstPath is string
+        && request.resource.data.firstPath.size() <= 300
+        && request.resource.data.lastPath is string
+        && request.resource.data.lastPath.size() <= 300
+        && request.resource.data.lastVisitDate is string
+        && request.resource.data.lastVisitDate.size() == 10
+        && request.resource.data.pageViews == 1;
+    }
+
+    function validVisitorUpdate(visitorId) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'lastSeenAt', 'lastPath', 'lastVisitDate', 'pageViews'
+        ])
+        && request.resource.data.visitorId == visitorId
+        && request.resource.data.visitorId == resource.data.visitorId
+        && request.resource.data.firstSeenAt == resource.data.firstSeenAt
+        && request.resource.data.firstPath == resource.data.firstPath
+        && request.resource.data.lastSeenAt == request.time
+        && request.resource.data.lastPath is string
+        && request.resource.data.lastPath.size() <= 300
+        && request.resource.data.lastVisitDate is string
+        && request.resource.data.lastVisitDate.size() == 10
+        && request.resource.data.pageViews == resource.data.pageViews + 1;
+    }
+
+    function validDailyCreate(dateId) {
+      return request.resource.data.keys().hasOnly(['date', 'views', 'updatedAt'])
+        && request.resource.data.date == dateId
+        && request.resource.data.date is string
+        && request.resource.data.date.size() == 10
+        && request.resource.data.views == 1
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    function validDailyUpdate(dateId) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views', 'updatedAt'])
+        && request.resource.data.date == dateId
+        && request.resource.data.date == resource.data.date
+        && request.resource.data.views == resource.data.views + 1
+        && request.resource.data.updatedAt == request.time;
+    }
+
     match /inquiries/{inquiryId} {
       allow create: if validInquiryCreate();
       allow read, update, delete: if isAdmin();
+    }
+
+    match /traffic_visitors/{visitorId} {
+      allow create: if validVisitorCreate(visitorId);
+      allow update: if validVisitorUpdate(visitorId);
+      allow read, delete: if isAdmin();
+    }
+
+    match /traffic_daily/{dateId} {
+      allow create: if validDailyCreate(dateId);
+      allow update: if validDailyUpdate(dateId);
+      allow read, delete: if isAdmin();
     }
 
     match /{document=**} {
