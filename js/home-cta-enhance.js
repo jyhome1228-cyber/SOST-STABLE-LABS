@@ -65,9 +65,9 @@
     .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'LABS & INSIGHTS');
 
   if (labsSection) {
-    loadStyle('./css/home-labs-series.css?v=20260807-1', 'home-labs-series-css');
-    loadScript('./js/home-labs-series.js?v=20260807-1', 'home-labs-series-js')
-      .catch((error) => console.error('Home LABS series failed to load.', error));
+    loadStyle('./css/home-labs-series.css?v=20260817-1', 'home-labs-series-css');
+    loadScript('./js/home-labs-series.js?v=20260817-1', 'home-labs-series-js')
+      .catch((error) => console.error('Home STUDY preview failed to load.', error));
   }
 
   const selectedSection = [...document.querySelectorAll('.section-block')]
