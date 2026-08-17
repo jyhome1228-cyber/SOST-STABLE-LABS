@@ -119,6 +119,23 @@ window.SOST_PROJECTS = [
     thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png'
   },
   {
+    id: 'taepyeong-paper',
+    title: 'TAEPYEONG PAPER',
+    client: 'TAEPYEONG PAPER / 태평제지',
+    year: '2026',
+    category: 'web',
+    categoryLabel: 'CORPORATE · MANUFACTURING',
+    url: 'http://tp1977.com/',
+    displayDomain: 'tp1977.com',
+    thumbPosition: '50% 8%',
+    visualLabel: 'TAEPYEONG PAPER',
+    excerpt: 'Corporate Website Renewal, Brand Story, Business Operations & Product Archive',
+    services: ['Imweb', 'Corporate Website', 'Content Architecture'],
+    technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
+    accent: 'blue',
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png'
+  },
+  {
     id: 'pentagon-law-office-corporate-center',
     title: 'PTG LAW',
     client: 'PTG LAW / 펜타곤 법률세무회계',
@@ -129,11 +146,11 @@ window.SOST_PROJECTS = [
     displayDomain: 'ptglaw.co.kr',
     thumbPosition: '50% 8%',
     visualLabel: 'PTG LAW',
-    excerpt: 'Legal · Tax Website, Professional Profiles, Case Linking & Inquiry Assistant',
+    excerpt: 'Legal · Tax Website, Professional Profiles, Practice Areas, Case Archive & Inquiry UX',
     services: ['Imweb', 'Custom Code', 'Inquiry UX'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Content'],
     accent: 'blue',
-    thumbnail: './assets/projects/pentagon/desktop-main.jpg'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png'
   },
   {
     id: 'fineb',
