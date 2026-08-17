@@ -22,18 +22,8 @@
       description: '이미지 저장소와 CDN, 외부 URL 호출, 저장 용량과 트래픽의 차이를 실무 기준으로 설명합니다.',
       meta: '7 MIN READ',
       href: './study-cdn-images.html'
-    },
-    {
-      no: '03',
-      label: 'CRM / DATA',
-      title: 'CRM을 만들기 전에 고객 데이터를 어떻게 나눌까',
-      description: '문의, 상담, 견적, 계약과 재접촉을 실제 영업 흐름에 맞는 상태값으로 나누는 기준을 기록합니다.',
-      meta: '7 MIN READ',
-      href: './study.html'
     }
   ];
-
-  const categories = ['WEB', 'SYSTEM', 'COMMERCE', 'DESIGN', 'PROCESS', 'AI'];
 
   section.classList.add('home-labs-series');
   section.innerHTML = `
@@ -65,15 +55,6 @@
           </a>
         `).join('')}
       </div>
-
-      <nav class="home-labs-rail" aria-label="STUDY 주제">
-        ${categories.map((title, index) => `
-          <a href="./study.html">
-            <span>${String(index + 1).padStart(2, '0')}</span>
-            <strong>${title}</strong>
-          </a>
-        `).join('')}
-      </nav>
     </div>
   `;
 })();
