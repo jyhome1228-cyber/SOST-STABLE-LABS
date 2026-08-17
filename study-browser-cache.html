@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="웹사이트를 수정했는데 화면이 바뀌지 않는 이유를 브라우저 캐시, CDN 캐시, Cache-Control, 강력 새로고침과 파일 버전 관리까지 초보자도 이해하기 쉽게 정리합니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://sostlabs.com/study-browser-cache.html" />
+  <title>수정했는데 왜 안 바뀔까? 브라우저 캐시 이해하기 | SOST STUDY</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/study-article.css?v=20260817-2" />
+  <script src="./js/main.js" defer></script>
+</head>
+<body data-page="study">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="./">SOST STABLE <span>LABS</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
+      <nav class="global-nav" id="global-nav" aria-label="주요 메뉴"><a href="./about.html" data-nav="about">ABOUT</a><a href="./solutions.html" data-nav="solutions">SOLUTIONS</a><a href="./projects.html" data-nav="projects">PROJECTS</a><a href="./capabilities.html" data-nav="capabilities">CAPABILITIES</a><a href="./labs.html" data-nav="guide">GUIDE</a><a href="./study.html" data-nav="study">STUDY</a><a href="./contact.html" data-nav="contact">CONTACT</a></nav>
+      <a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="study-article-hero">
+      <div class="shell study-article-hero-grid">
+        <div>
+          <p class="eyebrow">STUDY 06 · BROWSER / CACHE</p>
+          <h1>수정했는데 왜 안 바뀔까?<br />브라우저 캐시가 작동하는 방식</h1>
+          <p class="study-article-lead">코드를 분명히 수정하고 배포했는데 내 컴퓨터에서는 예전 화면이 보일 때가 있습니다. 서버가 잘못된 것이 아니라 브라우저가 이전 CSS, JavaScript, 이미지 파일을 다시 사용하고 있을 수 있습니다. 캐시가 왜 필요한지부터 개발할 때 어떻게 확인하는지까지 쉽게 정리합니다.</p>
+        </div>
+        <dl class="study-article-meta"><div><dt>TOPIC</dt><dd>BROWSER CACHE · CDN · VERSIONING</dd></div><div><dt>READ</dt><dd>10 MIN</dd></div><div><dt>DATE</dt><dd>2026.08</dd></div></dl>
+      </div>
+    </section>
+
+    <section class="study-article-body">
+      <div class="shell study-article-layout">
+        <aside class="study-article-toc"><p>CONTENTS</p><nav><a href="#cache-00">00. 한눈에 보기</a><a href="#cache-01">01. 캐시가 필요한 이유</a><a href="#cache-02">02. 왜 예전 화면이 보일까</a><a href="#cache-03">03. 캐시의 종류</a><a href="#cache-04">04. 강력 새로고침</a><a href="#cache-05">05. 버전 관리</a><a href="#cache-06">06. 실무 체크 순서</a></nav></aside>
+        <article class="study-article-content">
+          <section id="cache-00">
+            <p class="eyebrow">00 / PLAIN EXPLANATION</p>
+            <h2>캐시는 한 번 받은 파일을 잠시 보관해 다음 방문 때 다시 쓰는 기능입니다.</h2>
+            <p>웹페이지를 열면 브라우저는 HTML만 받는 것이 아닙니다. CSS, JavaScript, 이미지, 폰트처럼 여러 파일을 서버에서 가져옵니다. 매번 모든 파일을 처음부터 다시 다운로드하면 페이지가 느려지고 같은 데이터가 반복 전송됩니다.</p>
+            <p>그래서 브라우저는 이미 받아둔 파일을 일정 시간 보관했다가 다시 사용할 수 있습니다. 이것이 캐시입니다.</p>
+            <div class="study-plain"><small>쉬운 비유</small><strong>캐시는 매번 창고에 가지 않고 자주 쓰는 물건을 책상 서랍에 넣어두는 것과 비슷합니다.</strong><p>빠르게 꺼내 쓸 수 있다는 장점이 있지만, 창고의 물건이 새 버전으로 바뀌었는데 서랍에는 예전 버전이 남아 있으면 문제가 생깁니다.</p></div>
+            <div class="study-flow"><div><small>01</small><strong>첫 방문</strong></div><div><small>02</small><strong>파일 다운로드</strong></div><div><small>03</small><strong>일부 파일 저장</strong></div><div><small>04</small><strong>다음 방문에 재사용</strong></div></div>
+          </section>
+
+          <section id="cache-01">
+            <p class="eyebrow">01 / WHY CACHE</p>
+            <h2>캐시는 오류가 아니라 웹을 빠르게 만드는 정상적인 기능입니다.</h2>
+            <p>캐시가 없다면 사용자가 페이지를 이동하거나 다시 방문할 때마다 로고, 공통 CSS, JavaScript, 폰트와 이미지가 계속 새로 다운로드될 수 있습니다. 파일이 많고 이미지가 큰 사이트일수록 낭비가 커집니다.</p>
+            <h3>캐시가 주는 이점</h3>
+            <ul><li>같은 파일을 반복해서 내려받는 횟수를 줄입니다.</li><li>재방문 시 화면이 더 빠르게 나타날 수 있습니다.</li><li>서버와 CDN의 반복 전송 부담을 줄일 수 있습니다.</li><li>모바일 환경에서 불필요한 데이터 사용을 줄이는 데 도움이 됩니다.</li></ul>
+            <div class="study-note"><strong>중요한 관점</strong><p>개발자가 자주 만나는 “캐시 문제”는 캐시 자체가 나빠서가 아니라 새 파일과 이전 파일을 구분하는 기준이 맞지 않을 때 발생합니다.</p></div>
+          </section>
+
+          <section id="cache-02">
+            <p class="eyebrow">02 / OLD FILES</p>
+            <h2>서버의 파일은 바뀌었는데 브라우저가 같은 주소의 예전 파일을 계속 사용할 수 있습니다.</h2>
+            <p>예를 들어 사이트가 아래 CSS 파일을 사용한다고 생각해보겠습니다.</p>
+            <div class="study-code">&lt;link rel="stylesheet" href="/css/style.css"&gt;</div>
+            <p>오늘 <code>style.css</code>를 수정해서 서버에 다시 올렸더라도 파일 주소는 여전히 <code>/css/style.css</code>입니다. 브라우저 입장에서는 “이미 받아둔 그 파일”이라고 판단해 로컬 캐시를 재사용할 수 있습니다.</p>
+            <div class="study-example"><small>EXAMPLE / 흔한 상황</small><dl><div><dt>개발자</dt><dd>버튼 색상을 파란색에서 검정색으로 수정하고 배포</dd></div><div><dt>서버</dt><dd>새 CSS가 정상적으로 올라가 있음</dd></div><div><dt>내 브라우저</dt><dd>예전에 저장한 style.css를 재사용해 여전히 파란 버튼 표시</dd></div><div><dt>다른 사용자</dt><dd>캐시가 없어서 새 CSS를 받고 검정 버튼 표시</dd></div></dl></div>
+            <p>그래서 “내 컴퓨터에서는 안 바뀌는데 다른 사람에게는 바뀌었다”거나 그 반대 상황이 생길 수 있습니다.</p>
+          </section>
+
+          <section id="cache-03">
+            <p class="eyebrow">03 / CACHE LAYERS</p>
+            <h2>화면이 오래된 이유가 항상 브라우저 하나 때문인 것은 아닙니다.</h2>
+            <p>웹파일은 사용자에게 도착하기 전 여러 단계에서 저장될 수 있습니다. 문제를 해결할 때는 어느 단계의 캐시인지 나눠서 생각하는 것이 중요합니다.</p>
+            <div class="study-term-grid"><div class="study-term"><small>BROWSER CACHE</small><strong>사용자의 브라우저에 저장</strong><p>CSS, JS, 이미지, 폰트 등을 개인 컴퓨터나 모바일 기기에서 재사용합니다.</p></div><div class="study-term"><small>CDN CACHE</small><strong>중간 전달 서버에 저장</strong><p>원본 서버 대신 CDN이 이전 파일을 전달하고 있을 수 있습니다.</p></div><div class="study-term"><small>SERVER CACHE</small><strong>서버에서 결과를 저장</strong><p>CMS나 서버 애플리케이션이 생성된 페이지 결과를 일정 시간 재사용하기도 합니다.</p></div><div class="study-term"><small>SERVICE WORKER</small><strong>웹앱이 직접 캐시 제어</strong><p>PWA 등에서는 Service Worker가 파일을 별도로 저장하고 제공할 수 있습니다.</p></div></div>
+            <div class="study-plain"><small>그래서</small><strong>강력 새로고침을 했는데도 안 바뀐다면 CDN이나 서버 쪽 캐시일 수도 있습니다.</strong><p>한 번에 모든 것을 “캐시 문제”라고 부르기보다 파일이 어느 단계에서 오래된 상태인지 확인해야 합니다.</p></div>
+          </section>
+
+          <section id="cache-04">
+            <p class="eyebrow">04 / HARD REFRESH</p>
+            <h2>강력 새로고침은 브라우저가 저장한 파일을 최대한 다시 확인하게 할 때 사용합니다.</h2>
+            <p>일반 새로고침은 기존 캐시를 활용할 수 있지만, 강력 새로고침은 개발 중 최신 파일을 다시 받기 위해 자주 사용합니다.</p>
+            <div class="study-term-grid"><div class="study-term"><small>MAC</small><strong>Command + Shift + R</strong><p>Chrome 계열 브라우저에서 강력 새로고침할 때 흔히 사용합니다.</p></div><div class="study-term"><small>WINDOWS</small><strong>Ctrl + Shift + R</strong><p>Windows의 Chrome 계열 브라우저에서 흔히 사용합니다.</p></div></div>
+            <p>개발자도구의 Network 탭에서 <code>Disable cache</code>를 사용해 개발자도구가 열린 동안 브라우저 캐시 사용을 제한하는 방법도 있습니다.</p>
+            <h3>하지만 강력 새로고침이 만능은 아닙니다.</h3>
+            <ul><li>CDN이 오래된 파일을 보내고 있다면 다시 받아도 같은 옛 파일일 수 있습니다.</li><li>서버 배포 자체가 실패했다면 캐시를 지워도 바뀌지 않습니다.</li><li>수정한 파일과 실제 페이지가 불러오는 파일이 다를 수도 있습니다.</li><li>CSS 우선순위 문제를 캐시 문제로 착각할 수도 있습니다.</li></ul>
+          </section>
+
+          <section id="cache-05">
+            <p class="eyebrow">05 / CACHE BUSTING</p>
+            <h2>파일 주소에 버전값을 붙이면 브라우저에게 “새 파일”이라는 신호를 줄 수 있습니다.</h2>
+            <p>정적 사이트를 수정할 때 자주 사용하는 방식이 쿼리스트링 버전입니다.</p>
+            <div class="study-code">&lt;link rel="stylesheet" href="/css/style.css?v=20260817-1"&gt;
+&lt;script src="/js/main.js?v=20260817-1" defer&gt;&lt;/script&gt;</div>
+            <p><code>style.css</code> 파일 자체의 경로는 같지만 URL 전체는 이전과 달라집니다. 브라우저와 CDN은 이를 새로운 요청으로 취급할 가능성이 높아 최신 파일을 받게 만들기 쉽습니다.</p>
+            <div class="study-example"><small>EXAMPLE / 수정할 때</small><dl><div><dt>기존</dt><dd>style.css?v=20260817-1</dd></div><div><dt>수정 후</dt><dd>style.css?v=20260817-2</dd></div><div><dt>효과</dt><dd>기존 캐시와 다른 URL로 요청되어 새 파일을 불러오기 쉬워짐</dd></div><div><dt>주의</dt><dd>버전값만 바꾸고 실제 배포 파일을 갱신하지 않으면 의미가 없음</dd></div></dl></div>
+            <p>규모가 큰 빌드 시스템에서는 파일 내용이 바뀔 때 이름 자체에 해시를 넣는 방식도 사용합니다. 예를 들어 <code>app.a83f21.css</code>처럼 파일명이 달라지는 방식입니다.</p>
+          </section>
+
+          <section id="cache-06">
+            <p class="eyebrow">06 / DEBUG ORDER</p>
+            <h2>수정이 안 보일 때는 캐시부터 무작정 지우기보다 아래 순서로 확인하면 빠릅니다.</h2>
+            <div class="study-step-grid"><div class="study-step"><small>01</small><strong>배포 확인</strong><p>GitHub나 서버에 수정된 파일이 실제로 올라갔는지 먼저 확인합니다.</p></div><div class="study-step"><small>02</small><strong>파일 URL 확인</strong><p>페이지 소스가 내가 수정한 CSS·JS 파일을 실제로 불러오는지 확인합니다.</p></div><div class="study-step"><small>03</small><strong>Network 확인</strong><p>브라우저 개발자도구에서 해당 파일의 요청과 응답을 확인합니다.</p></div><div class="study-step"><small>04</small><strong>캐시 우회</strong><p>강력 새로고침이나 버전값 변경으로 최신 파일을 다시 요청합니다.</p></div></div>
+            <h3>그래도 바뀌지 않는다면</h3>
+            <ul><li>CSS에서 더 강한 선택자나 <code>!important</code>가 덮고 있는지 확인</li><li>JavaScript가 나중에 DOM이나 스타일을 다시 변경하는지 확인</li><li>CDN 캐시 purge가 필요한 서비스인지 확인</li><li>서로 다른 도메인 또는 www/non-www 주소를 보고 있지 않은지 확인</li><li>Service Worker가 이전 파일을 제공하고 있지 않은지 확인</li></ul>
+            <div class="study-note"><strong>SOST의 기준</strong><p>정적 CSS와 JavaScript를 크게 수정하면 파일 버전값도 함께 올립니다. 그리고 “캐시 같다”는 추측만 하지 않고 배포 → 요청 URL → Network 응답 → CSS·JS 적용 순서로 확인합니다.</p></div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+    <section class="study-article-next"><a class="shell" href="./study.html"><div><small>BACK TO STUDY</small><h2>다른 실무 기록 보기</h2></div><strong>↗</strong></a></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand footer-brand" href="./">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div><nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./capabilities.html">CAPABILITIES</a><a href="./labs.html">GUIDE</a><a href="./study.html">STUDY</a><a href="./contact.html">CONTACT</a></nav><p class="copyright">© <span data-year></span> SOST STABLE LABS</p></div></footer>
+</body>
+</html>
