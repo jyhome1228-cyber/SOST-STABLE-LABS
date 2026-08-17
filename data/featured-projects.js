@@ -14,10 +14,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Commerce'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Commerce'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7df64ceed4164.png',
-    homePrimaryFit: 'cover',
-    homePrimaryPosition: '50% 18%',
-    homePrimaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7df64ceed4164.png'
   },
   {
     id: 'thomastone',
@@ -34,14 +31,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Responsive UI', 'Dynamic News'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Loading'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png',
-    homeSecondary: './assets/projects/thomastone/section-02.jpg',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homePrimaryScale: 1,
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 8%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png'
   },
   {
     id: 'kekomi',
@@ -58,10 +48,7 @@ window.SOST_PROJECTS = [
     services: ['Cafe24', 'Custom UI', 'Campaign'],
     technologies: ['Cafe24', 'HTML/CSS/JavaScript', 'Product Setup'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7eff7625e5ebc.png',
-    homePrimaryFit: 'cover',
-    homePrimaryPosition: '50% 32%',
-    homePrimaryScale: 1.03
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7eff7625e5ebc.png'
   },
   {
     id: 'aesost',
@@ -78,13 +65,7 @@ window.SOST_PROJECTS = [
     services: ['Content Platform', 'Publishing', 'Consulting'],
     technologies: ['Responsive Web', 'Content System', 'Member Flow'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png',
-    homeSecondary: './assets/projects/aesost/view-article.jpg',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 10%',
-    homeSecondaryScale: 1.03
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png'
   },
   {
     id: 'relim',
@@ -101,13 +82,7 @@ window.SOST_PROJECTS = [
     services: ['GitHub Pages', 'Firebase', 'Admin'],
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'SEO'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/fb1c70c96e690.png',
-    homeSecondary: './assets/projects/relim/section-01.jpg',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 16%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/fb1c70c96e690.png'
   },
   {
     id: 'tne-epc',
@@ -124,13 +99,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Interactive Map'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Project Data'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png',
-    homeSecondary: './assets/projects/tne/section-02.jpg',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 10%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png'
   },
   {
     id: 'terracle',
@@ -147,13 +116,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Corporate Website', 'Technology Content'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/39da9ba2da90c.png',
-    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/4bb8ea7023e5f.png',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 10%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/39da9ba2da90c.png'
   },
   {
     id: 'the-petrichor',
@@ -170,10 +133,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Commerce', 'Brand Content'],
     technologies: ['Imweb', 'Responsive Web', 'Member Flow'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png',
-    homePrimaryFit: 'cover',
-    homePrimaryPosition: '50% 18%',
-    homePrimaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png'
   },
   {
     id: 'taepyeong-paper',
@@ -190,13 +150,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Corporate Website', 'Content Architecture'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png',
-    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/92e3b6be907c4.png',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 8%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png'
   },
   {
     id: 'pentagon-law-office-corporate-center',
@@ -213,13 +167,7 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Inquiry UX'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Content'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png',
-    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/fbe0c325466d5.png',
-    homePrimaryFit: 'contain',
-    homePrimaryPosition: '50% 0%',
-    homeSecondaryFit: 'cover',
-    homeSecondaryPosition: '50% 7%',
-    homeSecondaryScale: 1.02
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png'
   },
   {
     id: 'fineb',
@@ -236,9 +184,6 @@ window.SOST_PROJECTS = [
     services: ['Website', 'Quote System', 'Admin'],
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'GitHub'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/545e2714325da.png',
-    homePrimaryFit: 'cover',
-    homePrimaryPosition: '50% 12%',
-    homePrimaryScale: 1.01
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/545e2714325da.png'
   }
 ];
