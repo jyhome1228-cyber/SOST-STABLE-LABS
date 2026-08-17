@@ -21,7 +21,7 @@
 }
 
 .study-article-lead {
-  max-width: 700px;
+  max-width: 720px;
   margin-top: 28px;
   color: var(--text-soft);
   font-size: 18px;
@@ -52,7 +52,7 @@
 
 .study-article-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 760px);
+  grid-template-columns: 220px minmax(0, 780px);
   gap: clamp(48px, 7vw, 120px);
   justify-content: center;
 }
@@ -90,7 +90,7 @@
 .study-article-content .eyebrow { margin-bottom: 16px; }
 
 .study-article-content h2 {
-  max-width: 680px;
+  max-width: 700px;
   margin-bottom: 28px;
   font-size: var(--fs-h2, clamp(26px, 2.25vw, 34px));
   font-weight: 510;
@@ -144,6 +144,159 @@
 
 .study-note p { font-size: 16px; }
 
+.study-plain {
+  margin: 30px 0 0;
+  padding: 28px 30px;
+  border: 1px solid color-mix(in srgb, var(--point) 24%, var(--line));
+  background: color-mix(in srgb, var(--point) 4%, var(--panel));
+}
+
+.study-plain small {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--point);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .08em;
+}
+
+.study-plain strong {
+  display: block;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 540;
+  line-height: 1.45;
+  letter-spacing: -.025em;
+}
+
+.study-plain p {
+  margin-top: 12px !important;
+  font-size: 16px;
+}
+
+.study-term-grid,
+.study-step-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.study-term,
+.study-step {
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 86%, transparent);
+}
+
+.study-term small,
+.study-step small {
+  display: block;
+  color: var(--point);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .08em;
+}
+
+.study-term strong,
+.study-step strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 560;
+  line-height: 1.45;
+}
+
+.study-term p,
+.study-step p {
+  margin-top: 10px !important;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.study-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.study-flow div {
+  position: relative;
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.study-flow div:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -9px;
+  z-index: 2;
+  color: var(--point);
+  content: '→';
+  transform: translateY(-50%);
+}
+
+.study-flow small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.study-flow strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 560;
+  line-height: 1.4;
+}
+
+.study-example {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.study-example > small {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .08em;
+}
+
+.study-example dl {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.study-example dl > div {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 22px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.study-example dt {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 560;
+}
+
+.study-example dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
 .study-code {
   margin-top: 28px;
   padding: 22px 24px;
@@ -179,6 +332,8 @@
   .study-article-meta { margin-top: 18px; }
   .study-article-toc { position: static; }
   .study-article-toc nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .study-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .study-flow div:nth-child(2)::after { display: none; }
 }
 
 @media (max-width: 760px) {
@@ -188,5 +343,11 @@
   .study-article-content > section + section { margin-top: 64px; padding-top: 64px; }
   .study-article-content p,
   .study-article-content li { font-size: 16px; }
-  .study-note { padding: 20px; }
+  .study-note,
+  .study-plain { padding: 20px; }
+  .study-term-grid,
+  .study-step-grid,
+  .study-flow { grid-template-columns: 1fr; }
+  .study-flow div::after { display: none !important; }
+  .study-example dl > div { grid-template-columns: 1fr; gap: 6px; }
 }
