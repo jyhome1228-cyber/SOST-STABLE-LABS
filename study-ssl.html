@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SSL/TLS 인증서와 HTTPS가 웹사이트에서 어떤 역할을 하는지, 인증서 발급·갱신·리디렉션·혼합 콘텐츠까지 실무 기준으로 정리합니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  <link rel="canonical" href="https://sostlabs.com/study-ssl.html" />
+  <title>SSL 인증서는 왜 필요한가? HTTPS 구조와 운영 기준 | SOST STUDY</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/study-article.css?v=20260817-1" />
+  <script src="./js/main.js" defer></script>
+</head>
+<body data-page="study">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="./">SOST STABLE <span>LABS</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
+      <nav class="global-nav" id="global-nav" aria-label="주요 메뉴"><a href="./about.html" data-nav="about">ABOUT</a><a href="./solutions.html" data-nav="solutions">SOLUTIONS</a><a href="./projects.html" data-nav="projects">PROJECTS</a><a href="./capabilities.html" data-nav="capabilities">CAPABILITIES</a><a href="./labs.html" data-nav="guide">GUIDE</a><a href="./study.html" data-nav="study">STUDY</a><a href="./contact.html" data-nav="contact">CONTACT</a></nav>
+      <a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="study-article-hero">
+      <div class="shell study-article-hero-grid">
+        <div>
+          <p class="eyebrow">STUDY 03 · SSL / SECURITY</p>
+          <h1>SSL 인증서는 왜 필요하고<br />HTTPS는 무엇을 바꾸는가?</h1>
+          <p class="study-article-lead">주소창의 자물쇠는 단순한 장식이 아닙니다. 브라우저와 서버 사이의 통신을 암호화하고, 사용자가 접속한 서버가 해당 도메인에 대한 인증서를 제시했는지 확인하는 기본 보안 구조입니다.</p>
+        </div>
+        <dl class="study-article-meta"><div><dt>TOPIC</dt><dd>SSL · TLS · HTTPS</dd></div><div><dt>READ</dt><dd>7 MIN</dd></div><div><dt>DATE</dt><dd>2026.08</dd></div></dl>
+      </div>
+    </section>
+
+    <section class="study-article-body">
+      <div class="shell study-article-layout">
+        <aside class="study-article-toc"><p>CONTENTS</p><nav><a href="#ssl-01">01. SSL과 TLS</a><a href="#ssl-02">02. HTTPS가 하는 일</a><a href="#ssl-03">03. 인증서 발급</a><a href="#ssl-04">04. 자주 생기는 오류</a><a href="#ssl-05">05. 운영 기준</a></nav></aside>
+        <article class="study-article-content">
+          <section id="ssl-01"><p class="eyebrow">01 / SSL & TLS</p><h2>보통 SSL이라고 부르지만 실제 웹에서는 TLS 기반 HTTPS를 사용합니다.</h2><p>실무에서는 관습적으로 SSL 인증서라고 부르지만 현대 웹의 암호화 통신은 TLS를 사용합니다. 중요한 점은 브라우저가 서버와 통신을 시작할 때 인증서를 확인하고, 이후 주고받는 데이터를 암호화된 연결 위에서 전달한다는 것입니다.</p><div class="study-note"><strong>핵심</strong><p>인증서는 “이 도메인으로 접속한 사용자에게 이 서버가 적절한 인증 정보를 제시한다”는 연결의 출발점입니다.</p></div></section>
+
+          <section id="ssl-02"><p class="eyebrow">02 / HTTPS</p><h2>HTTPS는 로그인 페이지뿐 아니라 일반 기업 사이트에도 기본값입니다.</h2><p>HTTP 연결은 중간 구간에서 데이터가 노출되거나 변조될 위험이 있습니다. HTTPS는 브라우저와 서버 사이의 통신을 암호화해 이런 위험을 낮춥니다.</p><ul><li>폼 입력과 로그인 정보 보호</li><li>전송 중 콘텐츠 변조 위험 감소</li><li>브라우저의 안전하지 않음 경고 방지</li><li>외부 API·결제·로그인 연동의 기본 조건 충족</li><li>HTTP와 HTTPS 주소가 섞여 생기는 중복 URL 문제 예방</li></ul></section>
+
+          <section id="ssl-03"><p class="eyebrow">03 / CERTIFICATE</p><h2>인증서는 서버에 한 번 올리고 끝나는 파일이 아니라 유효기간을 관리해야 하는 운영 항목입니다.</h2><p>인증서는 발급 기관과 서비스 방식에 따라 직접 설치할 수도 있고 호스팅·CDN·웹빌더에서 자동으로 발급될 수도 있습니다. 중요한 것은 도메인이 올바른 서버를 가리키고 인증서가 해당 도메인을 포함하며 갱신이 지속되는지입니다.</p><h3>실무에서 확인할 것</h3><ul><li>www 포함 여부와 루트 도메인 인증 범위</li><li>자동 갱신이 실제로 동작하는지</li><li>도메인이나 DNS 이전 시 인증서 재발급 여부</li><li>HTTP 요청을 HTTPS로 리디렉션하는지</li></ul></section>
+
+          <section id="ssl-04"><p class="eyebrow">04 / COMMON ERRORS</p><h2>SSL 오류처럼 보여도 실제 원인은 DNS나 콘텐츠 경로인 경우가 많습니다.</h2><p>사이트 이전 직후 인증서 오류가 생기면 인증서 자체만 볼 것이 아니라 도메인이 어느 서버를 가리키는지 함께 확인해야 합니다. DNS가 예전 서버를 가리키거나 프록시 설정이 어긋나면 정상 인증서가 있어도 다른 서버의 인증서를 받게 됩니다.</p><ul><li>인증서 만료</li><li>도메인 이름 불일치</li><li>DNS가 예전 서버를 가리킴</li><li>HTTPS 페이지에서 HTTP 이미지·스크립트를 불러오는 Mixed Content</li><li>리디렉션 루프 또는 잘못된 프록시 설정</li></ul></section>
+
+          <section id="ssl-05"><p class="eyebrow">05 / OPERATION</p><h2>SSL은 사이트 오픈 체크리스트가 아니라 도메인 운영의 일부로 관리합니다.</h2><p>도메인과 호스팅을 이전하거나 네임서버를 바꾸는 순간 인증서 설정도 함께 영향을 받을 수 있습니다. 따라서 DNS, 배포, 인증서 갱신 상태를 하나의 운영 흐름으로 확인하는 편이 안전합니다.</p><div class="study-note"><strong>SOST의 기준</strong><p>새 사이트를 연결할 때 HTTP/HTTPS 리디렉션, 루트·www 도메인, 인증서 유효기간과 외부 리소스까지 한 번에 점검합니다.</p></div></section>
+        </article>
+      </div>
+    </section>
+
+    <section class="study-article-next"><a class="shell" href="./study-domain-nameserver.html"><div><small>NEXT STUDY · 04</small><h2>도메인과 네임서버는 어떻게 연결되는가?</h2></div><strong>↗</strong></a></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand footer-brand" href="./">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div><nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./capabilities.html">CAPABILITIES</a><a href="./labs.html">GUIDE</a><a href="./study.html">STUDY</a><a href="./contact.html">CONTACT</a></nav><p class="copyright">© <span data-year></span> SOST STABLE LABS</p></div></footer>
+</body>
+</html>
