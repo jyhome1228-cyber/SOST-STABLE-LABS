@@ -66,7 +66,7 @@
 
   if (labsSection) {
     loadStyle('./css/home-labs-series.css?v=20260817-2', 'home-study-preview-css');
-    loadScript('./js/home-labs-series.js?v=20260817-4', 'home-study-preview-js-v4')
+    loadScript('./js/home-labs-series.js?v=20260817-5', 'home-study-preview-js-v5')
       .catch((error) => console.error('Home STUDY preview failed to load.', error));
   }
 
