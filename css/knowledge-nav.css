@@ -1,25 +1,27 @@
 /* GUIDE + STUDY navigation geometry */
 @media (min-width: 1181px) {
   .global-nav {
-    width: clamp(660px, 48vw, 790px) !important;
-    min-width: 660px !important;
+    width: clamp(570px, 40vw, 650px) !important;
+    min-width: 570px !important;
   }
 
   .global-nav a {
-    font-size: 12px !important;
-    letter-spacing: .065em !important;
+    font-size: 14px !important;
+    font-weight: 620 !important;
+    letter-spacing: .035em !important;
   }
 }
 
 @media (max-width: 1180px) and (min-width: 901px) {
   .global-nav {
-    width: min(68vw, 720px) !important;
+    width: min(62vw, 620px) !important;
     min-width: 0 !important;
   }
 
   .global-nav a {
-    font-size: 11px !important;
-    letter-spacing: .05em !important;
+    font-size: 13px !important;
+    font-weight: 610 !important;
+    letter-spacing: .03em !important;
   }
 }
 
