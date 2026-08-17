@@ -1,33 +1,42 @@
 /* STUDY — editorial / magazine archive */
 .study-hero {
-  padding: calc(var(--header-height) + 96px) 0 104px;
+  padding: calc(var(--header-height) + 88px) 0 94px;
   border-bottom: 1px solid var(--line);
 }
 
 .study-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .55fr);
-  gap: clamp(56px, 8vw, 120px);
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, .58fr);
+  gap: clamp(52px, 7vw, 108px);
   align-items: end;
 }
 
+.study-hero .eyebrow,
+.study-archive-head .eyebrow {
+  font-size: 12px;
+  font-weight: 660;
+  letter-spacing: .105em;
+}
+
 .study-hero h1 {
-  max-width: 920px;
-  margin-top: 18px;
-  font-size: clamp(46px, 5.3vw, 76px);
-  font-weight: 470;
-  line-height: 1.04;
-  letter-spacing: -.06em;
+  max-width: 840px;
+  margin-top: 17px;
+  font-size: clamp(44px, 4.35vw, 64px);
+  font-weight: 510;
+  line-height: 1.08;
+  letter-spacing: -.052em;
 }
 
 .study-hero-copy {
+  max-width: 520px;
   color: var(--text-soft);
-  font-size: 17px;
+  font-size: 16px;
+  font-weight: 430;
   line-height: 1.82;
 }
 
 .study-toolbar {
-  padding: 32px 0;
+  padding: 30px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -50,31 +59,32 @@
   border-radius: 999px;
   color: var(--text-muted);
   font-size: 11px;
-  font-weight: 620;
-  letter-spacing: .04em;
+  font-weight: 640;
+  letter-spacing: .045em;
 }
 
 .study-toolbar small {
   color: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: .08em;
+  font-size: 10.5px;
+  font-weight: 560;
+  letter-spacing: .085em;
 }
 
 .study-featured {
-  padding: 84px 0 100px;
+  padding: 78px 0 96px;
   border-bottom: 1px solid var(--line);
 }
 
 .study-featured-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(340px, .65fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.12fr) minmax(340px, .68fr);
+  gap: 24px;
   align-items: stretch;
 }
 
 .study-feature-visual {
   position: relative;
-  min-height: 520px;
+  min-height: 500px;
   overflow: hidden;
   border: 1px solid var(--line);
   background:
@@ -114,39 +124,44 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--point);
-  font-size: clamp(42px, 6vw, 86px);
-  font-weight: 540;
-  letter-spacing: -.06em;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 560;
+  line-height: 1;
+  letter-spacing: -.055em;
 }
 
 .study-feature-copy {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 38px;
+  padding: 36px;
   border: 1px solid var(--line);
   background: var(--panel);
 }
 
 .study-kicker {
   color: var(--point);
-  font-size: 11px;
-  font-weight: 680;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.4;
   letter-spacing: .09em;
 }
 
 .study-feature-copy h2 {
-  margin-top: 72px;
-  font-size: clamp(30px, 3.2vw, 48px);
-  font-weight: 540;
-  line-height: 1.22;
-  letter-spacing: -.05em;
+  max-width: 520px;
+  margin-top: 48px;
+  font-size: clamp(28px, 2.45vw, 38px);
+  font-weight: 570;
+  line-height: 1.26;
+  letter-spacing: -.045em;
 }
 
-.study-feature-copy > p {
-  margin-top: 22px;
+.study-feature-copy > div > p:last-child {
+  max-width: 540px;
+  margin-top: 18px;
   color: var(--text-soft);
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 420;
   line-height: 1.78;
 }
 
@@ -155,15 +170,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 48px;
-  padding-top: 18px;
+  margin-top: 42px;
+  padding-top: 17px;
   border-top: 1px solid var(--line);
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: .035em;
 }
 
 .study-archive {
-  padding: 100px 0 140px;
+  padding: 92px 0 132px;
 }
 
 .study-archive-head {
@@ -171,19 +188,21 @@
   align-items: end;
   justify-content: space-between;
   gap: 30px;
-  margin-bottom: 38px;
+  margin-bottom: 36px;
 }
 
 .study-archive-head h2 {
-  margin-top: 12px;
-  font-size: clamp(30px, 3vw, 44px);
-  font-weight: 520;
-  letter-spacing: -.045em;
+  margin-top: 11px;
+  font-size: clamp(28px, 2.5vw, 38px);
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: -.042em;
 }
 
 .study-archive-head span {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 10.5px;
+  font-weight: 560;
   letter-spacing: .08em;
 }
 
@@ -195,8 +214,8 @@
 }
 
 .study-card {
-  min-height: 390px;
-  padding: 28px;
+  min-height: 380px;
+  padding: 27px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: color-mix(in srgb, var(--panel) 82%, transparent);
@@ -216,6 +235,7 @@
   gap: 18px;
   color: var(--text-muted);
   font-size: 10px;
+  font-weight: 580;
   letter-spacing: .08em;
 }
 
@@ -224,18 +244,20 @@
 }
 
 .study-card h3 {
-  margin-top: 68px;
-  font-size: clamp(22px, 1.8vw, 28px);
-  font-weight: 560;
-  line-height: 1.36;
-  letter-spacing: -.04em;
+  max-width: 94%;
+  margin-top: 58px;
+  font-size: clamp(20px, 1.55vw, 25px);
+  font-weight: 570;
+  line-height: 1.4;
+  letter-spacing: -.035em;
 }
 
 .study-card > p {
-  margin-top: 18px;
+  margin-top: 16px;
   color: var(--text-soft);
   font-size: 14px;
-  line-height: 1.75;
+  font-weight: 420;
+  line-height: 1.72;
 }
 
 .study-card-foot {
@@ -243,8 +265,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  margin-top: 42px;
-  padding-top: 16px;
+  margin-top: 38px;
+  padding-top: 15px;
   border-top: 1px solid var(--line);
   color: var(--text-muted);
   font-size: 10px;
@@ -252,14 +274,18 @@
 
 .study-card-foot strong {
   color: var(--point);
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 520;
 }
 
 @media (max-width: 1000px) {
   .study-hero-grid,
   .study-featured-grid {
     grid-template-columns: 1fr;
+  }
+
+  .study-hero-copy {
+    max-width: 680px;
   }
 
   .study-grid {
@@ -269,7 +295,16 @@
 
 @media (max-width: 680px) {
   .study-hero {
-    padding-top: calc(var(--header-height) + 68px);
+    padding-top: calc(var(--header-height) + 62px);
+    padding-bottom: 72px;
+  }
+
+  .study-hero h1 {
+    font-size: clamp(38px, 11vw, 50px);
+  }
+
+  .study-hero-copy {
+    font-size: 15px;
   }
 
   .study-toolbar-inner,
@@ -279,15 +314,20 @@
   }
 
   .study-feature-visual {
-    min-height: 360px;
+    min-height: 340px;
   }
 
   .study-feature-copy {
-    padding: 28px 24px;
+    padding: 27px 23px;
   }
 
   .study-feature-copy h2 {
-    margin-top: 52px;
+    margin-top: 40px;
+    font-size: 29px;
+  }
+
+  .study-feature-copy > div > p:last-child {
+    font-size: 14.5px;
   }
 
   .study-grid {
@@ -295,6 +335,6 @@
   }
 
   .study-card {
-    min-height: 340px;
+    min-height: 330px;
   }
 }
