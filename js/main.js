@@ -84,7 +84,7 @@
     await loadScript('./js/main-core.js?v=20260814-2', 'main-core');
     await loadScript('./js/knowledge-nav.js?v=20260817-1', 'knowledge-nav');
     if (document.body?.dataset.page === 'home') {
-      await loadScript('./js/home-cta-enhance.js?v=20260817-3', 'home-cta-refresh');
+      await loadScript('./js/home-cta-enhance.js?v=20260817-4', 'home-cta-refresh-v4');
     }
     await loadScript('./js/site-finalize.js?v=20260814-2', 'site-finalize');
     reveal();
