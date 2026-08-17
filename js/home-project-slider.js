@@ -28,6 +28,30 @@
     }
   };
 
+  const fitValue = (value, fallback = 'cover') => value === 'contain' ? 'contain' : fallback;
+  const scaleValue = (value, fallback = 1) => {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? Math.max(.92, Math.min(parsed, 1.12)) : fallback;
+  };
+
+  const visualStyle = (project) => {
+    const primaryFit = fitValue(project.homePrimaryFit, 'cover');
+    const primaryPosition = project.homePrimaryPosition || project.thumbPosition || '50% 12%';
+    const primaryScale = scaleValue(project.homePrimaryScale, 1);
+    const secondaryFit = fitValue(project.homeSecondaryFit, 'cover');
+    const secondaryPosition = project.homeSecondaryPosition || '50% 10%';
+    const secondaryScale = scaleValue(project.homeSecondaryScale, 1);
+
+    return [
+      `--home-primary-fit:${primaryFit}`,
+      `--home-primary-position:${escapeHTML(primaryPosition)}`,
+      `--home-primary-scale:${primaryScale}`,
+      `--home-secondary-fit:${secondaryFit}`,
+      `--home-secondary-position:${escapeHTML(secondaryPosition)}`,
+      `--home-secondary-scale:${secondaryScale}`
+    ].join(';');
+  };
+
   const renderVisual = (project) => {
     const primary = escapeHTML(project.thumbnail);
     const secondary = project.homeSecondary ? escapeHTML(project.homeSecondary) : '';
@@ -59,7 +83,7 @@
       .join('');
 
     return `
-      <article class="home-project-card">
+      <article class="home-project-card" style="${visualStyle(project)}">
         <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기">
           <div class="home-project-browser">
             <div class="home-project-browser-bar" aria-hidden="true">
