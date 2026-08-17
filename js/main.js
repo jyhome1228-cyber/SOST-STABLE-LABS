@@ -80,6 +80,7 @@
     await loadStyle('./css/project-unify.css?v=20260814-1', 'project-unify.css');
     await loadStyle('./css/blue-contrast-fix.css?v=20260817-1', 'blue-contrast-fix.css');
     await loadStyle('./css/knowledge-nav.css?v=20260817-2', 'knowledge-nav.css');
+    await loadStyle('./css/sost-design-system.css?v=20260817-1', 'sost-design-system.css');
     await loadScript('./js/main-core.js?v=20260814-2', 'main-core');
     await loadScript('./js/knowledge-nav.js?v=20260817-1', 'knowledge-nav');
     if (document.body?.dataset.page === 'home') {
