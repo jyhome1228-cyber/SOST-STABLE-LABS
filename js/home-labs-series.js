@@ -8,20 +8,22 @@
 
   const studies = [
     {
-      no: '01',
-      label: 'SEO / WEB',
+      no: '01', label: 'SEO / WEB',
       title: '검색 노출은 디자인 이후가 아니라 사이트 구조에서 시작됩니다.',
       description: '검색 의도, 페이지 역할, 메타 정보와 콘텐츠를 처음부터 함께 설계해야 하는 이유를 정리합니다.',
-      meta: '8 MIN READ',
-      href: './study-seo.html'
+      meta: '8 MIN READ', href: './study-seo.html'
     },
     {
-      no: '02',
-      label: 'CDN / WEB INFRA',
+      no: '02', label: 'CDN / WEB INFRA',
       title: '이미지 URL을 HTML에 넣으면 실제로 무엇이 일어날까?',
       description: '이미지 저장소와 CDN, 외부 URL 호출, 저장 용량과 트래픽의 차이를 실무 기준으로 설명합니다.',
-      meta: '7 MIN READ',
-      href: './study-cdn-images.html'
+      meta: '7 MIN READ', href: './study-cdn-images.html'
+    },
+    {
+      no: '03', label: 'SSL / SECURITY',
+      title: 'SSL 인증서는 왜 필요하고 HTTPS는 무엇을 바꾸는가?',
+      description: '인증서, 암호화, HTTPS 리디렉션과 사이트 이전 시 함께 확인할 보안 기본값을 정리합니다.',
+      meta: '7 MIN READ', href: './study-ssl.html'
     }
   ];
 
@@ -42,16 +44,10 @@
       <div class="home-labs-cards">
         ${studies.map((study) => `
           <a class="home-labs-card" href="${study.href}">
-            <div class="home-labs-card-top">
-              <span>${study.no}</span>
-              <small>${study.label}</small>
-            </div>
+            <div class="home-labs-card-top"><span>${study.no}</span><small>${study.label}</small></div>
             <h3>${study.title}</h3>
             <p>${study.description}</p>
-            <div class="home-labs-signal">
-              <span>${study.meta}</span>
-              <strong>↗</strong>
-            </div>
+            <div class="home-labs-signal"><span>${study.meta}</span><strong>↗</strong></div>
           </a>
         `).join('')}
       </div>
