@@ -6,10 +6,10 @@ window.NW_WORK = {
   client: 'PTG LAW / 펜타곤 법률세무회계',
   year: '2026',
   category: 'LEGAL · CONSULTING',
-  scope: 'Corporate Website · Professionals · Case Archive · Inquiry Assistant',
+  scope: 'Corporate Website · Practice Areas · Professionals · Case Archive · Service Centers · Inquiry',
   role: 'Planning · UX/UI · Imweb Publishing · Custom Development',
   summary: 'PTG LAW의 핵심은 서로 다른 전문영역을 단순 메뉴로 나열하는 것이 아니라, 방문자가 자신의 문제를 이해하고 적합한 전문가와 업무사례를 확인한 뒤 상담으로 이어지도록 구조를 만드는 것이었습니다. 구성원 프로필의 관련 업무분야와 업무사례의 분류 체계를 연결하고, 문의 내용을 단계적으로 정리하는 상담 어시스턴트를 더해 정보 탐색과 상담 준비가 하나의 흐름으로 이어지도록 설계했습니다.',
-  thumbnail: './assets/projects/pentagon/desktop-main.jpg',
+  thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png',
   liveUrl: 'https://www.ptglaw.co.kr/',
   develop: {
     version: 'PTG LAW / WEBSITE BUILD 2026',
@@ -43,10 +43,10 @@ window.NW_WORK = {
     ],
     sitemapCopy: '브랜드 소개, 전문영역, 전문가, 업무사례와 상담을 고객의 의사결정 순서에 맞게 정리했습니다.',
     sitemap: [
-      { no: '01', title: 'Brand', items: ['Main', '펜타곤 소개', '다섯 핵심 전문영역'] },
-      { no: '02', title: 'Professionals', items: ['구성원 소개', '전문가 프로필', '관련 업무분야'] },
-      { no: '03', title: 'Proof', items: ['업무사례', '분야별 필터', '관련 전문영역'] },
-      { no: '04', title: 'Consultation', items: ['문의하기', '문의 어시스턴트', '상담 신청'] }
+      { no: '01', title: 'Brand', items: ['Main', '펜타곤 소개', '펜타곤 소식', '오시는 길'] },
+      { no: '02', title: 'Practice Areas', items: ['업무분야', '법률', '세무', 'IP', '추심', '등기'] },
+      { no: '03', title: 'Professionals', items: ['구성원 소개', '전문가 프로필', '관련 업무분야'] },
+      { no: '04', title: 'Proof & Service', items: ['업무사례', '상속원스탑서비스', '법인설립지원센터', '문의하기'] }
     ],
     dataFlowCopy: '상담 문의를 바로 제출시키기보다 고객이 자신의 상황을 정리하고 담당자가 필요한 정보를 빠르게 파악할 수 있도록 단계형 흐름으로 설계했습니다.',
     dataFlow: [
