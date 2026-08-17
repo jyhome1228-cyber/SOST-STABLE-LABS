@@ -13,51 +13,20 @@
 </head>
 <body data-page="study">
   <a class="skip-link" href="#main">본문 바로가기</a>
-  <header class="site-header" data-header>
-    <div class="shell header-inner">
-      <a class="brand" href="./">SOST STABLE <span>LABS</span></a>
-      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button>
-      <nav class="global-nav" id="global-nav" aria-label="주요 메뉴">
-        <a href="./about.html" data-nav="about">ABOUT</a><a href="./solutions.html" data-nav="solutions">SOLUTIONS</a><a href="./projects.html" data-nav="projects">PROJECTS</a><a href="./capabilities.html" data-nav="capabilities">CAPABILITIES</a><a href="./labs.html" data-nav="guide">GUIDE</a><a href="./study.html" data-nav="study">STUDY</a><a href="./contact.html" data-nav="contact">CONTACT</a>
-      </nav>
-      <a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a>
-    </div>
-  </header>
+  <header class="site-header" data-header><div class="shell header-inner"><a class="brand" href="./">SOST STABLE <span>LABS</span></a><button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="global-nav"><span></span><span></span></button><nav class="global-nav" id="global-nav" aria-label="주요 메뉴"><a href="./about.html" data-nav="about">ABOUT</a><a href="./solutions.html" data-nav="solutions">SOLUTIONS</a><a href="./projects.html" data-nav="projects">PROJECTS</a><a href="./capabilities.html" data-nav="capabilities">CAPABILITIES</a><a href="./labs.html" data-nav="guide">GUIDE</a><a href="./study.html" data-nav="study">STUDY</a><a href="./contact.html" data-nav="contact">CONTACT</a></nav><a class="header-action" href="./contact.html">START A PROJECT <span>↗</span></a></div></header>
 
   <main id="main">
-    <section class="study-article-hero">
-      <div class="shell study-article-hero-grid">
-        <div>
-          <p class="eyebrow">STUDY 02 · CDN / WEB INFRASTRUCTURE</p>
-          <h1>이미지 URL을 HTML에 넣으면<br />실제로 무엇이 일어날까?</h1>
-          <p class="study-article-lead">이미지를 코드로 바꾼다고 표현하지만 실제로는 이미지가 다른 파일이 되는 것이 아닙니다. 브라우저가 이미지가 저장된 주소를 보고 원격 서버에 요청하는 구조입니다. 저장소, CDN과 트래픽의 관계를 실무 기준으로 정리합니다.</p>
-        </div>
-        <dl class="study-article-meta">
-          <div><dt>TOPIC</dt><dd>CDN · IMAGE DELIVERY</dd></div>
-          <div><dt>READ</dt><dd>7 MIN</dd></div>
-          <div><dt>DATE</dt><dd>2026.08</dd></div>
-        </dl>
-      </div>
-    </section>
+    <section class="study-article-hero"><div class="shell study-article-hero-grid"><div><p class="eyebrow">STUDY 02 · CDN / WEB INFRASTRUCTURE</p><h1>이미지 URL을 HTML에 넣으면<br />실제로 무엇이 일어날까?</h1><p class="study-article-lead">이미지를 코드로 바꾼다고 표현하지만 실제로는 이미지가 다른 파일이 되는 것이 아닙니다. 브라우저가 이미지가 저장된 주소를 보고 원격 서버에 요청하는 구조입니다. 저장소, CDN과 트래픽의 관계를 실무 기준으로 정리합니다.</p></div><dl class="study-article-meta"><div><dt>TOPIC</dt><dd>CDN · IMAGE DELIVERY</dd></div><div><dt>READ</dt><dd>7 MIN</dd></div><div><dt>DATE</dt><dd>2026.08</dd></div></dl></div></section>
 
-    <section class="study-article-body">
-      <div class="shell study-article-layout">
-        <aside class="study-article-toc"><p>CONTENTS</p><nav><a href="#cdn-01">01. 이미지 URL</a><a href="#cdn-02">02. 저장과 전달</a><a href="#cdn-03">03. 트래픽</a><a href="#cdn-04">04. CDN의 역할</a><a href="#cdn-05">05. 실무 구조</a></nav></aside>
-        <article class="study-article-content">
-          <section id="cdn-01"><p class="eyebrow">01 / IMAGE URL</p><h2>&lt;img src&gt;는 이미지를 코드 안에 저장하는 것이 아니라 주소를 적는 것입니다.</h2><p>HTML에서 이미지를 보여줄 때 가장 흔한 방식은 <code>&lt;img src="..."&gt;</code>입니다. 이때 HTML 안에는 이미지 파일 자체가 들어가는 것이 아니라 이미지가 있는 위치만 기록됩니다.</p><p>사용자가 페이지를 열면 브라우저는 HTML을 먼저 받은 뒤, 그 안에 적힌 이미지 URL을 발견하고 해당 서버에 별도의 요청을 보냅니다. 이미지가 20개라면 브라우저는 필요한 이미지들을 각각 요청해 화면에 표시합니다.</p><div class="study-code">&lt;img src="https://cdn.example.com/images/project-01.jpg" alt="프로젝트 이미지"&gt;</div><div class="study-note"><strong>즉, URL은 이미지의 위치입니다.</strong><p>이미지를 HTML 문자열로 변환한 것이 아니라 저장된 파일을 외부에서 불러오는 방식입니다.</p></div></section>
+    <section class="study-article-body"><div class="shell study-article-layout"><aside class="study-article-toc"><p>CONTENTS</p><nav><a href="#cdn-01">01. 이미지 URL</a><a href="#cdn-02">02. 저장과 전달</a><a href="#cdn-03">03. 트래픽</a><a href="#cdn-04">04. CDN의 역할</a><a href="#cdn-05">05. 실무 구조</a></nav></aside><article class="study-article-content">
+      <section id="cdn-01"><p class="eyebrow">01 / IMAGE URL</p><h2>&lt;img src&gt;는 이미지를 코드 안에 저장하는 것이 아니라 주소를 적는 것입니다.</h2><p>HTML에서 이미지를 보여줄 때 가장 흔한 방식은 <code>&lt;img src="..."&gt;</code>입니다. 이때 HTML 안에는 이미지 파일 자체가 들어가는 것이 아니라 이미지가 있는 위치만 기록됩니다.</p><p>사용자가 페이지를 열면 브라우저는 HTML을 먼저 받은 뒤, 그 안에 적힌 이미지 URL을 발견하고 해당 서버에 별도의 요청을 보냅니다. 이미지가 20개라면 브라우저는 필요한 이미지들을 각각 요청해 화면에 표시합니다.</p><div class="study-code">&lt;img src="https://cdn.example.com/images/project-01.jpg" alt="프로젝트 이미지"&gt;</div><div class="study-note"><strong>즉, URL은 이미지의 위치입니다.</strong><p>이미지를 HTML 문자열로 변환한 것이 아니라 저장된 파일을 외부에서 불러오는 방식입니다.</p></div></section>
+      <section id="cdn-02"><p class="eyebrow">02 / STORAGE & DELIVERY</p><h2>원본 파일을 보관하는 곳과 사용자에게 전달하는 곳은 같을 수도, 다를 수도 있습니다.</h2><p>이미지를 서비스하려면 먼저 파일이 저장될 공간이 필요합니다. 웹호스팅 서버, 오브젝트 스토리지, 이미지 관리 서비스 등이 원본 저장소 역할을 할 수 있습니다.</p><p>규모가 커지면 원본 저장소 앞에 CDN을 두는 경우가 많습니다. CDN은 사용자가 이미지에 접근할 때 매번 원본 서버까지 가지 않도록 여러 지역의 캐시 서버에서 파일을 전달합니다.</p><h3>구조를 단순화하면</h3><ul><li>Storage: 원본 파일을 보관</li><li>CDN: 자주 요청되는 파일을 가까운 곳에서 전달</li><li>HTML: 파일의 URL을 참조</li><li>Browser: URL을 보고 실제 이미지를 요청</li></ul></section>
+      <section id="cdn-03"><p class="eyebrow">03 / TRAFFIC</p><h2>같은 이미지 URL을 여러 사이트에서 호출하면 이미지 트래픽은 그 이미지 서버에 누적됩니다.</h2><p>이미지를 한 번 업로드한 뒤 여러 웹사이트에서 같은 URL을 사용하면 저장 공간은 한 파일만 사용합니다. 하지만 방문자가 페이지를 열 때마다 이미지 데이터는 전송되어야 합니다. 따라서 저장 용량과 전송량은 별개의 문제입니다.</p><p>예를 들어 1MB 이미지가 10,000번 실제 전송된다면 단순 계산으로 약 10GB 수준의 데이터 전달이 발생할 수 있습니다. 실제 전송량은 캐시, 압축, 브라우저 동작과 CDN 정책에 따라 달라집니다.</p><div class="study-note"><strong>저장 비용 ≠ 전송 비용</strong><p>이미지 파일을 몇 장 보관하는지는 Storage 문제이고, 얼마나 많은 사람이 반복해서 보는지는 Bandwidth/CDN 트래픽 문제입니다.</p></div></section>
+      <section id="cdn-04"><p class="eyebrow">04 / WHY CDN</p><h2>CDN은 단순히 URL을 만들어주는 서비스가 아니라 전달 부담을 분산하는 계층입니다.</h2><p>방문자가 늘어날수록 이미지, 영상, CSS, JavaScript 같은 정적 파일의 반복 요청이 많아집니다. CDN은 이런 정적 콘텐츠를 캐시해 원본 서버의 부하를 줄이고 사용자와 가까운 위치에서 전달하는 역할을 합니다.</p><ul><li>원본 서버 요청 감소</li><li>지역에 따른 전송 지연 완화</li><li>대량 정적 파일 전달에 유리</li><li>브라우저 캐시 정책과 함께 활용 가능</li><li>서비스에 따라 이미지 리사이징·압축 기능 제공</li></ul><p>그래서 웹빌더나 커머스 플랫폼이 대량의 이미지를 다룰 수 있는 이유는 단순히 큰 서버 하나에 모두 저장해서가 아니라 저장소와 CDN, 캐시 정책을 함께 운영하기 때문입니다.</p></section>
+      <section id="cdn-05"><p class="eyebrow">05 / PRACTICAL SETUP</p><h2>작게 시작할 때는 구조를 복잡하게 만들 필요가 없지만, 소유권과 이전 가능성은 생각해야 합니다.</h2><p>포트폴리오나 기업 사이트처럼 이미지 수가 제한적이라면 현재 사용하는 플랫폼의 CDN이나 안정적인 이미지 호스팅을 활용해도 충분한 경우가 많습니다. 반면 여러 사이트에서 같은 자산을 공유하거나 서비스 사용자가 직접 이미지를 업로드한다면 별도 Storage와 CDN 구조를 검토하는 편이 좋습니다.</p><h3>실무에서 먼저 확인할 것</h3><ul><li>이미지를 누가 업로드하고 관리하는가</li><li>파일이 어느 계정과 서비스에 종속되는가</li><li>원본 파일 백업이 가능한가</li><li>도메인이나 플랫폼 이전 시 URL을 유지할 수 있는가</li><li>월간 저장량보다 실제 전송량이 얼마나 되는가</li><li>이미지 크기 최적화와 WebP/AVIF 같은 포맷을 사용할 수 있는가</li></ul><div class="study-note"><strong>SOST의 기준</strong><p>초기에는 가장 단순한 구조로 시작하되, 이미지가 특정 플랫폼 계정에 완전히 묶이지 않도록 원본 보관과 이전 경로를 함께 관리합니다.</p></div></section>
+    </article></div></section>
 
-          <section id="cdn-02"><p class="eyebrow">02 / STORAGE & DELIVERY</p><h2>원본 파일을 보관하는 곳과 사용자에게 전달하는 곳은 같을 수도, 다를 수도 있습니다.</h2><p>이미지를 서비스하려면 먼저 파일이 저장될 공간이 필요합니다. 웹호스팅 서버, 오브젝트 스토리지, 이미지 관리 서비스 등이 원본 저장소 역할을 할 수 있습니다.</p><p>규모가 커지면 원본 저장소 앞에 CDN을 두는 경우가 많습니다. CDN은 사용자가 이미지에 접근할 때 매번 원본 서버까지 가지 않도록 여러 지역의 캐시 서버에서 파일을 전달합니다.</p><h3>구조를 단순화하면</h3><ul><li>Storage: 원본 파일을 보관</li><li>CDN: 자주 요청되는 파일을 가까운 곳에서 전달</li><li>HTML: 파일의 URL을 참조</li><li>Browser: URL을 보고 실제 이미지를 요청</li></ul></section>
-
-          <section id="cdn-03"><p class="eyebrow">03 / TRAFFIC</p><h2>같은 이미지 URL을 여러 사이트에서 호출하면 이미지 트래픽은 그 이미지 서버에 누적됩니다.</h2><p>이미지를 한 번 업로드한 뒤 여러 웹사이트에서 같은 URL을 사용하면 저장 공간은 한 파일만 사용합니다. 하지만 방문자가 페이지를 열 때마다 이미지 데이터는 전송되어야 합니다. 따라서 저장 용량과 전송량은 별개의 문제입니다.</p><p>예를 들어 1MB 이미지가 10,000번 실제 전송된다면 단순 계산으로 약 10GB 수준의 데이터 전달이 발생할 수 있습니다. 실제 전송량은 캐시, 압축, 브라우저 동작과 CDN 정책에 따라 달라집니다.</p><div class="study-note"><strong>저장 비용 ≠ 전송 비용</strong><p>이미지 파일을 몇 장 보관하는지는 Storage 문제이고, 얼마나 많은 사람이 반복해서 보는지는 Bandwidth/CDN 트래픽 문제입니다.</p></div></section>
-
-          <section id="cdn-04"><p class="eyebrow">04 / WHY CDN</p><h2>CDN은 단순히 URL을 만들어주는 서비스가 아니라 전달 부담을 분산하는 계층입니다.</h2><p>방문자가 늘어날수록 이미지, 영상, CSS, JavaScript 같은 정적 파일의 반복 요청이 많아집니다. CDN은 이런 정적 콘텐츠를 캐시해 원본 서버의 부하를 줄이고 사용자와 가까운 위치에서 전달하는 역할을 합니다.</p><ul><li>원본 서버 요청 감소</li><li>지역에 따른 전송 지연 완화</li><li>대량 정적 파일 전달에 유리</li><li>브라우저 캐시 정책과 함께 활용 가능</li><li>서비스에 따라 이미지 리사이징·압축 기능 제공</li></ul><p>그래서 웹빌더나 커머스 플랫폼이 대량의 이미지를 다룰 수 있는 이유는 단순히 큰 서버 하나에 모두 저장해서가 아니라 저장소와 CDN, 캐시 정책을 함께 운영하기 때문입니다.</p></section>
-
-          <section id="cdn-05"><p class="eyebrow">05 / PRACTICAL SETUP</p><h2>작게 시작할 때는 구조를 복잡하게 만들 필요가 없지만, 소유권과 이전 가능성은 생각해야 합니다.</h2><p>포트폴리오나 기업 사이트처럼 이미지 수가 제한적이라면 현재 사용하는 플랫폼의 CDN이나 안정적인 이미지 호스팅을 활용해도 충분한 경우가 많습니다. 반면 여러 사이트에서 같은 자산을 공유하거나 서비스 사용자가 직접 이미지를 업로드한다면 별도 Storage와 CDN 구조를 검토하는 편이 좋습니다.</p><h3>실무에서 먼저 확인할 것</h3><ul><li>이미지를 누가 업로드하고 관리하는가</li><li>파일이 어느 계정과 서비스에 종속되는가</li><li>원본 파일 백업이 가능한가</li><li>도메인이나 플랫폼 이전 시 URL을 유지할 수 있는가</li><li>월간 저장량보다 실제 전송량이 얼마나 되는가</li><li>이미지 크기 최적화와 WebP/AVIF 같은 포맷을 사용할 수 있는가</li></ul><div class="study-note"><strong>SOST의 기준</strong><p>초기에는 가장 단순한 구조로 시작하되, 이미지가 특정 플랫폼 계정에 완전히 묶이지 않도록 원본 보관과 이전 경로를 함께 관리합니다.</p></div></section>
-        </article>
-      </div>
-    </section>
-
-    <section class="study-article-next"><a class="shell" href="./study.html"><div><small>BACK TO STUDY</small><h2>다른 실무 기록 보기</h2></div><strong>↗</strong></a></section>
+    <section class="study-article-next"><a class="shell" href="./study-ssl.html"><div><small>NEXT STUDY · 03</small><h2>SSL 인증서는 왜 필요하고 HTTPS는 무엇을 바꾸는가?</h2></div><strong>↗</strong></a></section>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand footer-brand" href="./">SOST STABLE <span>LABS</span></a><p>Stable Systems for Better Business.</p></div><nav class="footer-nav"><a href="./about.html">ABOUT</a><a href="./solutions.html">SOLUTIONS</a><a href="./projects.html">PROJECTS</a><a href="./capabilities.html">CAPABILITIES</a><a href="./labs.html">GUIDE</a><a href="./study.html">STUDY</a><a href="./contact.html">CONTACT</a></nav><p class="copyright">© <span data-year></span> SOST STABLE LABS</p></div></footer>
 </body>
