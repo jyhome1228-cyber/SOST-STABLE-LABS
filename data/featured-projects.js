@@ -31,7 +31,8 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Responsive UI', 'Dynamic News'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Loading'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png',
+    homeSecondary: './assets/projects/thomastone/section-02.jpg'
   },
   {
     id: 'kekomi',
@@ -65,7 +66,8 @@ window.SOST_PROJECTS = [
     services: ['Content Platform', 'Publishing', 'Consulting'],
     technologies: ['Responsive Web', 'Content System', 'Member Flow'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png',
+    homeSecondary: './assets/projects/aesost/view-article.jpg'
   },
   {
     id: 'relim',
@@ -82,7 +84,8 @@ window.SOST_PROJECTS = [
     services: ['GitHub Pages', 'Firebase', 'Admin'],
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'SEO'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/fb1c70c96e690.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/fb1c70c96e690.png',
+    homeSecondary: './assets/projects/relim/section-01.jpg'
   },
   {
     id: 'tne-epc',
@@ -99,7 +102,8 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Interactive Map'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Project Data'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png',
+    homeSecondary: './assets/projects/tne/section-02.jpg'
   },
   {
     id: 'the-petrichor',
@@ -133,7 +137,8 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Corporate Website', 'Content Architecture'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png',
+    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/92e3b6be907c4.png'
   },
   {
     id: 'pentagon-law-office-corporate-center',
@@ -150,7 +155,8 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Inquiry UX'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Content'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png',
+    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/fbe0c325466d5.png'
   },
   {
     id: 'fineb',
