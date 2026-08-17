@@ -18,11 +18,12 @@
     relim: 'relim.js',
     'tne-epc': 'tne-epc.js',
     'the-petrichor': './data/project-the-petrichor.js?v=20260815-1',
-    'pentagon-law-office-corporate-center': './data/project-ptg-law-detail.js?v=20260815-1',
+    'taepyeong-paper': './data/project-taepyeong-paper.js?v=20260817-1',
+    'pentagon-law-office-corporate-center': './data/project-ptg-law-detail.js?v=20260817-1',
     fineb: 'fineb.js'
   };
 
-  const localWorkIds = new Set(['the-petrichor', 'pentagon-law-office-corporate-center']);
+  const localWorkIds = new Set(['the-petrichor', 'taepyeong-paper', 'pentagon-law-office-corporate-center']);
 
   const esc = (value = '') => String(value)
     .replace(/&/g, '&amp;')
