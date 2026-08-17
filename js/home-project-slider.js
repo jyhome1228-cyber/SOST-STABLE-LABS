@@ -28,68 +28,22 @@
     }
   };
 
-  const fitValue = (value, fallback = 'cover') => value === 'contain' ? 'contain' : fallback;
-  const scaleValue = (value, fallback = 1) => {
-    const parsed = Number(value);
-    return Number.isFinite(parsed) ? Math.max(.92, Math.min(parsed, 1.12)) : fallback;
-  };
-
-  const visualStyle = (project) => {
-    const primaryFit = fitValue(project.homePrimaryFit, 'cover');
-    const primaryPosition = project.homePrimaryPosition || project.thumbPosition || '50% 12%';
-    const primaryScale = scaleValue(project.homePrimaryScale, 1);
-    const secondaryFit = fitValue(project.homeSecondaryFit, 'cover');
-    const secondaryPosition = project.homeSecondaryPosition || '50% 10%';
-    const secondaryScale = scaleValue(project.homeSecondaryScale, 1);
-
-    return [
-      `--home-primary-fit:${primaryFit}`,
-      `--home-primary-position:${escapeHTML(primaryPosition)}`,
-      `--home-primary-scale:${primaryScale}`,
-      `--home-secondary-fit:${secondaryFit}`,
-      `--home-secondary-position:${escapeHTML(secondaryPosition)}`,
-      `--home-secondary-scale:${secondaryScale}`
-    ].join(';');
-  };
-
-  const renderVisual = (project) => {
-    const primary = escapeHTML(project.thumbnail);
-    const secondary = project.homeSecondary ? escapeHTML(project.homeSecondary) : '';
-    const title = escapeHTML(project.title);
-
-    if (secondary) {
-      return `
-        <div class="home-project-image is-dual">
-          <span class="home-project-screen home-project-screen--primary">
-            <img src="${primary}" alt="${title} 메인 사이트 화면" loading="lazy" decoding="async" />
-          </span>
-          <span class="home-project-screen home-project-screen--secondary">
-            <img src="${secondary}" alt="${title} 서브 사이트 화면" loading="lazy" decoding="async" />
-          </span>
-        </div>`;
-    }
-
-    return `
-      <div class="home-project-image is-single">
-        <span class="home-project-screen home-project-screen--primary">
-          <img src="${primary}" alt="${title} 사이트 화면" loading="lazy" decoding="async" />
-        </span>
-      </div>`;
-  };
-
   const card = (project) => {
     const tags = (project.services || []).slice(0, 3)
       .map((item) => `<span>${escapeHTML(item)}</span>`)
       .join('');
+    const thumbPosition = project.thumbPosition || '50% 12%';
 
     return `
-      <article class="home-project-card" style="${visualStyle(project)}">
+      <article class="home-project-card" style="--home-thumb-position:${escapeHTML(thumbPosition)}">
         <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 상세 보기">
           <div class="home-project-browser">
             <div class="home-project-browser-bar" aria-hidden="true">
               <i></i><i></i><i></i><span>${escapeHTML(host(project.url))}</span>
             </div>
-            ${renderVisual(project)}
+            <div class="home-project-image">
+              <img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.title)} 사이트 화면" loading="lazy" decoding="async" />
+            </div>
           </div>
           <div class="home-project-card-copy">
             <div class="home-project-card-meta">
