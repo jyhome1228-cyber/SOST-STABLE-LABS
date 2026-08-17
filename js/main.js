@@ -14,32 +14,15 @@
 
   const applyFavicon = () => {
     document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
-
-    const ico = document.createElement('link');
-    ico.rel = 'icon';
-    ico.type = 'image/x-icon';
-    ico.href = '/favicon.ico?v=20260814-1';
-    document.head.appendChild(ico);
-
-    const svg = document.createElement('link');
-    svg.rel = 'icon';
-    svg.type = 'image/svg+xml';
-    svg.href = '/assets/favicon-circle.svg?v=20260814-1';
-    document.head.appendChild(svg);
+    const ico = document.createElement('link'); ico.rel = 'icon'; ico.type = 'image/x-icon'; ico.href = '/favicon.ico?v=20260814-1'; document.head.appendChild(ico);
+    const svg = document.createElement('link'); svg.rel = 'icon'; svg.type = 'image/svg+xml'; svg.href = '/assets/favicon-circle.svg?v=20260814-1'; document.head.appendChild(svg);
   };
 
   const loadStyle = (href, matcher) => new Promise((resolve) => {
     const existing = document.querySelector(`link[href*="${matcher}"]`);
-    if (existing) {
-      resolve();
-      return;
-    }
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.addEventListener('load', resolve, { once: true });
-    link.addEventListener('error', resolve, { once: true });
-    document.head.appendChild(link);
+    if (existing) { resolve(); return; }
+    const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = href;
+    link.addEventListener('load', resolve, { once: true }); link.addEventListener('error', resolve, { once: true }); document.head.appendChild(link);
   });
 
   const loadScript = (src, marker) => new Promise((resolve) => {
@@ -49,28 +32,15 @@
       else existing.addEventListener('load', resolve, { once: true });
       return;
     }
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = false;
-    if (marker) {
-      script.dataset.loader = marker;
-      script.addEventListener('load', () => { script.dataset.loaded = 'true'; }, { once: true });
-    }
-    script.addEventListener('load', resolve, { once: true });
-    script.addEventListener('error', resolve, { once: true });
-    document.head.appendChild(script);
+    const script = document.createElement('script'); script.src = src; script.async = false;
+    if (marker) { script.dataset.loader = marker; script.addEventListener('load', () => { script.dataset.loaded = 'true'; }, { once: true }); }
+    script.addEventListener('load', resolve, { once: true }); script.addEventListener('error', resolve, { once: true }); document.head.appendChild(script);
   });
 
   const reveal = () => {
-    const show = () => window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-      root.classList.add('sost-page-ready');
-    }));
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => window.setTimeout(show, 70), { once: true });
-    } else {
-      window.setTimeout(show, 70);
-    }
+    const show = () => window.requestAnimationFrame(() => window.requestAnimationFrame(() => root.classList.add('sost-page-ready')));
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => window.setTimeout(show, 70), { once: true });
+    else window.setTimeout(show, 70);
   };
 
   applyFavicon();
@@ -84,12 +54,11 @@
     await loadScript('./js/main-core.js?v=20260814-2', 'main-core');
     await loadScript('./js/knowledge-nav.js?v=20260817-1', 'knowledge-nav');
     if (document.body?.dataset.page === 'home') {
-      await loadScript('./js/home-cta-enhance.js?v=20260817-4', 'home-cta-refresh-v4');
+      await loadScript('./js/home-cta-enhance.js?v=20260817-5', 'home-cta-refresh-v5');
     }
     await loadScript('./js/site-finalize.js?v=20260814-2', 'site-finalize');
     reveal();
   })();
 
-  /* Fail-safe: never leave the page hidden if an enhancement request stalls. */
   window.setTimeout(() => root.classList.add('sost-page-ready'), 900);
 })();
