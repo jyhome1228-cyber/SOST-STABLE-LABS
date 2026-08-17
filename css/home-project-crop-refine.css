@@ -1,0 +1,61 @@
+/* Per-project thumbnail framing and natural crop control */
+.home-project-screen--primary img {
+  object-fit: var(--home-primary-fit, cover) !important;
+  object-position: var(--home-primary-position, 50% 12%) !important;
+  transform: scale(var(--home-primary-scale, 1));
+  transform-origin: center;
+}
+
+.home-project-screen--secondary img {
+  object-fit: var(--home-secondary-fit, cover) !important;
+  object-position: var(--home-secondary-position, 50% 10%) !important;
+  transform: scale(var(--home-secondary-scale, 1));
+  transform-origin: center;
+}
+
+.home-project-image.is-single .home-project-screen--primary {
+  inset: 12px;
+}
+
+.home-project-image.is-dual .home-project-screen--primary {
+  top: 13px;
+  left: 13px;
+  width: 82%;
+  height: 80%;
+}
+
+.home-project-image.is-dual .home-project-screen--secondary {
+  right: 12px;
+  bottom: 12px;
+  width: 44%;
+  height: 52%;
+}
+
+.home-project-screen--primary,
+.home-project-screen--secondary {
+  background: #fff;
+}
+
+.home-project-screen img {
+  transition: transform .55s var(--ease);
+}
+
+.home-project-card:hover .home-project-screen--primary img {
+  transform: scale(calc(var(--home-primary-scale, 1) + .012));
+}
+
+.home-project-card:hover .home-project-screen--secondary img {
+  transform: scale(calc(var(--home-secondary-scale, 1) + .018));
+}
+
+@media (max-width: 760px) {
+  .home-project-image.is-dual .home-project-screen--primary {
+    width: 83%;
+    height: 81%;
+  }
+
+  .home-project-image.is-dual .home-project-screen--secondary {
+    width: 46%;
+    height: 53%;
+  }
+}
