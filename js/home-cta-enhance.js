@@ -103,14 +103,15 @@
     </div>
   `;
 
-  loadStyle('./css/home-project-slider.css?v=20260817-2', 'home-project-slider-css');
+  loadStyle('./css/home-project-slider.css?v=20260817-3', 'home-project-slider-css');
+  loadStyle('./css/home-project-crop-refine.css?v=20260817-1', 'home-project-crop-refine-css');
 
   /* Keep the home carousel identical to PROJECTS: same data, thumbnails,
      ordering and individual detail routes, with optional secondary views. */
   (async () => {
     try {
-      await loadScript('./data/featured-projects.js?v=20260817-2', 'home-project-data-featured');
-      await loadScript('./js/home-project-slider.js?v=20260817-2', 'home-project-slider-js');
+      await loadScript('./data/featured-projects.js?v=20260817-3', 'home-project-data-featured');
+      await loadScript('./js/home-project-slider.js?v=20260817-3', 'home-project-slider-js');
     } catch (error) {
       console.error('Home project slider failed to load.', error);
     }
