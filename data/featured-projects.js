@@ -14,7 +14,10 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Custom Code', 'Commerce'],
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Commerce'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7df64ceed4164.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7df64ceed4164.png',
+    homePrimaryFit: 'cover',
+    homePrimaryPosition: '50% 18%',
+    homePrimaryScale: 1.02
   },
   {
     id: 'thomastone',
@@ -32,7 +35,13 @@ window.SOST_PROJECTS = [
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Loading'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/149e984fc458e.png',
-    homeSecondary: './assets/projects/thomastone/section-02.jpg'
+    homeSecondary: './assets/projects/thomastone/section-02.jpg',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homePrimaryScale: 1,
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 8%',
+    homeSecondaryScale: 1.02
   },
   {
     id: 'kekomi',
@@ -49,7 +58,10 @@ window.SOST_PROJECTS = [
     services: ['Cafe24', 'Custom UI', 'Campaign'],
     technologies: ['Cafe24', 'HTML/CSS/JavaScript', 'Product Setup'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7eff7625e5ebc.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/7eff7625e5ebc.png',
+    homePrimaryFit: 'cover',
+    homePrimaryPosition: '50% 32%',
+    homePrimaryScale: 1.03
   },
   {
     id: 'aesost',
@@ -67,7 +79,12 @@ window.SOST_PROJECTS = [
     technologies: ['Responsive Web', 'Content System', 'Member Flow'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/99f1d91766496.png',
-    homeSecondary: './assets/projects/aesost/view-article.jpg'
+    homeSecondary: './assets/projects/aesost/view-article.jpg',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 10%',
+    homeSecondaryScale: 1.03
   },
   {
     id: 'relim',
@@ -85,7 +102,12 @@ window.SOST_PROJECTS = [
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'SEO'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/fb1c70c96e690.png',
-    homeSecondary: './assets/projects/relim/section-01.jpg'
+    homeSecondary: './assets/projects/relim/section-01.jpg',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 16%',
+    homeSecondaryScale: 1.02
   },
   {
     id: 'tne-epc',
@@ -103,7 +125,35 @@ window.SOST_PROJECTS = [
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Project Data'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/d2f4c1d09a04e.png',
-    homeSecondary: './assets/projects/tne/section-02.jpg'
+    homeSecondary: './assets/projects/tne/section-02.jpg',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 10%',
+    homeSecondaryScale: 1.02
+  },
+  {
+    id: 'terracle',
+    title: 'TERRACLE',
+    client: 'TERRACLE / 테라클',
+    year: '2026',
+    category: 'web',
+    categoryLabel: 'CORPORATE · TECHNOLOGY',
+    url: 'https://kr.terracle.im/?redirect=no',
+    displayDomain: 'kr.terracle.im',
+    thumbPosition: '50% 8%',
+    visualLabel: 'TERRACLE',
+    excerpt: 'Chemical Recycling Corporate Website, Technology, Product Information, News & Business Contact',
+    services: ['Imweb', 'Corporate Website', 'Technology Content'],
+    technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
+    accent: 'blue',
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/39da9ba2da90c.png',
+    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/4bb8ea7023e5f.png',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 10%',
+    homeSecondaryScale: 1.02
   },
   {
     id: 'the-petrichor',
@@ -120,7 +170,10 @@ window.SOST_PROJECTS = [
     services: ['Imweb', 'Commerce', 'Brand Content'],
     technologies: ['Imweb', 'Responsive Web', 'Member Flow'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/09d332796ff79.png',
+    homePrimaryFit: 'cover',
+    homePrimaryPosition: '50% 18%',
+    homePrimaryScale: 1.02
   },
   {
     id: 'taepyeong-paper',
@@ -138,7 +191,12 @@ window.SOST_PROJECTS = [
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Responsive UI'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/e2bdad6d55a98.png',
-    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/92e3b6be907c4.png'
+    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/92e3b6be907c4.png',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 8%',
+    homeSecondaryScale: 1.02
   },
   {
     id: 'pentagon-law-office-corporate-center',
@@ -156,7 +214,12 @@ window.SOST_PROJECTS = [
     technologies: ['Imweb', 'HTML/CSS/JavaScript', 'Dynamic Content'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/b97224d5e769a.png',
-    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/fbe0c325466d5.png'
+    homeSecondary: 'https://cdn.imweb.me/upload/S202410251a294b3f442b0/fbe0c325466d5.png',
+    homePrimaryFit: 'contain',
+    homePrimaryPosition: '50% 0%',
+    homeSecondaryFit: 'cover',
+    homeSecondaryPosition: '50% 7%',
+    homeSecondaryScale: 1.02
   },
   {
     id: 'fineb',
@@ -173,6 +236,9 @@ window.SOST_PROJECTS = [
     services: ['Website', 'Quote System', 'Admin'],
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'GitHub'],
     accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/545e2714325da.png'
+    thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/545e2714325da.png',
+    homePrimaryFit: 'cover',
+    homePrimaryPosition: '50% 12%',
+    homePrimaryScale: 1.01
   }
 ];
