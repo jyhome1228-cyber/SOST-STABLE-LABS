@@ -1,0 +1,28 @@
+/* GUIDE + STUDY navigation geometry */
+@media (min-width: 1181px) {
+  .global-nav {
+    width: clamp(660px, 48vw, 790px) !important;
+    min-width: 660px !important;
+  }
+
+  .global-nav a {
+    font-size: 12px !important;
+    letter-spacing: .065em !important;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+  .global-nav {
+    width: min(68vw, 720px) !important;
+    min-width: 0 !important;
+  }
+
+  .global-nav a {
+    font-size: 11px !important;
+    letter-spacing: .05em !important;
+  }
+}
+
+.footer-nav {
+  flex-wrap: wrap;
+}
