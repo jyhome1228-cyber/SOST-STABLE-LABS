@@ -65,8 +65,8 @@
     .find((section) => section.querySelector('.eyebrow')?.textContent.trim() === 'LABS & INSIGHTS');
 
   if (labsSection) {
-    loadStyle('./css/home-labs-series.css?v=20260817-1', 'home-labs-series-css');
-    loadScript('./js/home-labs-series.js?v=20260817-1', 'home-labs-series-js')
+    loadStyle('./css/home-labs-series.css?v=20260817-2', 'home-study-preview-css');
+    loadScript('./js/home-labs-series.js?v=20260817-2', 'home-study-preview-js')
       .catch((error) => console.error('Home STUDY preview failed to load.', error));
   }
 
@@ -105,8 +105,6 @@
 
   loadStyle('./css/home-project-slider.css?v=20260817-4', 'home-project-slider-css');
 
-  /* Keep the home carousel identical to PROJECTS: same data, thumbnails,
-     ordering and individual detail routes. */
   (async () => {
     try {
       await loadScript('./data/featured-projects.js?v=20260817-3', 'home-project-data-featured');
