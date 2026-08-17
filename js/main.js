@@ -78,7 +78,9 @@
 
   (async () => {
     await loadStyle('./css/project-unify.css?v=20260814-1', 'project-unify.css');
+    await loadStyle('./css/blue-contrast-fix.css?v=20260817-1', 'blue-contrast-fix.css');
     await loadScript('./js/main-core.js?v=20260814-2', 'main-core');
+    await loadScript('./js/knowledge-nav.js?v=20260817-1', 'knowledge-nav');
     await loadScript('./js/site-finalize.js?v=20260814-2', 'site-finalize');
     reveal();
   })();
