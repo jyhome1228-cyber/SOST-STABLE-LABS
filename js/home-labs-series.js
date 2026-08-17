@@ -9,19 +9,19 @@
   const studies = [
     {
       no: '01',
-      label: 'SYSTEM / PROCESS',
-      title: '개발보다 먼저 정리해야 하는 것은 기능이 아니라 운영 방식입니다.',
-      description: '누가 어떤 정보를 입력하고 다음 사람이 무엇을 확인하는지부터 정리해야 실제 업무와 시스템이 어긋나지 않습니다.',
+      label: 'SEO / WEB',
+      title: '검색 노출은 디자인 이후가 아니라 사이트 구조에서 시작됩니다.',
+      description: '검색 의도, 페이지 역할, 메타 정보와 콘텐츠를 처음부터 함께 설계해야 하는 이유를 정리합니다.',
       meta: '8 MIN READ',
-      anchor: 'study-01'
+      href: './study-seo.html'
     },
     {
       no: '02',
-      label: 'WEB / STRATEGY',
-      title: '홈페이지 리뉴얼에서 디자인보다 먼저 정리할 것',
-      description: '메뉴와 스타일을 정하기 전에 회사가 무엇을 설명해야 하고 사용자가 어디까지 이해해야 하는지부터 확인합니다.',
-      meta: '6 MIN READ',
-      anchor: 'study-02'
+      label: 'CDN / WEB INFRA',
+      title: '이미지 URL을 HTML에 넣으면 실제로 무엇이 일어날까?',
+      description: '이미지 저장소와 CDN, 외부 URL 호출, 저장 용량과 트래픽의 차이를 실무 기준으로 설명합니다.',
+      meta: '7 MIN READ',
+      href: './study-cdn-images.html'
     },
     {
       no: '03',
@@ -29,7 +29,7 @@
       title: 'CRM을 만들기 전에 고객 데이터를 어떻게 나눌까',
       description: '문의, 상담, 견적, 계약과 재접촉을 실제 영업 흐름에 맞는 상태값으로 나누는 기준을 기록합니다.',
       meta: '7 MIN READ',
-      anchor: 'study-03'
+      href: './study.html'
     }
   ];
 
@@ -51,7 +51,7 @@
 
       <div class="home-labs-cards">
         ${studies.map((study) => `
-          <a class="home-labs-card" href="./study.html#${study.anchor}">
+          <a class="home-labs-card" href="${study.href}">
             <div class="home-labs-card-top">
               <span>${study.no}</span>
               <small>${study.label}</small>
