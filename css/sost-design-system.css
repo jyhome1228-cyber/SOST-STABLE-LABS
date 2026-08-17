@@ -1,0 +1,223 @@
+/* SOST LABS unified design system — typography, layout, spacing */
+:root {
+  --container: 1440px;
+  --fs-display: clamp(36px, 3.8vw, 50px);
+  --fs-h1: clamp(34px, 3.5vw, 46px);
+  --fs-h2: clamp(26px, 2.25vw, 34px);
+  --fs-h3: clamp(22px, 1.8vw, 28px);
+  --fs-body-lg: 18px;
+  --fs-body: 17px;
+  --fs-body-sm: 16px;
+  --fs-label: 14px;
+  --fs-meta: 12px;
+  --section-xl: 112px;
+  --section-lg: 88px;
+  --section-md: 64px;
+  --header-height: 104px;
+}
+
+body:not([data-page='admin']) {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: -.022em;
+  word-break: keep-all;
+}
+
+body:not([data-page='admin']) .shell {
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+}
+
+body:not([data-page='admin']) .site-header {
+  height: var(--header-height);
+}
+
+body:not([data-page='admin']) .global-nav a {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: .055em !important;
+}
+
+body:not([data-page='admin']) .header-action {
+  font-size: 13px !important;
+  font-weight: 510 !important;
+  letter-spacing: .06em !important;
+}
+
+body:not([data-page='admin']) .eyebrow,
+body:not([data-page='admin']) .section-index,
+body:not([data-page='admin']) .study-kicker,
+body:not([data-page='admin']) .card-label {
+  font-size: var(--fs-label) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: .11em !important;
+}
+
+body:not([data-page='admin']) :is(.hero-copy h1, .study-hero h1) {
+  max-width: 760px;
+  font-size: var(--fs-display) !important;
+  font-weight: 470 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.047em !important;
+}
+
+body:not([data-page='admin']) :is(.page-title h1, .labs-series-hero h1, .nw-project-title h1) {
+  max-width: 760px;
+  font-size: var(--fs-h1) !important;
+  font-weight: 470 !important;
+  line-height: 1.16 !important;
+  letter-spacing: -.045em !important;
+}
+
+body:not([data-page='admin']) :is(
+  .section-heading h2,
+  .split-content h2,
+  .contact-banner h2,
+  .contact-aside h2,
+  .study-feature-copy h2,
+  .study-archive-head h2,
+  .business-chapter-title h2,
+  .offering-toolbar h2,
+  .tech-stack-head h2
+) {
+  font-size: var(--fs-h2) !important;
+  font-weight: 510 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -.038em !important;
+}
+
+body:not([data-page='admin']) :is(
+  .preview-card h3,
+  .home-project-card h3,
+  .study-card h3,
+  .home-labs-card h3,
+  .meaning-card h3,
+  .offering-card h2
+) {
+  font-size: var(--fs-h3) !important;
+  font-weight: 540 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -.03em !important;
+}
+
+body:not([data-page='admin']) :is(
+  .hero-description,
+  .page-intro > p,
+  .study-hero-copy,
+  .copy-row > p,
+  .offering-toolbar p,
+  .tech-stack-head p
+) {
+  font-size: var(--fs-body-lg) !important;
+  line-height: 1.75 !important;
+}
+
+body:not([data-page='admin']) :is(
+  .preview-card > p:last-child,
+  .home-project-card-description,
+  .study-card > p,
+  .study-feature-copy > div:first-child > p:last-child,
+  .offering-description,
+  .business-chapter-title > p:last-child
+) {
+  font-size: var(--fs-body-sm) !important;
+  line-height: 1.7 !important;
+}
+
+body:not([data-page='admin']) :is(.section-block, .case-section, .nw-editorial-section) {
+  padding-top: var(--section-xl);
+  padding-bottom: var(--section-xl);
+}
+
+body:not([data-page='admin']) :is(.study-featured, .study-archive, .offering-help, .tech-stack-section) {
+  padding-top: var(--section-lg);
+  padding-bottom: var(--section-lg);
+}
+
+body:not([data-page='admin']) .section-heading {
+  margin-bottom: 56px;
+}
+
+body:not([data-page='admin']) .split-heading {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: clamp(48px, 7vw, 120px);
+}
+
+body:not([data-page='admin']) :is(.preview-card, .study-card, .offering-card, .home-labs-card) {
+  padding: 28px 30px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body:not([data-page='admin']) .portfolio-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 38px 22px !important;
+}
+
+body:not([data-page='admin']) .portfolio-card-visual {
+  aspect-ratio: 16 / 9;
+}
+
+body:not([data-page='admin']) .portfolio-card-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  body:not([data-page='admin']) .shell {
+    width: min(calc(100% - 40px), var(--container));
+  }
+
+  body:not([data-page='admin']) :is(.section-block, .case-section, .nw-editorial-section) {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  body:not([data-page='admin']) .split-heading {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --fs-display: clamp(32px, 9.5vw, 40px);
+    --fs-h1: clamp(30px, 9vw, 38px);
+    --fs-h2: clamp(24px, 7.5vw, 30px);
+    --fs-h3: clamp(21px, 6.8vw, 26px);
+    --fs-body-lg: 17px;
+    --fs-body: 16px;
+    --fs-body-sm: 16px;
+  }
+
+  body:not([data-page='admin']) {
+    font-size: 16px;
+  }
+
+  body:not([data-page='admin']) .shell {
+    width: calc(100% - 32px);
+  }
+
+  body:not([data-page='admin']) :is(.section-block, .case-section, .nw-editorial-section) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  body:not([data-page='admin']) :is(.study-featured, .study-archive, .offering-help, .tech-stack-section) {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  body:not([data-page='admin']) .portfolio-grid {
+    grid-template-columns: 1fr !important;
+    gap: 44px !important;
+  }
+
+  body:not([data-page='admin']) :is(.preview-card, .study-card, .offering-card, .home-labs-card) {
+    padding: 26px 24px;
+  }
+}
