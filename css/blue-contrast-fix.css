@@ -1,0 +1,90 @@
+/* Global blue-surface contrast rule — blue backgrounds always use light type */
+
+.button-point,
+:root[data-theme='light'] .button-point,
+.filter-button.is-active,
+:root[data-theme='light'] .filter-button.is-active {
+  color: #ffffff !important;
+}
+
+.button-point *,
+.filter-button.is-active * {
+  color: inherit !important;
+}
+
+/* Shared blue CTA surfaces */
+.contact-banner.global-system-cta,
+.contact-banner.solution-cta-banner,
+.project-cta {
+  color: #ffffff !important;
+}
+
+.contact-banner.global-system-cta .eyebrow,
+.contact-banner.solution-cta-banner .eyebrow,
+.project-cta .eyebrow {
+  color: rgba(255,255,255,.72) !important;
+}
+
+.contact-banner.global-system-cta h1,
+.contact-banner.global-system-cta h2,
+.contact-banner.global-system-cta h3,
+.contact-banner.solution-cta-banner h1,
+.contact-banner.solution-cta-banner h2,
+.contact-banner.solution-cta-banner h3,
+.project-cta h1,
+.project-cta h2,
+.project-cta h3 {
+  color: #ffffff !important;
+}
+
+.contact-banner.global-system-cta p,
+.contact-banner.solution-cta-banner p,
+.project-cta p {
+  color: rgba(255,255,255,.86) !important;
+}
+
+.contact-banner.global-system-cta .global-cta-button,
+.contact-banner.solution-cta-banner .solution-cta-button {
+  border-color: rgba(255,255,255,.92) !important;
+  background: #ffffff !important;
+  color: #111216 !important;
+}
+
+.contact-banner.global-system-cta .global-cta-button span,
+.contact-banner.solution-cta-banner .solution-cta-button span {
+  color: #5d6dcb !important;
+}
+
+.contact-banner.global-system-cta .global-cta-orbit,
+.contact-banner.solution-cta-banner .solution-cta-orbit {
+  border-color: rgba(255,255,255,.28) !important;
+}
+
+.contact-banner.global-system-cta .global-cta-line,
+.contact-banner.solution-cta-banner .solution-cta-line {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.52), transparent) !important;
+}
+
+.contact-banner.global-system-cta .global-cta-code,
+.contact-banner.solution-cta-banner .solution-cta-code {
+  color: rgba(255,255,255,.56) !important;
+}
+
+.contact-banner.global-system-cta .global-cta-symbol,
+.contact-banner.solution-cta-banner .solution-cta-symbol {
+  filter: brightness(0) invert(1) !important;
+  opacity: .12 !important;
+}
+
+/* Large blue action cards / links used across sections */
+.blue-action,
+.is-blue-action,
+[data-blue-surface='true'] {
+  color: #ffffff !important;
+}
+
+.blue-action *,
+.is-blue-action *,
+[data-blue-surface='true'] * {
+  color: inherit !important;
+}
