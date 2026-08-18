@@ -55,6 +55,12 @@
   height: auto;
 }
 
+/* Header logo: remove the decorative blue brand dot. */
+html .site-header .brand::before {
+  display: none !important;
+  content: none !important;
+}
+
 /* Reserve six-item navigation geometry before CAPABILITIES is injected. */
 @media (min-width: 901px) {
   .global-nav {
