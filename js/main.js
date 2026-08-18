@@ -14,8 +14,23 @@
 
   const applyFavicon = () => {
     document.querySelectorAll('link[rel~="icon"]').forEach((link) => link.remove());
-    const ico = document.createElement('link'); ico.rel = 'icon'; ico.type = 'image/x-icon'; ico.href = '/favicon.ico?v=20260814-1'; document.head.appendChild(ico);
-    const svg = document.createElement('link'); svg.rel = 'icon'; svg.type = 'image/svg+xml'; svg.href = '/assets/favicon-circle.svg?v=20260814-1'; document.head.appendChild(svg);
+    const svg = document.createElement('link');
+    svg.rel = 'icon';
+    svg.type = 'image/svg+xml';
+    svg.href = '/assets/favicon-circle.svg?v=20260818-1';
+    document.head.appendChild(svg);
+  };
+
+  const syncBrandLogo = () => {
+    const dark = root.dataset.theme === 'dark';
+    const src = dark
+      ? './assets/logo-sost-labs-dark.svg?v=20260818-1'
+      : './assets/logo-sost-labs.svg?v=20260818-1';
+
+    document.querySelectorAll('a.brand img, a.footer-brand img').forEach((image) => {
+      if (image.getAttribute('src') !== src) image.setAttribute('src', src);
+      image.alt = 'sost labs.';
+    });
   };
 
   const loadStyle = (href, matcher) => new Promise((resolve) => {
@@ -46,19 +61,27 @@
   applyFavicon();
   import('./traffic-tracker.js?v=20260816-1').catch(() => {});
 
+  const themeObserver = new MutationObserver(() => syncBrandLogo());
+  themeObserver.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+
   (async () => {
     await loadStyle('./css/project-unify.css?v=20260814-1', 'project-unify.css');
     await loadStyle('./css/blue-contrast-fix.css?v=20260817-1', 'blue-contrast-fix.css');
     await loadStyle('./css/knowledge-nav.css?v=20260817-2', 'knowledge-nav.css');
     await loadStyle('./css/sost-design-system.css?v=20260817-1', 'sost-design-system.css');
     await loadScript('./js/main-core.js?v=20260814-2', 'main-core');
+    syncBrandLogo();
     await loadScript('./js/knowledge-nav.js?v=20260817-1', 'knowledge-nav');
     if (document.body?.dataset.page === 'home') {
       await loadScript('./js/home-cta-enhance.js?v=20260817-5', 'home-cta-refresh-v5');
     }
     await loadScript('./js/site-finalize.js?v=20260814-2', 'site-finalize');
+    syncBrandLogo();
     reveal();
   })();
 
-  window.setTimeout(() => root.classList.add('sost-page-ready'), 900);
+  window.setTimeout(() => {
+    syncBrandLogo();
+    root.classList.add('sost-page-ready');
+  }, 900);
 })();
