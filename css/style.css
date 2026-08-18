@@ -36,10 +36,10 @@
 
 /* Reserve final header geometry before JS replaces the text brand with the SVG. */
 .site-header .brand {
-  width: 174px !important;
-  min-width: 174px !important;
-  min-height: 27px;
-  flex: 0 0 174px;
+  width: 220px !important;
+  min-width: 220px !important;
+  min-height: 34px;
+  flex: 0 0 220px;
 }
 
 .site-footer .footer-brand {
@@ -99,9 +99,9 @@ body {
 
 @media (max-width: 560px) {
   .site-header .brand {
-    width: 154px !important;
-    min-width: 154px !important;
-    flex-basis: 154px;
+    width: 180px !important;
+    min-width: 180px !important;
+    flex-basis: 180px;
   }
 }
 
