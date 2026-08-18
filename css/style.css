@@ -36,10 +36,10 @@
 
 /* Reserve final header geometry before JS replaces the text brand with the SVG. */
 .site-header .brand {
-  width: 150px !important;
-  min-width: 150px !important;
-  min-height: 23px;
-  flex: 0 0 150px;
+  width: 162px !important;
+  min-width: 162px !important;
+  min-height: 25px;
+  flex: 0 0 162px;
 }
 
 .site-footer .footer-brand {
@@ -48,11 +48,22 @@
   min-height: 25px;
 }
 
-.site-header .brand img,
+.site-header .brand img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
 .site-footer .footer-brand img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* Header logo: keep only the symbol in the brand color. */
+:root[data-theme='light'] .site-header a.brand img {
+  filter: none !important;
 }
 
 /* Header logo: remove the decorative blue brand dot. */
@@ -88,9 +99,9 @@ body {
 
 @media (max-width: 560px) {
   .site-header .brand {
-    width: 138px !important;
-    min-width: 138px !important;
-    flex-basis: 138px;
+    width: 146px !important;
+    min-width: 146px !important;
+    flex-basis: 146px;
   }
 }
 
