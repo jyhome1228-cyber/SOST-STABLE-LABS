@@ -37,6 +37,18 @@ jobs:
                   text,
                   count=1,
               )
+              text = re.sub(
+                  r'href="\./css/style\.css(?:\?v=[^"]+)?"',
+                  'href="./css/style.css?v=20260818-1"',
+                  text,
+                  count=1,
+              )
+              text = re.sub(
+                  r'src="\./js/main\.js(?:\?v=[^"]+)?"',
+                  'src="./js/main.js?v=20260818-1"',
+                  text,
+                  count=1,
+              )
               path.write_text(text, encoding='utf-8')
 
           index_path = Path('index.html')
@@ -83,15 +95,15 @@ jobs:
 
           if 'css/global-cta.css' not in index:
               index = index.replace(
-                  '  <link rel="stylesheet" href="./css/style.css" />',
-                  '  <link rel="stylesheet" href="./css/style.css" />\n  <link rel="stylesheet" href="./css/global-cta.css?v=20260805-1" />',
+                  '  <link rel="stylesheet" href="./css/style.css?v=20260818-1" />',
+                  '  <link rel="stylesheet" href="./css/style.css?v=20260818-1" />\n  <link rel="stylesheet" href="./css/global-cta.css?v=20260805-1" />',
                   1,
               )
 
           if 'js/home-cta-enhance.js' not in index:
               index = index.replace(
-                  '  <script src="./js/main.js" defer></script>',
-                  '  <script src="./js/main.js" defer></script>\n  <script src="./js/home-cta-enhance.js?v=20260817-2" defer></script>',
+                  '  <script src="./js/main.js?v=20260818-1" defer></script>',
+                  '  <script src="./js/main.js?v=20260818-1" defer></script>\n  <script src="./js/home-cta-enhance.js?v=20260817-2" defer></script>',
                   1,
               )
 
