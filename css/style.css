@@ -36,16 +36,23 @@
 
 /* Reserve final header geometry before JS replaces the text brand with the SVG. */
 .site-header .brand {
-  width: 126px !important;
-  min-width: 126px !important;
+  width: 150px !important;
+  min-width: 150px !important;
   min-height: 23px;
-  flex: 0 0 126px;
+  flex: 0 0 150px;
 }
 
 .site-footer .footer-brand {
-  width: 138px !important;
-  min-width: 138px !important;
+  width: 160px !important;
+  min-width: 160px !important;
   min-height: 25px;
+}
+
+.site-header .brand img,
+.site-footer .footer-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Reserve six-item navigation geometry before CAPABILITIES is injected. */
@@ -71,6 +78,14 @@ html.sost-page-ready body {
 html,
 body {
   background: var(--bg);
+}
+
+@media (max-width: 560px) {
+  .site-header .brand {
+    width: 138px !important;
+    min-width: 138px !important;
+    flex-basis: 138px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
