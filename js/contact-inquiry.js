@@ -12,6 +12,10 @@ const projectTypeGroup = form?.querySelector('[data-project-type-group]');
 const projectTypeError = form?.querySelector('[data-project-type-error]');
 const projectTypeOptions = projectTypeGroup?.querySelector('.project-type-options');
 
+let successModal = null;
+let successModalTimer = null;
+let lastFocusedElement = null;
+
 function setMessage(text, state = '') {
   if (!message) return;
   message.textContent = text;
@@ -35,6 +39,76 @@ function normalizeWebsite(value) {
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(website)) return website;
   return `https://${website}`;
 }
+
+function ensureSuccessModal() {
+  if (successModal) return successModal;
+
+  const modal = document.createElement('div');
+  modal.className = 'inquiry-success-modal';
+  modal.dataset.inquirySuccessModal = '';
+  modal.hidden = true;
+  modal.innerHTML = `
+    <button class="inquiry-success-backdrop" type="button" data-inquiry-modal-close aria-label="접수 완료 창 닫기"></button>
+    <section class="inquiry-success-card" role="dialog" aria-modal="true" aria-labelledby="inquiry-success-title" aria-describedby="inquiry-success-description">
+      <div class="inquiry-success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false"><path d="M5 12.5l4.3 4.3L19 7.1" /></svg>
+      </div>
+      <p class="inquiry-success-eyebrow">PROJECT RECEIVED</p>
+      <h2 id="inquiry-success-title">문의가 접수되었습니다.</h2>
+      <p id="inquiry-success-description" class="inquiry-success-description">보내주신 내용을 확인한 뒤 영업일 기준 1–2일 내 연락드리겠습니다.</p>
+      <div class="inquiry-success-receipt"><span>접수번호</span><strong data-inquiry-receipt></strong></div>
+      <button class="button button-point inquiry-success-confirm" type="button" data-inquiry-modal-confirm>확인</button>
+    </section>
+  `;
+
+  document.body.appendChild(modal);
+  successModal = modal;
+
+  modal.querySelectorAll('[data-inquiry-modal-close], [data-inquiry-modal-confirm]').forEach((button) => {
+    button.addEventListener('click', closeSuccessModal);
+  });
+
+  return modal;
+}
+
+function showSuccessModal(receipt) {
+  const modal = ensureSuccessModal();
+  const receiptElement = modal.querySelector('[data-inquiry-receipt]');
+  const confirmButton = modal.querySelector('[data-inquiry-modal-confirm]');
+
+  if (successModalTimer) {
+    window.clearTimeout(successModalTimer);
+    successModalTimer = null;
+  }
+
+  if (receiptElement) receiptElement.textContent = receipt;
+  lastFocusedElement = document.activeElement;
+  modal.hidden = false;
+  document.body.classList.add('is-inquiry-modal-open');
+
+  window.requestAnimationFrame(() => {
+    modal.classList.add('is-visible');
+    confirmButton?.focus({ preventScroll: true });
+  });
+}
+
+function closeSuccessModal() {
+  if (!successModal || successModal.hidden) return;
+
+  successModal.classList.remove('is-visible');
+  document.body.classList.remove('is-inquiry-modal-open');
+
+  successModalTimer = window.setTimeout(() => {
+    if (!successModal) return;
+    successModal.hidden = true;
+    successModalTimer = null;
+    if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus({ preventScroll: true });
+  }, 220);
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && successModal && !successModal.hidden) closeSuccessModal();
+});
 
 function ensureProjectTypeOption(value) {
   if (!projectTypeOptions || !value) return null;
@@ -146,7 +220,8 @@ form?.addEventListener('submit', async (event) => {
     validateProjectTypes();
     projectTypeGroup?.classList.remove('is-invalid');
     if (projectTypeError) projectTypeError.textContent = '';
-    setMessage(`문의가 정상적으로 접수되었습니다. 접수번호 ${receipt} · 영업일 기준 1–2일 내 확인 후 연락드리겠습니다.`, 'success');
+    setMessage('', '');
+    showSuccessModal(receipt);
   } catch (error) {
     console.error('Inquiry submit failed:', error);
     setMessage(submitErrorMessage(error), 'error');
