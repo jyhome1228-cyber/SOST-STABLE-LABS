@@ -1,23 +1,5 @@
 window.SOST_PROJECTS = [
   {
-    id: 'bdlab',
-    title: 'BDLAB',
-    client: 'BDLAB / Branding Design Lab',
-    year: '2026',
-    category: 'platform',
-    categoryLabel: 'BRAND · CONTENT PLATFORM',
-    url: 'https://bdlab.me/',
-    displayDomain: 'bdlab.me',
-    detailUrl: './project-bdlab.html',
-    thumbPosition: '50% 28%',
-    visualLabel: 'BDLAB',
-    excerpt: 'Branding Design Lab Website, Research · Portfolio · Journal & Client System',
-    services: ['GitHub Pages', 'Firebase', 'Content System'],
-    technologies: ['HTML/CSS/JavaScript', 'Firebase', 'GitHub Pages'],
-    accent: 'blue',
-    thumbnail: 'https://cdn.imweb.me/upload/S2023030963558ef55ba8e/8f5c615f95ea2.png'
-  },
-  {
     id: 'recelleclore',
     title: 'RECELLÉCLORE',
     client: 'RECELLÉCLORE / 리셀에클로',
@@ -203,5 +185,23 @@ window.SOST_PROJECTS = [
     technologies: ['HTML/CSS/JavaScript', 'Firebase', 'GitHub'],
     accent: 'blue',
     thumbnail: 'https://cdn.imweb.me/upload/S20260219b829e728b3f2e/545e2714325da.png'
+  },
+  {
+    id: 'bdlab',
+    title: 'BDLAB',
+    client: 'BDLAB / Branding Design Lab',
+    year: '2026',
+    category: 'platform',
+    categoryLabel: 'BRAND · CONTENT PLATFORM',
+    url: 'https://bdlab.me/',
+    displayDomain: 'bdlab.me',
+    detailUrl: './project-bdlab.html',
+    thumbPosition: '50% 28%',
+    visualLabel: 'BDLAB',
+    excerpt: 'Branding Design Lab Website, Research · Portfolio · Journal & Client System',
+    services: ['GitHub Pages', 'Firebase', 'Content System'],
+    technologies: ['HTML/CSS/JavaScript', 'Firebase', 'GitHub Pages'],
+    accent: 'blue',
+    thumbnail: 'https://cdn.imweb.me/upload/S2023030963558ef55ba8e/8f5c615f95ea2.png'
   }
 ];
