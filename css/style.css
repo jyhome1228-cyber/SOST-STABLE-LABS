@@ -102,6 +102,37 @@ body {
   display: none !important;
 }
 
+/*
+ * The removed hero previously created the clearance below the fixed header.
+ * Restore only a compact content offset so the first real section never collides
+ * with the logo/navigation, while keeping the page feeling immediate.
+ */
+main > .page-hero + section {
+  padding-top: calc(var(--header-height) + 52px) !important;
+  border-top: 0 !important;
+}
+
+/* Solutions / Capabilities should open straight into the actual list. */
+body[data-page='solutions'] .offering-toolbar,
+body[data-page='capabilities'] .offering-toolbar {
+  display: none !important;
+}
+
+/* Keep project filters compact at the top of the archive. */
+body[data-page='projects'] .portfolio-toolbar {
+  margin-bottom: 38px;
+}
+
+@media (max-width: 760px) {
+  main > .page-hero + section {
+    padding-top: calc(var(--header-height) + 28px) !important;
+  }
+
+  body[data-page='projects'] .portfolio-toolbar {
+    margin-bottom: 30px;
+  }
+}
+
 @media (max-width: 560px) {
   .site-header .brand {
     width: 180px !important;
