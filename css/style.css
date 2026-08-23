@@ -97,6 +97,11 @@ body {
   background: var(--bg);
 }
 
+/* Subpages start directly with their actual content/list instead of a large intro hero. */
+.page-hero {
+  display: none !important;
+}
+
 @media (max-width: 560px) {
   .site-header .brand {
     width: 180px !important;
