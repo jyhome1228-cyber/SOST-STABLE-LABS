@@ -47,10 +47,11 @@
     const domain = project.displayDomain || displayHost(project.url);
     const captureClass = project.hasAutomatedCapture ? ' has-automated-capture' : '';
     const thumbPosition = project.thumbPosition || '50% 12%';
+    const detailHref = project.detailUrl || `./project-detail.html?id=${encodeURIComponent(project.id)}`;
 
     return `
       <article class="portfolio-card${captureClass}" data-category="${escapeHTML(project.category)}" style="--card-order:${index};--thumb-position:${escapeHTML(thumbPosition)}">
-        <a href="./project-detail.html?id=${encodeURIComponent(project.id)}" aria-label="${escapeHTML(project.title)} 프로젝트 자세히 보기">
+        <a href="${escapeHTML(detailHref)}" aria-label="${escapeHTML(project.title)} 프로젝트 자세히 보기">
           <div class="portfolio-card-visual">
             ${createVisual(project)}
             <span class="portfolio-card-arrow">↗</span>
