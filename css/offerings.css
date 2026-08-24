@@ -326,3 +326,77 @@
     margin-top: 30px;
   }
 }
+
+/* Static offering cards: show all information at a glance on the two
+   offering pages and remove the visual numbering/toggle treatment. */
+body[data-page='solutions'] .offering-card-top,
+body[data-page='capabilities'] .offering-card-top {
+  justify-content: flex-end !important;
+}
+
+body[data-page='solutions'] .offering-card-top span:first-child,
+body[data-page='capabilities'] .offering-card-top span:first-child {
+  display: none !important;
+}
+
+body[data-page='solutions'] .offering-card.is-interactive,
+body[data-page='capabilities'] .offering-card.is-interactive,
+body[data-page='solutions'] .offering-card.is-interactive.is-open,
+body[data-page='capabilities'] .offering-card.is-interactive.is-open {
+  min-height: 0 !important;
+  cursor: default !important;
+}
+
+body[data-page='solutions'] .offering-card.is-interactive > h2,
+body[data-page='capabilities'] .offering-card.is-interactive > h2 {
+  padding-right: 0 !important;
+}
+
+body[data-page='solutions'] .offering-card-details,
+body[data-page='capabilities'] .offering-card-details {
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+}
+
+body[data-page='solutions'] .offering-card-details-inner,
+body[data-page='capabilities'] .offering-card-details-inner {
+  padding-top: 28px !important;
+}
+
+body[data-page='solutions'] .offering-card-details .offering-content,
+body[data-page='capabilities'] .offering-card-details .offering-content {
+  margin-top: 28px !important;
+}
+
+body[data-page='solutions'] .offering-card-details .offering-keywords,
+body[data-page='capabilities'] .offering-card-details .offering-keywords {
+  margin-top: 28px !important;
+  padding-top: 0 !important;
+}
+
+body[data-page='solutions'] .offering-card-toggle,
+body[data-page='capabilities'] .offering-card-toggle {
+  display: none !important;
+}
+
+body[data-page='solutions'] .solution-card-actions,
+body[data-page='capabilities'] .solution-card-actions {
+  margin-top: 28px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body[data-page='solutions'] .solution-card-actions:has(.solution-quick-inquiry),
+body[data-page='capabilities'] .solution-card-actions:has(.solution-quick-inquiry) {
+  justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+  body[data-page='solutions'] .offering-card-top,
+  body[data-page='capabilities'] .offering-card-top {
+    margin-bottom: 30px !important;
+  }
+}
