@@ -1,6 +1,19 @@
 (() => {
   'use strict';
 
+  const removeLegacyProjectsHero = () => {
+    document.querySelectorAll('.projects-hero, .page-hero.projects-hero').forEach((section) => section.remove());
+
+    document.querySelectorAll('main > section').forEach((section) => {
+      const text = (section.textContent || '').replace(/\s+/g, ' ').trim();
+      if (/Projects\s*,?\s*built to work\.?/i.test(text) || /SOST LABS\s*\/\s*SELECTED WORK/i.test(text)) {
+        section.remove();
+      }
+    });
+  };
+
+  removeLegacyProjectsHero();
+
   const projects = Array.isArray(window.SOST_PROJECTS) ? window.SOST_PROJECTS : [];
   const grid = document.querySelector('#project-grid');
   const empty = document.querySelector('#project-empty');
@@ -15,7 +28,7 @@
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
   const displayHost = (url = '') => {
@@ -88,4 +101,6 @@
   });
 
   render();
+  window.setTimeout(removeLegacyProjectsHero, 0);
+  window.setTimeout(removeLegacyProjectsHero, 300);
 })();
