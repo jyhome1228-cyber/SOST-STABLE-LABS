@@ -42,6 +42,13 @@
   background: var(--bg);
 }
 
+/* When the portfolio-first runtime removes the legacy intro, keep the
+   project grid clearly below the fixed global header instead of letting
+   the first row sit underneath it. */
+body[data-page='home'] main > .home-portfolio-section:first-child {
+  padding-top: calc(var(--header-height) + clamp(28px, 3vw, 44px));
+}
+
 .home-portfolio-section .portfolio-card-description {
   min-height: 0;
 }
@@ -79,6 +86,10 @@
 @media (max-width: 760px) {
   .home-work-intro {
     padding-top: calc(var(--header-height) + 52px);
+  }
+
+  body[data-page='home'] main > .home-portfolio-section:first-child {
+    padding-top: calc(var(--header-height) + 20px);
   }
 
   .home-work-head {
