@@ -123,6 +123,70 @@ body[data-page='projects'] .portfolio-toolbar {
   margin-bottom: 38px;
 }
 
+/*
+ * Monochrome UI direction.
+ * ABOUT keeps the SOST brand accent. Every other public page inherits only
+ * neutral black/white interface colors while preserving project imagery.
+ */
+body:not([data-page='about']) {
+  --bg-soft: var(--bg);
+  --panel-2: var(--panel);
+  --point: var(--text);
+  --point-strong: var(--text);
+}
+
+/* Projects archive starts immediately and never shows the legacy intro hero. */
+body[data-page='projects'] .page-hero,
+body[data-page='projects'] .projects-hero {
+  display: none !important;
+}
+
+body[data-page='projects'] .portfolio-section {
+  padding-top: calc(var(--header-height) + 44px) !important;
+  border-top: 0 !important;
+  background: var(--bg) !important;
+}
+
+/* Hard-coded legacy blue states are normalized outside ABOUT. */
+body:not([data-page='about']) .portfolio-toolbar .filter-button.is-active {
+  border-color: var(--text) !important;
+  background: var(--text) !important;
+  color: var(--bg) !important;
+}
+
+body:not([data-page='about']) .portfolio-toolbar .filter-button:hover:not(.is-active) {
+  border-color: var(--text) !important;
+  color: var(--text) !important;
+}
+
+body:not([data-page='about']) .home-project-card:hover .home-project-browser {
+  border-color: var(--line-strong) !important;
+}
+
+body:not([data-page='about']) .home-projects-nav button:hover:not(:disabled) {
+  border-color: var(--text) !important;
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+body:not([data-page='about']) .home-projects-progress i {
+  background: var(--text) !important;
+}
+
+body:not([data-page='about']) .contact-banner.global-system-cta,
+body:not([data-page='about']) .contact-banner.solution-cta-banner,
+body:not([data-page='about']) .project-cta,
+body:not([data-page='about']) .button-point {
+  border-color: var(--text) !important;
+  background: var(--text) !important;
+  color: var(--bg) !important;
+}
+
+body:not([data-page='about']) .contact-banner.global-system-cta .global-cta-button span,
+body:not([data-page='about']) .contact-banner.solution-cta-banner .solution-cta-button span {
+  color: #111216 !important;
+}
+
 @media (max-width: 760px) {
   main > .page-hero + section {
     padding-top: calc(var(--header-height) + 28px) !important;
@@ -130,6 +194,10 @@ body[data-page='projects'] .portfolio-toolbar {
 
   body[data-page='projects'] .portfolio-toolbar {
     margin-bottom: 30px;
+  }
+
+  body[data-page='projects'] .portfolio-section {
+    padding-top: calc(var(--header-height) + 28px) !important;
   }
 }
 
