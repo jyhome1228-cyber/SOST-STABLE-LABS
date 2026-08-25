@@ -1,8 +1,8 @@
 /* Simplified desktop navigation geometry */
 @media (min-width: 1281px) {
   .global-nav {
-    width: clamp(780px, 47vw, 920px) !important;
-    min-width: 780px !important;
+    width: clamp(680px, 41vw, 790px) !important;
+    min-width: 680px !important;
     justify-content: space-between !important;
     gap: 0 !important;
   }
@@ -16,7 +16,7 @@
 
 @media (max-width: 1280px) and (min-width: 1181px) {
   .global-nav {
-    width: min(56vw, 700px) !important;
+    width: min(52vw, 650px) !important;
     min-width: 0 !important;
     justify-content: space-between !important;
     gap: 0 !important;
@@ -31,7 +31,7 @@
 
 @media (max-width: 1180px) and (min-width: 901px) {
   .global-nav {
-    width: min(60vw, 620px) !important;
+    width: min(57vw, 590px) !important;
     min-width: 0 !important;
     justify-content: space-between !important;
     gap: 0 !important;
