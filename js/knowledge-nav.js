@@ -30,6 +30,19 @@
       study.textContent = 'STUDY';
       if (nav.classList.contains('global-nav')) study.dataset.nav = 'study';
     }
+
+    let pricing = nav.querySelector('a[href="./pricing.html"], [data-nav="pricing"]');
+    if (!pricing) {
+      pricing = document.createElement('a');
+      const contact = nav.querySelector('a[href="./contact.html"]');
+      if (contact) nav.insertBefore(pricing, contact);
+      else nav.appendChild(pricing);
+    }
+
+    pricing.href = './pricing.html';
+    pricing.textContent = 'PRICING';
+    if (nav.classList.contains('global-nav')) pricing.dataset.nav = 'pricing';
+    else pricing.removeAttribute('data-nav');
   });
 
   document.querySelectorAll('.global-nav a').forEach((link) => {
