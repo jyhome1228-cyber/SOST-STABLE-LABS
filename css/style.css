@@ -72,11 +72,20 @@ html .site-header .brand::before {
   content: none !important;
 }
 
-/* Reserve six-item navigation geometry before CAPABILITIES is injected. */
-@media (min-width: 901px) {
+/* Reserve the wider six-item navigation geometry before runtime links settle. */
+@media (min-width: 1281px) {
   .global-nav {
-    width: clamp(560px, 43vw, 660px);
-    min-width: 560px;
+    width: clamp(780px, 47vw, 920px);
+    min-width: 780px;
+    justify-content: space-between !important;
+    gap: 0 !important;
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 901px) {
+  .global-nav {
+    width: min(60vw, 700px);
+    min-width: 0;
     justify-content: space-between !important;
     gap: 0 !important;
   }
