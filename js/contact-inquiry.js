@@ -12,6 +12,48 @@ const projectTypeGroup = form?.querySelector('[data-project-type-group]');
 const projectTypeError = form?.querySelector('[data-project-type-error]');
 const projectTypeOptions = projectTypeGroup?.querySelector('.project-type-options');
 
+const planCatalog = {
+  start: {
+    name: 'START',
+    price: '₩300,000~',
+    description: 'Landing Page',
+    types: ['기업 홈페이지']
+  },
+  standard: {
+    name: 'STANDARD',
+    price: '₩500,000~',
+    description: 'Corporate Website',
+    types: ['기업 홈페이지']
+  },
+  manage: {
+    name: 'MANAGE',
+    price: '₩1,000,000~',
+    description: 'Website + Admin',
+    types: ['관리자·대시보드']
+  },
+  connect: {
+    name: 'CONNECT',
+    price: '₩2,000,000~',
+    description: 'Login + Database',
+    types: ['웹서비스·플랫폼', '관리자·대시보드']
+  },
+  custom: {
+    name: 'CUSTOM',
+    price: '별도 협의',
+    description: 'Business System',
+    types: ['필요 범위 상담']
+  },
+  commerce: {
+    name: 'COMMERCE',
+    price: '별도 협의',
+    description: 'Cafe24 · 아임웹 쇼핑몰',
+    types: ['카페24 쇼핑몰']
+  }
+};
+
+const planKey = (new URLSearchParams(window.location.search).get('plan') || '').trim().toLowerCase();
+const requestedPlan = planCatalog[planKey] || null;
+
 let successModal = null;
 let successModalTimer = null;
 let lastFocusedElement = null;
@@ -124,14 +166,44 @@ function ensureProjectTypeOption(value) {
   return label.querySelector('input');
 }
 
+function renderRequestedPlan() {
+  if (!requestedPlan || !form) return;
+  const formGrid = form.querySelector('.form-grid');
+  if (!formGrid || formGrid.querySelector('[data-requested-plan-field]')) return;
+
+  const field = document.createElement('label');
+  field.className = 'field field-full requested-plan-field';
+  field.dataset.requestedPlanField = '';
+
+  const title = document.createElement('span');
+  title.textContent = '선택 플랜';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'requestedPlan';
+  input.readOnly = true;
+  input.setAttribute('aria-readonly', 'true');
+  input.value = `${requestedPlan.name} · ${requestedPlan.price} · ${requestedPlan.description}`;
+  input.defaultValue = input.value;
+
+  field.append(title, input);
+  formGrid.prepend(field);
+}
+
 if (projectTypeGroup) projectTypeGroup.id = 'project-type';
 ensureProjectTypeOption('시스템 연동·업무 자동화');
+renderRequestedPlan();
 
-const requestedTypes = new URLSearchParams(window.location.search)
+const requestedTypesFromUrl = new URLSearchParams(window.location.search)
   .getAll('type')
   .flatMap((value) => value.split(','))
   .map((value) => clean(value, 100))
   .filter(Boolean);
+
+const requestedTypes = [...new Set([
+  ...(requestedPlan?.types || []),
+  ...requestedTypesFromUrl
+])];
 
 requestedTypes.forEach((type) => {
   const input = ensureProjectTypeOption(type);
@@ -192,12 +264,19 @@ form?.addEventListener('submit', async (event) => {
   }
 
   const projectTypes = selectedProjectTypes();
+  const requestedPlanLabel = clean(data.get('requestedPlan'), 240);
+  const projectTypeLabel = clean([
+    requestedPlan?.name || '',
+    projectTypes.join(' · ')
+  ].filter(Boolean).join(' / '), 500);
+
   const payload = {
     company: clean(data.get('company'), 120),
     name: clean(data.get('name'), 80),
     email: clean(data.get('email'), 160),
     phone: clean(data.get('phone'), 60),
-    projectType: clean(projectTypes.join(' · '), 500),
+    projectType: projectTypeLabel || clean(projectTypes.join(' · '), 500),
+    requestedPlan: requestedPlanLabel,
     schedule: clean(data.get('schedule'), 120),
     budget: clean(data.get('budget'), 100),
     website: normalizeWebsite(data.get('website')),
