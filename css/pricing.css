@@ -1,3 +1,11 @@
+body[data-page='pricing'] {
+  --pricing-accent: #6f7edc;
+}
+
+:root[data-theme='dark'] body[data-page='pricing'] {
+  --pricing-accent: #a7b7ff;
+}
+
 body[data-page='pricing'] .pricing-main {
   background: var(--bg);
   color: var(--text);
@@ -56,7 +64,7 @@ body[data-page='pricing'] .pricing-main {
   line-height: 1.75;
 }
 
-/* Same continuous 3-column border grid used on Solutions / Capabilities. */
+/* Plan grid — same ruled structure as Solutions, with a lighter pricing hierarchy. */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -68,8 +76,9 @@ body[data-page='pricing'] .pricing-main {
 .pricing-card,
 .pricing-card-custom,
 .pricing-card-commerce {
+  position: relative;
   display: flex;
-  min-height: 600px;
+  min-height: 535px;
   flex-direction: column;
   padding: 30px;
   border: 0;
@@ -86,12 +95,12 @@ body[data-page='pricing'] .pricing-main {
 .pricing-card-commerce:hover {
   transform: none;
   border-color: var(--line);
-  background: rgba(167, 183, 255, .035);
+  background: color-mix(in srgb, var(--pricing-accent) 4%, var(--bg-soft));
   box-shadow: none;
 }
 
 .pricing-card-head {
-  min-height: 286px;
+  min-height: 228px;
 }
 
 .pricing-plan-type,
@@ -101,21 +110,23 @@ body[data-page='pricing'] .pricing-main {
 .domain-options article > span {
   margin: 0;
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 650;
-  letter-spacing: .08em;
+  letter-spacing: .085em;
 }
 
 .pricing-plan-type {
   text-align: right;
 }
 
+/* Plan name carries the brand accent; price is intentionally quieter. */
 .pricing-card h3 {
-  margin: 54px 0 10px;
-  font-size: clamp(24px, 2vw, 30px);
-  font-weight: 630;
-  line-height: 1.3;
-  letter-spacing: -.04em;
+  margin: 48px 0 12px;
+  color: var(--pricing-accent);
+  font-size: 19px;
+  font-weight: 680;
+  line-height: 1.25;
+  letter-spacing: .015em;
 }
 
 .pricing-price {
@@ -127,22 +138,25 @@ body[data-page='pricing'] .pricing-main {
 }
 
 .pricing-price strong {
-  font-size: clamp(30px, 2.55vw, 40px);
-  font-weight: 560;
-  letter-spacing: -.045em;
-  line-height: 1;
+  color: var(--text);
+  font-size: clamp(27px, 2.1vw, 34px);
+  font-weight: 470;
+  letter-spacing: -.042em;
+  line-height: 1.05;
 }
 
 .pricing-price span {
-  padding-bottom: 3px;
+  padding-bottom: 2px;
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 12px;
+  font-weight: 450;
 }
 
 .pricing-price-text strong {
-  font-size: clamp(22px, 1.85vw, 28px);
-  font-weight: 620;
-  letter-spacing: -.03em;
+  color: var(--text-soft);
+  font-size: clamp(20px, 1.55vw, 24px);
+  font-weight: 520;
+  letter-spacing: -.025em;
 }
 
 .pricing-card-summary {
@@ -156,17 +170,17 @@ body[data-page='pricing'] .pricing-main {
 .pricing-card ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px 18px;
-  margin: 30px 0 0;
-  padding: 24px 0 0;
+  gap: 8px 18px;
+  margin: 24px 0 0;
+  padding: 22px 0 0;
   border-top: 1px solid var(--line);
 }
 
 .pricing-card li {
   position: relative;
-  padding-left: 12px;
+  padding-left: 11px;
   color: var(--text-soft);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -177,13 +191,14 @@ body[data-page='pricing'] .pricing-main {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: var(--text-muted);
+  background: var(--pricing-accent);
   content: '';
+  opacity: .75;
 }
 
 .pricing-tech {
   margin-top: auto;
-  padding-top: 28px;
+  padding-top: 24px;
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -193,16 +208,22 @@ body[data-page='pricing'] .pricing-main {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 18px;
-  padding-top: 18px;
+  margin-top: 16px;
+  padding-top: 17px;
   border-top: 1px solid var(--line);
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 620;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 570;
+  transition: color .22s ease;
 }
 
 .pricing-card-cta span {
+  color: var(--pricing-accent);
   transition: transform .22s ease;
+}
+
+.pricing-card-cta:hover {
+  color: var(--pricing-accent);
 }
 
 .pricing-card-cta:hover span {
@@ -238,6 +259,12 @@ body[data-page='pricing'] .pricing-main {
 .domain-options article {
   padding: 30px 0 32px;
   border-bottom: 1px solid var(--line);
+}
+
+.pricing-system-list article > span,
+.domain-options article > span,
+.terms-grid article > span {
+  color: var(--pricing-accent);
 }
 
 .pricing-system-list h3,
@@ -305,7 +332,7 @@ body[data-page='pricing'] .pricing-main {
   position: absolute;
   top: 50%;
   right: 0;
-  color: var(--text-muted);
+  color: var(--pricing-accent);
   font-size: 22px;
   font-weight: 300;
   content: '+';
@@ -339,14 +366,14 @@ body[data-page='pricing'] .pricing-main {
   align-items: end;
 }
 
-.pricing-cta .eyebrow,
-.pricing-cta-inner > div > p:last-child {
-  color: var(--text-muted);
+.pricing-cta .eyebrow {
+  color: var(--pricing-accent);
 }
 
 .pricing-cta-inner > div > p:last-child {
   max-width: 620px;
   margin: 22px 0 0;
+  color: var(--text-muted);
   font-size: 16px;
   line-height: 1.75;
 }
@@ -364,14 +391,17 @@ body[data-page='pricing'] .pricing-main {
   background: transparent;
   color: var(--text);
   font-size: 14px;
-  font-weight: 650;
+  font-weight: 620;
   transition: background .25s ease, color .25s ease, border-color .25s ease;
 }
 
+.pricing-main-cta span {
+  color: var(--pricing-accent);
+}
+
 .pricing-main-cta:hover {
-  border-color: var(--text);
-  background: var(--text);
-  color: var(--bg);
+  border-color: var(--pricing-accent);
+  color: var(--pricing-accent);
 }
 
 @media (max-width: 1180px) {
@@ -445,6 +475,10 @@ body[data-page='pricing'] .pricing-main {
     grid-template-columns: 1fr;
   }
 
+  .pricing-price strong {
+    font-size: 29px;
+  }
+
   .pricing-section-head h2,
   .pricing-system-title h2,
   .pricing-domain-title h2,
@@ -459,6 +493,7 @@ body[data-page='pricing'] .pricing-main {
 
 @media (prefers-reduced-motion: reduce) {
   .pricing-card,
+  .pricing-card-cta,
   .pricing-card-cta span,
   .pricing-main-cta {
     transition: none;
