@@ -2,18 +2,6 @@
   'use strict';
 
   const plans = {
-    start: {
-      category: 'LANDING PAGE',
-      name: 'START',
-      price: '₩300,000~',
-      summary: '하나의 목적에 집중하는 단일 랜딩페이지를 빠르고 명확하게 구축합니다.',
-      fitTitle: '이런 프로젝트에 적합합니다',
-      fit: '신규 서비스 소개, 제품 출시, 캠페인, 이벤트, 광고 유입용 페이지처럼 하나의 목적과 CTA가 분명한 프로젝트에 적합합니다.',
-      items: ['원페이지 구성', 'PC / Mobile 반응형', '기본 인터랙션', 'CTA 및 문의 연결', '기본 SEO / Meta 설정', 'Firebase 문의 데이터 연결'],
-      tech: 'HTML · JavaScript · Firebase',
-      techCopy: '템플릿에 의존하지 않고 프로젝트 목적에 맞춰 직접 구축하며, 필요한 경우 문의 데이터는 Firebase로 연결합니다.',
-      inquiry: './contact.html?plan=start'
-    },
     standard: {
       category: 'CORPORATE WEBSITE',
       name: 'STANDARD',
