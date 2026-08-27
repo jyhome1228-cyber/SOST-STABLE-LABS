@@ -76,6 +76,7 @@
       await loadScript('./js/home-cta-enhance.js?v=20260817-5', 'home-cta-refresh-v5');
     }
     await loadScript('./js/site-finalize.js?v=20260814-2', 'site-finalize');
+    await loadStyle('./css/site-hierarchy-20260827.css?v=20260827-1', 'site-hierarchy-20260827.css');
     syncBrandLogo();
     reveal();
   })();
