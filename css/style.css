@@ -3,6 +3,7 @@
 @import url('./refinement-v2.css?v=20260814-1');
 @import url('./theme-toggle.css?v=20260814-1');
 @import url('./brand-refresh.css?v=20260814-1');
+@import url('./form-system.css?v=20260906-1');
 
 :root {
   color-scheme: light;
