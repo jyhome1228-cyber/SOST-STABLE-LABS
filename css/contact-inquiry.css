@@ -382,3 +382,216 @@ body.is-inquiry-modal-open {
     font-size: 13px;
   }
 }
+
+/* Universal compact form system ------------------------------------------
+   Based on the shared form/component rules: clear label → control hierarchy,
+   compact density, explicit states, restrained radius and predictable rhythm. */
+.contact-form {
+  width: 100%;
+  padding: 28px 30px;
+  border-color: var(--line);
+  border-radius: 12px;
+}
+
+.contact-form .form-grid {
+  gap: 18px 14px;
+}
+
+.contact-form .field {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.contact-form .field > span,
+.project-type-field legend {
+  margin: 0;
+  color: var(--text) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.4;
+  letter-spacing: -.01em;
+}
+
+.contact-form .field input,
+.contact-form .field select,
+.contact-form .field textarea {
+  width: 100%;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: 8px;
+  outline: 0;
+  background: color-mix(in srgb, var(--panel) 86%, var(--bg));
+  color: var(--text);
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    box-shadow .15s ease;
+}
+
+.contact-form .field input,
+.contact-form .field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.contact-form .field textarea {
+  min-height: 132px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.contact-form .field input:hover,
+.contact-form .field select:hover,
+.contact-form .field textarea:hover {
+  border-color: color-mix(in srgb, var(--text) 30%, transparent) !important;
+}
+
+.contact-form .field input:focus,
+.contact-form .field select:focus,
+.contact-form .field textarea:focus {
+  border-color: var(--text) !important;
+  background: var(--panel);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.contact-form .field input::placeholder,
+.contact-form .field textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: .72;
+}
+
+.contact-form .field select:has(option[value='']:checked) {
+  color: var(--text-muted);
+}
+
+.project-type-field {
+  margin-top: 8px;
+  padding: 28px 0 4px;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-type-field legend {
+  margin-bottom: 12px;
+}
+
+.project-type-field legend small {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.project-type-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.option-chip span {
+  min-height: 44px;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text-soft) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-align: left;
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    color .15s ease,
+    transform .15s ease;
+}
+
+.option-chip:hover span {
+  transform: none;
+  border-color: color-mix(in srgb, var(--text) 34%, transparent);
+  background: color-mix(in srgb, var(--panel) 88%, var(--bg));
+}
+
+.option-chip input:checked + span {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg) !important;
+  box-shadow: none;
+}
+
+.option-chip input:focus-visible + span {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.project-type-field.is-invalid {
+  border-top-color: currentColor;
+}
+
+.project-type-error {
+  margin-top: 8px;
+}
+
+.privacy-field {
+  margin-top: 6px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.privacy-field input {
+  margin-top: 2px;
+}
+
+.form-bottom {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.form-bottom > p {
+  max-width: 420px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.contact-form .button {
+  min-height: 48px;
+  border-radius: 8px;
+}
+
+@media (max-width: 760px) {
+  .contact-form {
+    padding: 22px;
+    border-radius: 10px;
+  }
+
+  .contact-form .form-grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-form {
+    padding: 18px 16px;
+  }
+
+  .contact-form .field input,
+  .contact-form .field select {
+    height: 48px;
+  }
+
+  .project-type-options {
+    grid-template-columns: 1fr;
+  }
+
+  .option-chip span {
+    min-height: 44px;
+  }
+
+  .form-bottom {
+    gap: 14px;
+  }
+}
