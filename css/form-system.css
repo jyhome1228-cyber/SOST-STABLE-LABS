@@ -1,0 +1,131 @@
+/* Universal form system ----------------------------------------------------
+   Shared form component rules based on the project's common UI system.
+   Color remains injected by the existing brand/theme tokens. */
+
+body:not([data-page='admin']) {
+  --form-control-height: 48px;
+  --form-control-radius: 8px;
+  --form-control-pad-x: 14px;
+  --form-field-gap: 8px;
+  --form-row-gap: 18px;
+  --form-column-gap: 14px;
+  --form-section-gap: 28px;
+}
+
+body:not([data-page='admin']) form .form-grid {
+  gap: var(--form-row-gap) var(--form-column-gap);
+}
+
+body:not([data-page='admin']) form .field {
+  display: grid;
+  min-width: 0;
+  gap: var(--form-field-gap);
+}
+
+body:not([data-page='admin']) form .field > span,
+body:not([data-page='admin']) form .field > label,
+body:not([data-page='admin']) form fieldset > legend {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -.01em;
+}
+
+body:not([data-page='admin']) form .field input:not([type='checkbox']):not([type='radio']),
+body:not([data-page='admin']) form .field select,
+body:not([data-page='admin']) form .field textarea {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--form-control-radius);
+  outline: 0;
+  background: color-mix(in srgb, var(--panel) 86%, var(--bg));
+  color: var(--text);
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    box-shadow .15s ease;
+}
+
+body:not([data-page='admin']) form .field input:not([type='checkbox']):not([type='radio']),
+body:not([data-page='admin']) form .field select {
+  min-height: var(--form-control-height);
+  padding: 0 var(--form-control-pad-x);
+}
+
+body:not([data-page='admin']) form .field textarea {
+  min-height: 132px;
+  padding: 12px var(--form-control-pad-x);
+  resize: vertical;
+}
+
+body:not([data-page='admin']) form .field input:not([type='checkbox']):not([type='radio']):hover,
+body:not([data-page='admin']) form .field select:hover,
+body:not([data-page='admin']) form .field textarea:hover {
+  border-color: color-mix(in srgb, var(--text) 30%, transparent);
+}
+
+body:not([data-page='admin']) form .field input:not([type='checkbox']):not([type='radio']):focus,
+body:not([data-page='admin']) form .field select:focus,
+body:not([data-page='admin']) form .field textarea:focus {
+  border-color: var(--text);
+  background: var(--panel);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+body:not([data-page='admin']) form .field input::placeholder,
+body:not([data-page='admin']) form .field textarea::placeholder {
+  color: var(--text-muted);
+  opacity: .72;
+}
+
+body:not([data-page='admin']) form .field :is(input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: .52;
+}
+
+body:not([data-page='admin']) form .field :is(input, select, textarea)[aria-invalid='true'] {
+  border-color: currentColor;
+}
+
+body:not([data-page='admin']) form :is(.helper-text, .field-helper) {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+body:not([data-page='admin']) form :is(.error-text, .field-error) {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+body:not([data-page='admin']) form :is(button, .button)[type='submit'] {
+  min-height: 48px;
+  border-radius: 8px;
+}
+
+@media (max-width: 760px) {
+  body:not([data-page='admin']) form .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  body:not([data-page='admin']) form .field-full {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not([data-page='admin']) form .field input,
+  body:not([data-page='admin']) form .field select,
+  body:not([data-page='admin']) form .field textarea {
+    transition: none;
+  }
+}
